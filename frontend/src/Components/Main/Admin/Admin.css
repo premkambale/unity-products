@@ -1,0 +1,56 @@
+.adminContainer {
+   width: 100vw;
+   height: 100vh;
+   padding: 0%;
+   margin: 0%;
+   overflow-x: hidden;
+   overflow-y: hidden;
+   background: "linear-gradient(to right, #003300 18%, #000099 100%)"
+}
+
+.admin-header {
+   padding: 20px;
+   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+   color: white;
+   text-align: center;
+   height: 12%;
+   background: linear-gradient(to right, #003300 18%, #000099 100%)
+}
+
+.admin-title {
+   font-size: 36px;
+   color: black;
+   font-family: " Garamond, serif";
+   margin: 0;
+   position: relative;
+   display: inline-block;
+   transition: transform 0.3s ease, color 0.3s ease;
+   color: white;
+
+}
+
+.ag-theme-alpine {
+   overflow-x: hidden;
+   width: 100vw;
+   height: 100%;
+   border: 1px solid black;
+}
+
+.adminMain {
+   width: 100vw;
+   height: 90vh;
+   display: flex;
+   justify-content: left;
+}
+
+.adminSections {
+   margin: 0 auto;
+}
+
+
+@media screen and (max-width: 600px) {
+   .admin-title {
+      font-size: 24px;
+      margin-bottom: 5px;
+   }
+} 

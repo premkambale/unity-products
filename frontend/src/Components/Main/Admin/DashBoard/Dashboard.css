@@ -1,0 +1,59 @@
+.table-container {
+    padding: 0px 20px;
+    margin-top: 5vh;
+    position: relative;
+    overflow-y: scroll !important;
+    overflow: scroll;
+}
+
+
+.table-container Table {
+    width: 75vw;
+}
+
+.DashboardTitle {
+    font-size: x-large;
+    left: 49px;
+    margin-bottom: 20px;
+}
+
+.EditProductDash>Modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.table-scroll {
+    height: 70vh;
+    overflow-y: scroll !important;
+}
+
+.DashboardAction {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.DashboardAction>button {
+    border: none;
+    background: none;
+}
+
+
+
+
+@media (max-width: 600px) {
+    .DashboardTitle {
+
+        font-size: small;
+
+    }
+
+    .table-container {
+        padding: 0px 20px;
+        overflow-x: scroll !important;
+        width: 80vw;
+    }
+}
