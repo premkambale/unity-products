@@ -10,7 +10,6 @@ const verifyJwt = (req, res, next) => {
       const decoded = jwt.verify(token, process.env.SECRET_KEY);
       req.userId = decoded.userId;
       req.accessRole = decoded.accessRole;
-      console.log(`decoded.accessRole : ${decoded.accessRole} `.yellow)
       next();
     }
     catch (error) {

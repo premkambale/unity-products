@@ -1,4 +1,4 @@
-const { userService } = require('../Services')
+const { userService } = require('../../Services')
 
 // -----------------------------------------------------------------------------------Delete All Users-------------------------------------------------------------------------------------------------
 const deleteAllUsers = async (req, res) => {

@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { userController } = require('../Controllers')
-const verifyJwt = require('../Middlewares/verify.jwt')
-const { verifyRole } = require('../Role_Verification/verify.role')
+const { userController } = require('../../Controllers')
+const verifyJwt = require('../../Middlewares/verify.jwt')
+const { verifyRole } = require('../../Role_Verification/verify.role')
 
 
 // --------------------------------------------------------------------------------------------Admin Routes-----------------------------------------------------------------------------------------
