@@ -1,5 +1,6 @@
 // module exports all controller methods
 module.exports = {
-  authController: require('./auth.controller'),
-  userController: require('./user.controller'),
+  authController: require('./Auth/auth.controller'),
+  userController: require('./User/user.controller'),
+  productController: require('./Product/product.controller')
 };

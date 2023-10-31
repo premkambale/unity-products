@@ -3,8 +3,8 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const { authController } = require('./../Controllers');
-const validateRequired = require('../Middlewares/validate.required');
+const { authController } = require('../../Controllers');
+const validateRequired = require('../../Middlewares/validate.required');
 
 
 

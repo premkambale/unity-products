@@ -1,15 +1,22 @@
- // This file is to connect database and server configuration
+// This file is to connect database and server configuration
 
 // mongoose is library for mongodb and node allows you to define schemas and queries and manage the relationship between datas
 const mongoose = require('mongoose');
 const app = require('./app');
+const fs = require('fs');
+
+const uploadDirectory = 'product_uploads';
+
+// to Check if the directory exists, and create it if it doesn't
+if (!fs.existsSync(uploadDirectory)) {
+  fs.mkdirSync(uploadDirectory);
+}
 
 // dotenv to configure env file into project
 const dotenv = require('dotenv/config');
 const port = process.env.PORT || 3000;
 const con_url = process.env.DB_CONNECTION;
 const colors = require('colors');
-console.log("connection url : ",con_url);
 var server;
 mongoose
   .connect(con_url)
@@ -25,7 +32,7 @@ mongoose
     }
   })
   .catch((eror) => console.error('connection failed'.red, { message: eror.message }))
- 
+
 
 
 // exit handler for all termination process and errors
@@ -36,7 +43,7 @@ const exitHandler = () => {
       process.exit(1);
     })
   }
-  else{
+  else {
     process.exit(1);
   }
 }

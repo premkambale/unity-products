@@ -1,5 +1,5 @@
-const { userCollection } = require('./../Models')
-const { authService, userService } = require('../Services')
+const { userCollection } = require('../../Models')
+const { authService, userService } = require('../../Services')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
