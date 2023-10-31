@@ -1,0 +1,131 @@
+.addProductPage {
+    height: 90vh;
+    padding: 0px 20px;
+    margin-top: 3vh;
+    /* width: 60vw; */
+    overflow-y: scroll;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+
+.buttonAddProduct>button {
+    margin-top: 20px;
+    width: 55.5%;
+    background-color: #FF6A00;
+    color: white;
+    border: none;
+}
+
+
+
+.buttonAddProduct>button :hover {
+    background-color: #919495;
+    color: black;
+
+
+}
+
+.width-21vh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25vh;
+}
+
+
+
+
+.AddproductTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-size: x-large;
+    background-color: white;
+     z-index: 1;
+     padding: 10px 0;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+ }
+
+.scrollable-form {
+    max-height: 200vh;
+     overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.form-container {
+    margin-top: 5%;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    height: 100vh;
+
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .width-21vh {
+        width: 15vh;
+    }
+
+
+    .buttonAddProduct>button {
+        margin-top: 20px;
+        width: 55vw;
+        background-color: #FF6A00;
+        color: white;
+        border: none;
+    }
+
+
+    .AddproductTitle {
+        font-size: 1rem;
+        position: absolute;
+        top: 0px;
+        left: 18px;
+
+
+    }
+
+    .form-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+
+.scrollable-form {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.dropzone {
+    border: 2px dashed #cccccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 200px;
+    display: block;
+    margin: 10px 0;
+}

@@ -1,0 +1,39 @@
+.ModalCss{
+    display: block;
+    padding: 1em;
+    max-width: 79%;
+    width: 25% !important;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 1em;
+    transform: translate(-50%, -50%);
+    outline: transparent;
+    transition: all .5s ease-in-out;
+    animation: show .2s;
+    transform: scale(1);
+    height: 30%;
+}
+.ModalBtn{
+  font-weight: 500;
+  padding: 7px 20px;
+  background: #55A8DA;
+  color: #FFFFFF;
+  border-radius: 5px;
+  outline: none;
+  border:none;
+  margin-top:20px;
+}
+.MsgDiv {
+    margin: 10px !important;
+    display: flex;
+    flex-direction: column;
+}
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color:rgba(38, 36, 36, 0.5);
+  z-index: 9999;
+}

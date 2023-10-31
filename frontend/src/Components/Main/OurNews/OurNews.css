@@ -1,0 +1,142 @@
+.HomeOfNews {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+.OurNewsTitle {
+  text-align: center;
+  margin: 10px;
+  font-family: Garamond, serif;
+  font-weight: 500;
+  font-size: 3rem;
+}
+
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+article {
+  width: 350px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+
+article:hover {
+  background-color: #eaeaea;
+}
+
+figure {
+  overflow: hidden;
+}
+
+article img {
+  max-width: 94%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.article-body {
+  padding: 20px;
+}
+
+.article-body>p {
+  text-align: start;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  font-family: Garamond, serif;
+  margin-left: -5%;
+}
+
+a.read-more {
+  text-decoration: none;
+  color: #007bff;
+  display: inline-block;
+  font-family: 'Arial', sans-serif;
+  cursor: pointer;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+  article {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .article img {
+    width: 100%;
+  }
+}
+
+.imag-container {
+  overflow: hidden;
+}
+
+.imag-container img {
+  transition: transform 0.3s;
+}
+
+
+
+.article-wrapper {
+  width: 350px;
+  height: 400px;
+  perspective: 1000px;
+  position: relative;
+}
+
+.front,
+.back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transition: transform 0.5s;
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.article-wrapper.flipped .front {
+  transform: rotateY(-180deg);
+}
+
+.article-wrapper.flipped .back {
+  transform: rotateY(0deg);
+}
+
+.back-button {
+  border: none;
+  background: transparent;
+  color: #5757ff;
+  font-size: 1.4rem;
+  position: relative;
+  margin: -13px 0px 0px -8px;
+}

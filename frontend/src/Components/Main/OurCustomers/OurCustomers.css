@@ -1,0 +1,121 @@
+ 
+ 
+.AO_4_main_div {
+    border: 1px solid rgb(0, 0, 0);
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    align-items: center;
+}
+
+.cheklist_label {
+    word-wrap: break-word
+}
+
+;
+
+.cheklist_input {
+    width: 10%;
+}
+
+.main_div {
+    border: 2px solid black;
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    align-items: center;
+}
+
+.verification_div {
+    display: flex;
+    flex-direction:column ;
+    align-items: flex-start;
+}
+
+.checklist_div {
+   text-align: start;
+   padding-left: 25%;
+}
+.checklist_check{
+    text-align: end;
+    margin-top: -3%;
+}
+
+.checklist_subdivs {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-left: 10px;
+
+}
+
+.approval_div {
+    display: flex;
+    /* flex-wrap: wrap; 
+     margin-left: 10px;  */
+}
+.input_bottom_border{
+    border:none;
+    border-bottom:2px solid red;
+    width:300px;
+    outline: none;
+}
+.input_bottom_border1{
+    border:none;
+    border-bottom:2px solid red;
+    /* width:300px; */
+    outline: none;
+}
+.approch_subdivs{
+   text-align: start;
+   padding-left: 17%;
+
+}
+.approch_subinput{
+    text-align: end;
+    padding-right: 33%;
+    margin-top: -2%;
+}
+
+.input_bottom_border3{
+    border:none;
+    border-bottom:2px solid red;
+    width:253px;
+    outline: none;
+}
+.AO_4_main_div input[type="checkbox"] {
+     -webkit-appearance: none;
+    appearance: none;
+     background-color: #fff;
+     margin: 0;
+    appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 0.8em;
+  height: 0.8em;
+  border: 1px solid currentColor;
+  border-radius: 0.15em;
+  transform: translateY(-0.075em);
+  color: red;
+  outline: red;
+  place-content: center;
+  
+  }
+ .AO_4_main_div input[type="checkbox"]::before {
+    content: "";
+    width: 0.8em;
+    height: 0.8em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+  }
+ .AO_4_main_div input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+  
+.form_header{
+    text-align: center;
+    color: red;
+}
