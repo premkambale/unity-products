@@ -1,0 +1,208 @@
+.loginBackground {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #150046;
+}
+
+.Login_section {
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+  right: 20%;
+  height: 82%;
+  font-size: 14px;
+  box-shadow: rgb(255, 255, 255) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.loginErrorAmin {
+  width: 80px;
+  height: 80px;
+}
+
+.top-svg {
+  position: absolute;
+  top: 8%;
+  left: 20%;
+  width: 60%;
+}
+
+.LoginCard {
+  text-align: center;
+  margin-top: 10%;
+}
+
+.LoginInput {
+  margin: 10px 0;
+}
+
+.inputLabel {
+  display: block;
+  text-align: start;
+  color: #03232F;
+}
+
+.login_input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.loginBTN>button {
+  width: 100%;
+  border: 1px solid #00ADEE;
+  background-color: #00ADEE;
+  color: #FCFCFC;
+  padding: 0.5em 0;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 2px;
+  margin-top: 5%;
+}
+
+
+.loginErrorPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30vw;
+  height: 40vh;
+  background-color: #fff;
+  color: #000;
+  box-shadow: 0 0 0 1000px #00000080;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: .25em;
+  border-radius: 5px;
+  gap: 20px;
+  text-align: center;
+  z-index: 99;
+}
+
+.loginErrorPopup p {
+  font-size: .9rem;
+}
+
+.loginErrorPopupBtn {
+  width: 60px;
+  outline: none;
+  background-color: #00ADEE;
+  border: 1px solid #00ADEE;
+  color: #fff;
+  padding: .25em 1em;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.remember {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.forgot_pass {
+  font-size: 12px;
+  color: #949EBB;
+  cursor: pointer;
+
+}
+
+.LoginFooter {
+  margin: 4px 0;
+  font-size: 12px;
+  color: #949EBB;
+  margin-top: 7vh;
+}
+
+.LoginFooter>p {
+  margin-top: 3%;
+}
+
+
+.footer_text {
+  margin: 4px 0;
+  font-size: 12px;
+  color: #949EBB;
+  margin-top: 15%;
+}
+
+.mandatory_span {
+  color: #ED7B00;
+}
+
+.remember_me {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  text-align: start;
+}
+
+.login_checkbox {
+  cursor: pointer;
+}
+
+.passwordShowAndHide {
+  position: absolute;
+  margin-left: -5%;
+  margin-top: 3%;
+  color: #5C5C5C;
+}
+
+@media (max-width: 768px) {
+  .Login_section {
+    right: 0;
+    height: 70%;
+
+  }
+
+  .LoginInput {
+    margin: 8px 0;
+  }
+
+  .inputLabel {
+    text-align: left;
+  }
+
+  .top-svg {
+    position: absolute;
+    top: 7%;
+    left: 20%;
+    width: 60%;
+  }
+}
+
+@media (max-width: 900px) {
+  .Login_section {
+    right: 0;
+    height: 70%;
+
+  }
+
+  .LoginInput {
+    margin: 8px 0;
+  }
+
+  .inputLabel {
+    text-align: left;
+  }
+
+  .top-svg {
+    position: absolute;
+    top: 7%;
+    left: 20%;
+    width: 60%;
+  }
+}

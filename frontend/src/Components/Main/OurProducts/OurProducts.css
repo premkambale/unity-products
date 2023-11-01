@@ -1,0 +1,76 @@
+.HomeOfProduct {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+ }
+
+.OurProductTitle {
+  text-align: center;
+  margin: 10px;
+  font-family: Garamond, serif;
+  font-weight: 500;
+  font-size: 3rem;
+}
+.article-wrapper_Products > img{
+
+  width: 60%;
+}
+.ProductArticles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; 
+}
+
+.productArticle {
+  width: 250px;
+  height: 220px;
+  border: 1px solid #ddd;
+  background: #fff;
+  padding: 1px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all ease-in-out 0.3s;
+  margin: 10px;  
+}
+
+.productArticle:hover {
+  background: #eaeaea;
+}
+
+productArticle img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.ProductArticle-body > p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: larger;
+  font-family: Garamond, serif;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+}
+
+.ProductIcon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+  .ProductArticles {
+    flex-direction: column; 
+  }
+
+  .productArticle {
+    width: 95%; 
+    height: 10%; 
+  }
+}
