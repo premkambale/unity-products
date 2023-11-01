@@ -9,8 +9,6 @@ const bodyParser = require('body-parser');
 // routes that are exported in Routes/index.js;
 const routes = require('./Routes');
 
-
-
 // json() to convert HTTP Request body to JSON;
 app.use(bodyParser.json());
 

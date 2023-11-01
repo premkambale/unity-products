@@ -14,8 +14,10 @@ import LandingPage from '../LandingPage/LandingPage';
 import OurCustomers from '../OurCustomers/OurCustomers';
 import SamplePage from '../LandingPage/SamplePage';
 import Login from '../Login/Login';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 const Main = () => {
+    const role = "";
     return (
         <div>
             <BrowserRouter>
@@ -23,7 +25,13 @@ const Main = () => {
                     <Route path='/' element={<Navigate to={'/LandingPage'} />} />
                     <Route path='/LandingPage' element={<LandingPage />} />
                     <Route path='/Home' element={<Home />} />
-                    <Route path='/Admin/*' element={<Admin />} />
+                    {
+
+                        role == "ADMIN" ?
+                            <Route path='/Admin/*' element={<Admin />} />
+                            :
+                            <Route path='*' element={<ErrorPage />} />
+                    }
                     <Route path='/WhyUnity' element={<WhyUnity />} />
                     <Route path='/OurHistory' element={<OurHistory />} />
                     <Route path='/Solutions' element={<Solutions />} />
@@ -33,14 +41,11 @@ const Main = () => {
                     <Route path='/ContactUs' element={<ContactUsForm />} />
                     <Route path='/OurCustomers' element={<OurCustomers />} />
                     <Route path='/Login' element={<Login />} />
-
-
-
-
+                    <Route path='*' element={<ErrorPage />} />
                 </Routes>
             </BrowserRouter>
         </div>
     )
 }
-
+ 
 export default Main;

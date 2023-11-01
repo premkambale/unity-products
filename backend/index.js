@@ -22,7 +22,7 @@ mongoose
   .connect(con_url)
   .then((res) => {
     console.log('mongodb connected sucessfully========>'.green);
-
+ 
     server = app.listen(port, () => { });
     if (port) {
       console.log(`server started on port========> ${port}`.green);

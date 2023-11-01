@@ -1,4 +1,4 @@
-const { userCollection } = require('./../Models');
+const { userCollection } = require('../../Models');
 
 const isEmailRegistered = async (req) => {
   const user = await userCollection.findOne({ email: req.body.email })

@@ -1,4 +1,4 @@
-const { userCollection } = require('./../Models');
+const { userCollection } = require('../../Models');
 
 // -----------------------------------------------------------------------------------To Find User With email -------------------------------------------------------------------------------------------------------
 const fetch_all_users = async (req, res) => {
