@@ -6,11 +6,14 @@ const router = express.Router();
 const authRoutes = require('./Auth/auth.routes');
 const userRoutes = require('./Users/user.routes');
 const productRoutes = require('./Products/product.routes');
+const projectRoutes = require('./Project/project.routes');
+
  
 const routes = [
   { path: '/users', route: authRoutes },
   { path: '/users', route: userRoutes },
   { path: '/products', route: productRoutes },
+  { path: '/projects', route: projectRoutes },
 ]
 
 routes.map((item) => {

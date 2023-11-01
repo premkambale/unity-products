@@ -1,4 +1,6 @@
 module.exports = {
-  userCollection: require('./auth.model'),
-  productCollection: require('./product.model')
+  userCollection: require('./Auth/auth.model'),
+  productCollection: require('./Product/product.model'),
+  projectCollection: require('./Project/project.modal'),
+  blogCollection: require('./Blog/blog.modal'),
 }
