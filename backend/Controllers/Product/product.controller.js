@@ -4,28 +4,24 @@ const { productService } = require('../../Services');
 // -------------------------------------------------------------------------------to create product--------------------------------------------------------------------
 
 const create_product = async (req, res) => {
-  // const file = req.file;
-  // if (file) {
-  // const payload = { ...req.body, document: req?.file?.buffer };
-  const payload = { ...req.body };
-
-
-  const new_product = new productCollection(payload);
-  try {
-    await new_product.save();
-    res.send({
-      message: 'product created sucessfully',
-      success: true,
-    })
-
+  const file = req.file;
+  if (file) {
+    const payload = { ...req.body, product_image: req?.file?.buffer };
+    const new_product = new productCollection(payload);
+    try {
+      await new_product.save();
+      res.send({
+        message: 'product created sucessfully',
+        success: true,
+      })
+    }
+    catch (error) {
+      res.send({ success: false, message: "failed to create product" })
+    }
   }
-  catch (error) {
+  else {
     res.send({ success: false, message: "failed to create product" })
   }
-  // }
-  // else {
-  //   res.send({ success: false, message: "failed to create product" })
-  // }
 }
 
 const get_all_products = async (req, res) => {
@@ -53,7 +49,7 @@ const get_product_by_id = async (req, res) => {
     }
   }
   catch (error) {
-    res.send({ success: false,message: "failed to fetch product" })
+    res.send({ success: false, message: "failed to fetch product" })
   }
 }
 
