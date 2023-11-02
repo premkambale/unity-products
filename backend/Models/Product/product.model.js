@@ -18,7 +18,7 @@ const productCollection = mongoose.Schema({
     require:true
   },
   product_image: {
-    type: Buffer,
+    type: String,
     // require: true
   },
   document: {
