@@ -1,3 +1,4 @@
+
 import React from 'react';
 import "./MainProductPage.css";
 import Carousel from 'react-bootstrap/Carousel';
@@ -17,8 +18,11 @@ const MainProductPage = () => {
  
    const handleReadMore=()=>{
     navigate("/WhyUnity")
-
    }
+
+   
+  var roleOfGuest = sessionStorage.getItem("Role");
+  console.log("roleOfGuest",roleOfGuest)
 
   return (
     <div className="page-content">

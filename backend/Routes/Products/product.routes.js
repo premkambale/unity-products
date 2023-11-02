@@ -6,8 +6,9 @@ const upload = require('../../Middlewares/uploads');
 // assign destination folder to store file that will be uploaded
 
 router.post("/create-product", verifyJwt, upload.single('product_image'), productController.create_product);
-router.get("/all", verifyJwt, productController.get_all_products);
-router.get("/product/:productId", verifyJwt, productController.get_product_by_id);
+router.get("/all", productController.get_all_products);
+router.get("/product/:productId", productController.get_product_by_id);
+
 
 
 

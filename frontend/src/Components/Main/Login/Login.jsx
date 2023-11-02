@@ -2,16 +2,12 @@ import React, { useState } from 'react';
 import "./Login.css";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
-import Lottie from "lottie-react";
-import Success from "../Sources/Animations/Success.json"
-import Warning from "../Sources/Animations/Warning.json"
-
 
 const Login = () => {
     const navigate = useNavigate()
     const [showHide, setShowHide] = useState(false);
     const [showError, setShowError] = useState(false);
-
+    const [switchTabs, setSwitchTabs] = useState(false)
 
     const handleShowPassword = () => {
         const password = document.getElementById('password');
@@ -29,61 +25,131 @@ const Login = () => {
         "password": ""
 
     });
-    console.log('loginData', loginData)
 
+    const [RegisterData, setRegisterData] = useState({
+        FullName: '',
+        email: '',
+        password: '',
+        MobileNo: '',
 
-    const StaticUserData = [
-        {
-            "email": "Ashu@gmail.com",
-            "password": "Ashu@123",
-            "role": "Admin"
+    })
 
-        },
-        {
-            "email": "premkambale@example.com",
-            "password": "premkambale@example.com",
-            "role": "User"
+    console.log("RegisterData", RegisterData)
 
-        },
-    ]
+    const handleRegister = () => {
+        fetch("http://localhost:5500/users/register", {
+            method: "POST",
+            headers: {
+                'content-type': "application/json",
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(RegisterData)
 
+        }).then((res) => res.json())
+            .then((resData) => {
 
+                if (resData.succces == true) {
+                    alert(resData.message)
+
+                    setShowError(false)
+                }
+                else {
+                    setShowError(true)
+                    alert(resData.message)
+
+                }
+
+            })
+            .catch((err) => {
+                console.log("error while login", err.message)
+            })
+
+    }
 
     const handleLogin = () => {
-        if (StaticUserData[0].email === loginData.email && StaticUserData[0].password === loginData.password) {
 
-            alert("login successful")
-            navigate("/Admin")
-        }
-        else {
-            setShowError(true)
-        }
+        fetch("http://localhost:5500/users/login-user", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify(loginData)
+        })
+            .then((res) => res.json())
+            .then((resData) => {
+                console.log("resData", resData)
+                if (resData.success == true) {
+                    setShowError(false)
+                   sessionStorage.setItem("Role",  (resData.role))
+                   sessionStorage.setItem("token",  (resData.token))
+
+
+
+                    debugger
+                    navigate("/Home")
+                    alert(resData.message)
+
+                }
+                else {
+                    setShowError(true)
+                    alert(resData.message)
+
+                }
+
+            })
+            .catch((err) => {
+                console.log("error while login", err.message)
+            })
+
+
+
     }
 
 
 
     const handleChange = (inputName, inputValue) => {
-        setLoginData(prevFormData => ({
-            ...prevFormData,
-            [inputName]: inputValue
-        }));
+        if (switchTabs == true) {
+            setLoginData(prevFormData => ({
+                ...prevFormData,
+                [inputName]: inputValue
+            }));
+        }
+        else {
+            setRegisterData(prevFormData => ({
+                ...prevFormData,
+                [inputName]: inputValue
+            }))
+        }
     }
 
-    const handleErrorPopup = () => {
-        setShowError(false)
+
+    const handleLoginSwitch = () => {
+        setSwitchTabs(true)
+    }
+
+    const handleRegisterSwitch = () => {
+        setSwitchTabs(false)
     }
 
 
     return (
         <div className="loginBackground">
-            {showError && <div className="loginErrorPopup loginErrorPopup-hidden">
-                <Lottie animationData={Warning} className='loginErrorAmin' />
-                <p style={{ fontSize: '15px' }}>Please enter valid username and password</p>
-                <button className='loginErrorPopupBtn' onClick={handleErrorPopup}>ok</button>
-            </div>}
+
             <section className="Login_section">
-                <div className="LoginCard">
-                    {/* <img className="top-svg" src={Rnt_Logo} alt="Rnt Logo" /> */}
+
+                <div className="switchTabs">
+                    <button className="loginTab" onClick={handleLoginSwitch}>
+                        login
+                    </button>
+
+                    <button className="registerTab" onClick={handleRegisterSwitch}>
+                        register
+                    </button>
+
+                </div>
+
+                {switchTabs ? <div className="LoginCard">
                     <div className="LoginContent">
                         <div className="LoginInput">
                             <label className='inputLabel' htmlFor="Username">Username <span className='mandatory_span'>*</span></label>
@@ -117,14 +183,61 @@ const Login = () => {
                         </div>
                     </div>
 
-                    <div className="LoginFooter">
-                        <span>Powered by</span>
-                        <p>Lorem ipsum dolor sit amet consectetur.</p>
-                    </div>
-                    <p className='footer_text'>&copy;Copyright {new Date().getFullYear()} Lorem ipsum dolor sit amet consectetur.</p>
 
                 </div>
+                    :
+
+                    <div className="registerCard">
+
+                        <div className="LoginContent">
+                            <div className="LoginInput">
+                                <label className='inputLabel' htmlFor="FullName">Full Name <span className='mandatory_span'>*</span></label>
+                                <input className='login_input' id='FullName' name='FullName' type="text" placeholder='Enter Full Name'
+                                    onChange={e => handleChange(e.target.name, e.target.value)}
+                                />
+                            </div>
+
+
+                            <div className="LoginInput">
+                                <label className='inputLabel' htmlFor="MobileNo">Mobile No <span className='mandatory_span'>*</span></label>
+                                <input className='login_input' id='MobileNo' name='MobileNo' type="text" placeholder='Enter Mobile No'
+                                    onChange={e => handleChange(e.target.name, e.target.value)}
+                                />
+                            </div>
+                            <div className="LoginInput">
+                                <label className='inputLabel' htmlFor="email">Email<span className='mandatory_span'>*</span></label>
+                                <input className='login_input' id='email' name='email' type="text" placeholder='Enter email'
+                                    onChange={e => handleChange(e.target.name, e.target.value)}
+                                />
+                            </div>
+                            <div className="LoginInput">
+                                <label className='inputLabel' htmlFor="Password">Password <span className='mandatory_span'>*</span></label>
+                                <div className="passwordInput">
+                                    <input className='login_input' name='password' id='password' type={showHide ? "text" : "password"} placeholder='Enter Password'
+                                        onChange={e => handleChange(e.target.name, e.target.value)}
+                                    />
+                                    <span className="passwordShowAndHide" onClick={handleShowPassword}>
+                                        {showHide ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className="loginBTN">
+                                <button onClick={handleRegister}>Register</button>
+                            </div>
+                        </div>
+
+                    </div>}
             </section>
+            {showError && (
+                <div className="errorModal">
+                    <div className="errorModalContent">
+                        <h2>Login Error</h2>
+                        <p>Incorrect username or password. Please try again.</p>
+                        <button onClick={() => setShowError(false)}>OK</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

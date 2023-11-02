@@ -24,6 +24,9 @@ const Header = () => {
     setShowDropdown(null);
   };
 
+  var roleOfGuest = sessionStorage.getItem("Role");
+  console.log("roleOfGuest", roleOfGuest)
+
   return (
     <div className="header-main-container">
       <div className="headerContent">
@@ -42,76 +45,73 @@ const Header = () => {
             <Navbar.Brand
               style={{ color: "white" }}
               className="hover-glittery-effect"
-              href="#home"
+              onClick={() => navigate("/Home")}
             >
               Logo
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
-                <Nav.Link style={{ color: "white" }} href="/Home">
+                <Nav.Link style={{ color: "white" }} onClick={() => navigate("/Home")}>
                   Home
                 </Nav.Link>
                 <NavDropdown
-                  style={{ color: "black" }}  
+                  style={{ color: "black" }}
                   title="About Us"
                   id="basic-nav-dropdown"
                   onMouseEnter={() => handleDropdownHover('about')}
                   onMouseLeave={handleDropdownLeave}
                   show={showDropdown === 'about'}
                 >
-                  <NavDropdown.Item className="nav-dropdown-item" href="/WhyUnity">
+                  <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/WhyUnity")}>
                     Why Unity
                   </NavDropdown.Item>
                   <NavDropdown.Divider className="nav-dropdown-divider" />
-                  <NavDropdown.Item className="nav-dropdown-item" href="/OurHistory">
+                  <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/OurHistory")}>
                     Our History
                   </NavDropdown.Item>
                   <NavDropdown.Divider className="nav-dropdown-divider" />
-                  <NavDropdown.Item className="nav-dropdown-item" href="#action/3.3">
+                  <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/OurCustomers")}>
                     Our Customers
                   </NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link style={{ color: "white" }} href="/Solutions">
+                <Nav.Link style={{ color: "white" }} onClick={() => navigate("/Solutions")}>
                   Solutions
                 </Nav.Link>
-                <Nav.Link style={{ color: "white" }} href="/Products">
+                <Nav.Link style={{ color: "white" }} onClick={() => navigate("/Products")}>
                   Products
                 </Nav.Link>
-                <Nav.Link style={{ color: "white" }} href="/Projects">
+                <Nav.Link style={{ color: "white" }} onClick={() => navigate("/Projects")}>
                   Projects
                 </Nav.Link>
-                <Nav.Link style={{ color: "white" }} href="/Press">
+                <Nav.Link style={{ color: "white" }} onClick={() => navigate("/Press")} >
                   Press & Media
                 </Nav.Link>
-                <Nav.Link style={{ color: "white" }} href="/ContactUs">
+                <Nav.Link style={{ color: "white" }} onClick={() => navigate("/ContactUs")}>
                   Contact Us
                 </Nav.Link>
               </Nav>
-              <NavDropdown
-                style={{ color: "black" }} 
-                title="Profile"
-                onMouseEnter={() => handleDropdownHover('Profile')}
-                onMouseLeave={handleDropdownLeave}
-                show={showDropdown === 'Profile'}
-                id="basic-nav-dropdown"
-              >
-                <NavDropdown.Item className="nav-dropdown-item" href="/Login">
-                  Admin
-                </NavDropdown.Item>
-                <NavDropdown.Divider className="nav-dropdown-divider" />
-                <NavDropdown.Item className="nav-dropdown-item" href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Divider className="nav-dropdown-divider" />
-                <NavDropdown.Item className="nav-dropdown-item" href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider className="nav-dropdown-divider" />
-                <NavDropdown.Item className="nav-dropdown-item" href="#action/3.4">
-                  Separated link
-                </NavDropdown.Item>
-              </NavDropdown>
+
+              {
+                roleOfGuest == "guest" ? <div></div>
+                  :
+                  <NavDropdown
+                    style={{ color: "black" }}
+                    title="Profile"
+                    onMouseEnter={() => handleDropdownHover('Profile')}
+                    onMouseLeave={handleDropdownLeave}
+                    show={showDropdown === 'Profile'}
+                    id="basic-nav-dropdown"
+                  >
+                    <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/Admin")}>
+                      Admin
+                    </NavDropdown.Item>
+                    <NavDropdown.Divider className="nav-dropdown-divider" />
+                    <NavDropdown.Item className="nav-dropdown-item" href="#action/3.2">
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+              }
             </Navbar.Collapse>
           </Container>
         </Navbar>

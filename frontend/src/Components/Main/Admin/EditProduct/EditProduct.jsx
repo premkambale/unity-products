@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/Button"
 import Badge from 'react-bootstrap/esm/Badge';
@@ -12,6 +12,22 @@ const EditProduct = () => {
   const [quantity, setQuantity] = useState(1);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [imagePreview, setImagePreview] = useState(null);
+  const [showQuantityCounter, setShowQuantityCounter] = useState(true);
+
+  useEffect(()=>{
+    console.log("counter :", showQuantityCounter);
+  },[])
+  const [productData, setProductData] = useState({
+
+    product_name: "",
+    product_description: "",
+    company_name: "",
+    product_price: "",
+    product_image: "",
+    document: ""
+
+  })
+
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -41,11 +57,30 @@ const EditProduct = () => {
       setQuantity(quantity - 1);
     }
   };
+
+  const handleDropdownChange = (e) => {
+    const selectedOption = e.target.value;
+    setShowQuantityCounter(selectedOption === 'inventory');
+  };
+
+  const handleChange = (inputName, inputValue) => {
+    console.log("inputName", inputName, "inputValue", inputValue)
+    setProductData(prevProductData => ({
+      ...prevProductData,
+      [inputName]: inputValue
+    }))
+  }
   return (
     <>
       <div className="addProductPage">
         <div className="AddproductTitle">
           <Badge bg="info">Edit Product</Badge>
+          <div className="dropdown-container">
+            <select className="ProductAddDropdown" name="productType" onChange={handleDropdownChange} id="">
+              <option value="inventory">Edit to inventory</option>
+              <option value="showCase">Edit to showcase users</option>
+            </select>
+          </div>
         </div>
         <div className="scrollable-form">
           <Form className="form-container">
@@ -65,24 +100,26 @@ const EditProduct = () => {
               <Form.Label>Description</Form.Label>
               <Form.Control type="email" placeholder="Enter description" />
             </Form.Group>
-
-            <Form.Group>
-              <Form.Label>Quantity</Form.Label>
-              <div className="d-flex align-items-center width-21vh">
-                <Button variant="outline-secondary" onClick={decrementQuantity}>
-                  -
-                </Button>
-                <Form.Control
-                  type="number"
-                  value={quantity}
-                  readOnly
-                  className="text-center"
-                />
-                <Button variant="outline-secondary" onClick={incrementQuantity}>
-                  +
-                </Button>
-              </div>
-            </Form.Group>
+            {showQuantityCounter == true && (
+              <Form.Group>
+                <Form.Label>Quantity</Form.Label>
+                <div className="d-flex align-items-center width-21vh">
+                  <Button variant="outline-secondary" onClick={decrementQuantity}>
+                    -
+                  </Button>
+                  <Form.Control
+                    type="number"
+                    value={quantity}
+                    readOnly
+                    className="text-center"
+                    onChange={(e) => handleChange(e.target.name, e.target.value)}
+                  />
+                  <Button variant="outline-secondary" onClick={incrementQuantity}>
+                    +
+                  </Button>
+                </div>
+              </Form.Group>
+            )}
 
             <Form.Group controlId="formFileMultiple" className="mb-3">
               <Form.Label>Image</Form.Label>
@@ -96,8 +133,12 @@ const EditProduct = () => {
               </div>
               {renderUploadedFiles()}
             </Form.Group>
-            <Button 
-            className='submitBTNFOrm'
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Document</Form.Label>
+              <Form.Control name="product_description" onChange={e => handleChange(e.target.name, e.target.value)} type="file" placeholder="Enter description" />
+            </Form.Group>
+            <Button
+              className='submitBTNFOrm'
               variant="primary"
               type="submit"
               onClick={(e) => {

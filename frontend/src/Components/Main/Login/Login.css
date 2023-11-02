@@ -24,6 +24,68 @@
   height: 80px;
 }
 
+/* Add this CSS to your Login.css or a separate CSS file */
+
+.errorModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.errorModalContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.errorModalContent h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ff0000;
+}
+
+.errorModalContent p {
+    font-size: 16px;
+    color: #333;
+}
+
+.errorModalContent button {
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.errorModalContent button:hover {
+    background: #cc0000;
+}
+
+
+.registerCard{
+  text-align: center;
+  margin-top: 10%;
+}
+ 
+
+.switchTabs{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .top-svg {
   position: absolute;
   top: 8%;
@@ -67,27 +129,7 @@
   margin-top: 5%;
 }
 
-
-.loginErrorPopup {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 30vw;
-  height: 40vh;
-  background-color: #fff;
-  color: #000;
-  box-shadow: 0 0 0 1000px #00000080;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: .25em;
-  border-radius: 5px;
-  gap: 20px;
-  text-align: center;
-  z-index: 99;
-}
+ 
 
 .loginErrorPopup p {
   font-size: .9rem;
