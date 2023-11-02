@@ -17,12 +17,18 @@ const productCollection = mongoose.Schema({
     type:Number,
     require:true
   },
+  product_quantity:{
+    type:Number,
+    require:true
+  },
   product_image: {
     type: String,
     // require: true
   },
+
   document: {
-    type: mongoose.Schema.Types.Mixed
+    type: mongoose.Schema.Types.Mixed,
+    require:false
   }
  
 })

@@ -40,7 +40,7 @@ const OurProjects = () => {
       <div className="main-row">
         {thumbnailData.map((item) => (
           <div className="thumb-box" key={item.id}>
-            <a href="#" className="thumb-link" onClick={handleLinkClick}>
+            <a  className="thumb-link" onClick={handleLinkClick}>
               <img src={ProjectImg} alt={`Image ${item.id}`} />
               <div className="overlay-box">
                 <span className="meta">{item.date}</span>

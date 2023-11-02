@@ -1,13 +1,9 @@
 const mongoose = require('mongoose');
 
 const userRegistrationSchema = mongoose.Schema({
-  firstName: {
+  fullname: {
     type: String,
     require,
-  },
-  lastName: {
-    type: String,
-    require
   },
   email: {
     type: String,
@@ -24,7 +20,7 @@ const userRegistrationSchema = mongoose.Schema({
   role: {
     type: String,
     enum: ['USER', 'ADMIN'],
-    default: 'USER'
+    default: 'ADMIN'
   },
 }, {
   timestamps: true, // Add timestamps option here

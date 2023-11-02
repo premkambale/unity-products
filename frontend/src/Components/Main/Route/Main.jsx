@@ -17,7 +17,7 @@ import Login from '../Login/Login';
 import ErrorPage from '../ErrorPage/ErrorPage';
 
 const Main = () => {
-    const role = "";
+    // const role = "";
     return (
         <div>
             <BrowserRouter>
@@ -25,13 +25,14 @@ const Main = () => {
                     <Route path='/' element={<Navigate to={'/LandingPage'} />} />
                     <Route path='/LandingPage' element={<LandingPage />} />
                     <Route path='/Home' element={<Home />} />
-                    {
+                    {/* {
 
                         role == "ADMIN" ?
                             <Route path='/Admin/*' element={<Admin />} />
                             :
                             <Route path='*' element={<ErrorPage />} />
-                    }
+                    } */}
+                    <Route path='/Admin/*' element={<Admin />} />
                     <Route path='/WhyUnity' element={<WhyUnity />} />
                     <Route path='/OurHistory' element={<OurHistory />} />
                     <Route path='/Solutions' element={<Solutions />} />
@@ -47,5 +48,5 @@ const Main = () => {
         </div>
     )
 }
- 
+
 export default Main;

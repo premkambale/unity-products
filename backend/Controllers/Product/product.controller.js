@@ -5,23 +5,26 @@ const { productService } = require('../../Services');
 
 const create_product = async (req, res) => {
   const file = req.file;
+  let payload;
   if (file) {
-    const payload = { ...req.body, product_image: req?.file?.buffer };
-    const new_product = new productCollection(payload);
-    try {
-      await new_product.save();
-      res.send({
-        message: 'product created sucessfully',
-        success: true,
-      })
-    }
-    catch (error) {
-      res.send({ success: false, message: "failed to create product" })
-    }
+    payload = { ...req.body, product_image: req?.file?.buffer };
   }
-  else {
+  else{
+    payload = { ...req.body };
+  }
+
+  const new_product = new productCollection(payload);
+  try {
+    await new_product.save();
+    res.send({
+      message: 'product created sucessfully',
+      success: true,
+    })
+  }
+  catch (error) {
     res.send({ success: false, message: "failed to create product" })
   }
+
 }
 
 const get_all_products = async (req, res) => {
