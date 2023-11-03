@@ -14,12 +14,7 @@ const productUploadFields = [
   { name: 'product_doc', maxCount: 1000 }
 ]
 
-router.post("/create-product",
-  verifyJwt,
-  uploadProductImages.fields(productUploadFields),
-  // uploadProductPdf.single('product_doc'),
-  productController.create_product
-);
+router.post("/create-product", verifyJwt, uploadProductImages.fields(productUploadFields), productController.create_product);
 
 router.get("/all",
   productController.get_all_products

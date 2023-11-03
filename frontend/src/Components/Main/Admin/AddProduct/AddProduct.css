@@ -85,7 +85,7 @@
 .scrollable-form {
     max-height: 200vh;
     overflow-y: auto;
-}
+ }
 
 ::-webkit-scrollbar {
     display: none;

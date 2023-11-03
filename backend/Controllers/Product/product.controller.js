@@ -4,6 +4,7 @@ const { productService } = require('../../Services');
 // -------------------------------------------------------------------------------to create product--------------------------------------------------------------------
 
 const create_product = async (req, res) => {
+  console.log({ req })
   const productImages = req.files['product_image'];
   const productDoc = req.files['product_doc'];
 
@@ -12,7 +13,7 @@ const create_product = async (req, res) => {
     const productImagePaths = productImages.map(file => file.path)
     const doc = productDoc[0].path;
 
-    payload = { ...req.body, product_image: productImagePaths  , product_doc:doc};
+    payload = { ...req.body, product_image: productImagePaths, product_doc: doc };
   }
   else {
     payload = { ...req.body };
