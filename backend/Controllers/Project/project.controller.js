@@ -57,8 +57,40 @@ const get_project_by_id = async (req, res) => {
   }
 }
 
+// -------------------------------------------------------------------------------To Delete All project --------------------------------------------------------------------
+const delete_all_projects = async (req, res) => {
+  try {
+    const project = await projectService.delete_all_project(req);
+    if (project) {
+      res.send({ success: true, data: project });
+    }
+    else {
+      res.send({ success: false, message: "failed to delete project" })
+    }
+  } catch (error) {
+    res.send({ success: false, message: "failed to delete project" })
+  }
+}
+
+// -------------------------------------------------------------------------------To Delete project By Id--------------------------------------------------------------------
+const delete_project_by_id = async (req, res) => {
+  try {
+    const project = await projectService.delete_project_by_projectID(req);
+    if (project) {
+      res.send({ success: true, data: project });
+    }
+    else {
+      res.send({ success: false, message: "failed to delete project" })
+    }
+  }
+  catch (error) {
+    res.send({ success: false, message: "failed to delete project" })
+  }
+}
 module.exports = {
   create_project,
   get_all_projects,
-  get_project_by_id
+  get_project_by_id,
+  delete_all_projects,
+  delete_project_by_id
 }
