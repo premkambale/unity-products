@@ -4,15 +4,19 @@ const { productService } = require('../../Services');
 // -------------------------------------------------------------------------------to create product--------------------------------------------------------------------
 
 const create_product = async (req, res) => {
-  const file = req.file;
+  const productImages = req.files['product_image'];
+  const productDoc = req.files['product_doc'];
+
   let payload;
-  if (file) {
-    payload = { ...req.body, product_image: req?.file?.buffer };
+  if (req.files) {
+    const productImagePaths = productImages.map(file => file.path)
+    const doc = productDoc[0].path;
+
+    payload = { ...req.body, product_image: productImagePaths  , product_doc:doc};
   }
-  else{
+  else {
     payload = { ...req.body };
   }
-
   const new_product = new productCollection(payload);
   try {
     await new_product.save();
@@ -24,9 +28,9 @@ const create_product = async (req, res) => {
   catch (error) {
     res.send({ success: false, message: "failed to create product" })
   }
-
 }
 
+// -------------------------------------------------------------------------------To Get All Product--------------------------------------------------------------------
 const get_all_products = async (req, res) => {
   try {
     const products = await productService.fetch_all_products(req);
@@ -41,6 +45,7 @@ const get_all_products = async (req, res) => {
   }
 }
 
+// -------------------------------------------------------------------------------To Get Product By Id--------------------------------------------------------------------
 const get_product_by_id = async (req, res) => {
   try {
     const product = await productService.fetch_product_by_productID(req);
@@ -56,8 +61,42 @@ const get_product_by_id = async (req, res) => {
   }
 }
 
+// -------------------------------------------------------------------------------To Delete All Products --------------------------------------------------------------------
+const delete_all_products = async (req, res) => {
+  try {
+    const products = await productService.delete_all_products(req);
+    if (products) {
+      res.send({ success: true, data: products });
+    }
+    else {
+      res.send({ success: false, message: "failed to delete products" })
+    }
+  } catch (error) {
+    res.send({ success: false, message: "failed to delete products" })
+  }
+}
+
+// -------------------------------------------------------------------------------To Delete Product By Id--------------------------------------------------------------------
+const delete_product_by_id = async (req, res) => {
+  try {
+    const product = await productService.delete_product_by_productID(req);
+    if (product) {
+      res.send({ success: true, data: product });
+    }
+    else {
+      res.send({ success: false, message: "failed to delete product" })
+    }
+  }
+  catch (error) {
+    res.send({ success: false, message: "failed to delete product" })
+  }
+}
+
+
 module.exports = {
   create_product,
   get_all_products,
-  get_product_by_id
+  get_product_by_id,
+  delete_all_products,
+  delete_product_by_id
 }

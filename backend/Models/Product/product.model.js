@@ -13,23 +13,23 @@ const productCollection = mongoose.Schema({
     type: String,
     require: true
   },
-  product_price:{
-    type:Number,
-    require:true
+  product_price: {
+    type: Number,
+    require: true
   },
-  product_quantity:{
-    type:Number,
-    require:true
+  product_quantity: {
+    type: Number,
+    require: true
   },
-  product_image: {
+  product_image: [{
     type: String,
-    // require: true
-  },
+    require: false
+  }],
 
-  document: {
-    type: mongoose.Schema.Types.Mixed,
-    require:false
+  product_doc: {
+    type: String,
+    require: false
   }
- 
+
 })
 module.exports = mongoose.model("products", productCollection);
