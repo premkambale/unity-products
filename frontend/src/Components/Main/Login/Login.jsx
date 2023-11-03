@@ -81,8 +81,8 @@ const Login = () => {
                 console.log("resData", resData)
                 if (resData.success == true) {
                     setShowError(false)
-                   sessionStorage.setItem("Role",  (resData.role))
-                   sessionStorage.setItem("token",  (resData.token))
+                    sessionStorage.setItem("Role", (resData.role))
+                    sessionStorage.setItem("token", (resData.token))
 
 
 
@@ -126,10 +126,14 @@ const Login = () => {
 
     const handleLoginSwitch = () => {
         setSwitchTabs(true)
+        document.querySelector('.loginTab').classList.add('active');
+        document.querySelector('.registerTab').classList.remove('active');
     }
 
     const handleRegisterSwitch = () => {
         setSwitchTabs(false)
+        document.querySelector('.loginTab').classList.remove('active');
+        document.querySelector('.registerTab').classList.add('active');
     }
 
 

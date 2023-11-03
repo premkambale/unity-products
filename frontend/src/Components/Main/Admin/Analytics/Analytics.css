@@ -1,4 +1,59 @@
-.minimal-statistics{
-    height: 400px;
-    overflow-y: scroll;
-}
+  
+.analyticsContainer {
+    padding: 20px;
+  }
+  
+  .AnalyticsTabs {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .TabButtons {
+    display: flex;
+    background-color: #333;
+    padding: 10px;
+  }
+  
+  .TabButtons button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    outline: none;
+    font-weight: bold;
+  }
+  
+  .TabButtons button.active {
+    background-color: #4CAF50;
+  }
+  
+  .TabContent {
+    padding: 20px;
+  }
+  
+  .AnaProductTable {
+  }
+  
+  .AnaProductCard {
+    /* display: none; */
+  }
+  
+  /* Show the active tab content */
+  .AnaProductTable.active {
+    display: block;
+  }
+  
+  .AnaProductCard.active {
+    display: block;
+  }
+
+
+  .AnaProductietm{
+    
+  }
+  

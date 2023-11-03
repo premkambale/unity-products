@@ -12,12 +12,11 @@ import ContactUsForm from '../ContactUs/ContactUsForm';
 import Projects from '../Projects/Projects';
 import LandingPage from '../LandingPage/LandingPage';
 import OurCustomers from '../OurCustomers/OurCustomers';
-import SamplePage from '../LandingPage/SamplePage';
 import Login from '../Login/Login';
 import ErrorPage from '../ErrorPage/ErrorPage';
 
 const Main = () => {
-    // const role = "";
+    const role = sessionStorage.getItem("Role");
     return (
         <div>
             <BrowserRouter>
@@ -25,14 +24,14 @@ const Main = () => {
                     <Route path='/' element={<Navigate to={'/LandingPage'} />} />
                     <Route path='/LandingPage' element={<LandingPage />} />
                     <Route path='/Home' element={<Home />} />
-                    {/* {
+                    {
 
                         role == "ADMIN" ?
                             <Route path='/Admin/*' element={<Admin />} />
                             :
                             <Route path='*' element={<ErrorPage />} />
-                    } */}
-                    <Route path='/Admin/*' element={<Admin />} />
+                    }
+                    {/* <Route path='/Admin/*' element={<Admin />} /> */}
                     <Route path='/WhyUnity' element={<WhyUnity />} />
                     <Route path='/OurHistory' element={<OurHistory />} />
                     <Route path='/Solutions' element={<Solutions />} />

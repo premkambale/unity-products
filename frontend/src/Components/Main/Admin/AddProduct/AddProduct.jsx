@@ -4,10 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import { useDropzone } from 'react-dropzone';
 
+
 import './AddProduct.css';
 
 const AddProduct = () => {
-   const [uploadedFiles, setUploadedFiles] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
   const [showQuantityCounter, setShowQuantityCounter] = useState(true);
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -15,34 +16,91 @@ const AddProduct = () => {
     product_name: "",
     product_description: "",
     company_name: "",
-    product_price: "",
+    product_price: 0,
     product_quantity: 0,
-    // product_image: "",
-    // document: ""
+    product_image: [],
+    product_doc: {}
 
   })
 
-   const token =sessionStorage.getItem("token")
+  const token = sessionStorage.getItem("token")
 
-  console.log("productData", productData)
 
+
+
+
+  // const handleFileChange = (e) => {
+  //   const file = e.target.files[0];
+  //   console.log("e.target.files[0]", e.target.files[0]
+  //   )
+
+  //   // if (file && file.type.startsWith("image/")) {
+  //   setProductData({
+  //     ...productData,
+  //     product_image: file,
+  //   });
+
+  //   // const reader = new FileReader();
+
+  //   // reader.onload = (e) => {
+  //   //   const imagePreview = e.target.result;
+  //   //   setProductData({
+  //   //     ...productData,
+  //   //     imagePreview,
+  //   //   });
+  //   // };
+
+  //   // reader.readAsDataURL(file);
+  //   // }
+  // };
+
+  const handleFileChange = (e) => {
+    const files = e.target.files; // Get an array of selected files
+
+    if (files) {
+      // Convert the files array to an array of File objects
+      const fileList = Array.from(files);
+
+      setProductData({
+        ...productData,
+        product_image: fileList, // Store the array of selected image files
+      });
+    }
+  };
+
+  // I want to send image in array format
+
+
+  const handleDocChange = (e) => {
+    const doc = e.target.files[0];
+    setProductData({
+      ...productData,
+      product_doc: doc,
+    });
+
+  }
 
   const handleAddProduct = (e) => {
+    console.log("token", token)
+    console.log("productData", productData)
+    const body = { ...productData }
+    const price = parseInt(productData.product_price);
     e.preventDefault()
     fetch("http://localhost:5500/products/create-product", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json', 
+        'Accept': 'application/json',
         "Authorization": "Bearer " + token,
 
       },
-      body: JSON.stringify(productData)
+      body: JSON.stringify({ ...body, product_price: price })
     })
       .then((res) => res.json())
       .then((resData) => {
         console.log("resData", resData)
         if (resData.success == true) {
+          alert(resData.message)
           // setShowError(false)
           //  sessionStorage.setItem("Role",  (resData.role))
 
@@ -66,16 +124,16 @@ const AddProduct = () => {
 
 
 
-  const onDrop = useCallback((acceptedFiles) => {
-    const file = acceptedFiles[0];
-    setUploadedFiles(acceptedFiles);
-    setImagePreview(URL.createObjectURL(file));
-  }, []);
+  // const onDrop = useCallback((acceptedFiles) => {
+  //   const file = acceptedFiles[0];
+  //   setUploadedFiles(acceptedFiles);
+  //   setImagePreview(URL.createObjectURL(file));
+  // }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: 'image/*',
-  });
+  // const { getRootProps, getInputProps } = useDropzone({
+  //   onDrop,
+  //   accept: 'image/*',
+  // });
 
   const handleDropdownChange = (e) => {
     const selectedOption = e.target.value;
@@ -89,6 +147,9 @@ const AddProduct = () => {
       </div>
     ));
   };
+
+
+
 
   const incrementQuantity = () => {
     setProductData((prevProductData) => ({
@@ -128,7 +189,7 @@ const AddProduct = () => {
         </div>
       </div>
       <div className="scrollable-form">
-        <Form className="form-container">
+        <Form className="form-container" enctype="multipart/form-data">
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Product Name</Form.Label>
             <Form.Control onChange={e => handleChange(e.target.name, e.target.value)}
@@ -137,36 +198,17 @@ const AddProduct = () => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Company name</Form.Label>
-            <Form.Control name="company_name" onChange={e => handleChange(e.target.name, e.target.value)} type="email" placeholder="Enter company name" />
+            <Form.Control name="company_name" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter company name" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label> Price</Form.Label>
-            <Form.Control name="product_price" onChange={e => handleChange(e.target.name, e.target.value)} type="email" placeholder="Enter price" />
+            <Form.Control name="product_price" onChange={e => handleChange(e.target.name, e.target.value)} type="number" placeholder="Enter price" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Description</Form.Label>
-            <Form.Control name="product_description" onChange={e => handleChange(e.target.name, e.target.value)} type="email" placeholder="Enter description" />
+            <Form.Control name="product_description" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter description" />
           </Form.Group>
-          {/* {showQuantityCounter && (
-            <Form.Group>
-              <Form.Label>Quantity</Form.Label>
-              <div className="d-flex align-items-center width-21vh">
-                <Button variant="outline-secondary" onClick={decrementQuantity}>
-                  -
-                </Button>
-                <Form.Control
-                  type="number"
-                  value={quantity}
-                  readOnly
-                  className="text-center"
-                  onChange={(e) => handleChange(e.target.name, e.target.value)}
-                />
-                <Button variant="outline-secondary" onClick={incrementQuantity}>
-                  +
-                </Button>
-              </div>
-            </Form.Group>
-          )} */}
+
           {showQuantityCounter == true && (
             <Form.Group>
               <Form.Label>Quantity</Form.Label>
@@ -189,29 +231,38 @@ const AddProduct = () => {
             </Form.Group>
           )}
 
-
-          <Form.Group controlId="formFileMultiple" className="mb-3">
+          <Form.Group controlId="formFileImage" className="mb-3">
             <Form.Label>Image</Form.Label>
-            <div {...getRootProps()} className="dropzone">
-              <input {...getInputProps()} />
-              {imagePreview ? (
-                <img src={imagePreview} alt="Preview" className="image-preview" />
+            {/* <div className="dropzone">
+              {productData.imagePreview ? (
+                <img
+                  src={productData.imagePreview}
+                  alt="Preview"
+                  className="image-preview"
+                />
               ) : (
                 <p>Drag & drop or click to upload an image</p>
-              )}
-            </div>
-            {renderUploadedFiles()}
+              )} */}
+            {/* <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              name='product_image'
+            /> */}
+            <Form.Control name="product_image" onChange={handleFileChange} type="file" placeholder="Please Upload image" />
+
+            {/* </div> */}
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Document</Form.Label>
-            <Form.Control name="product_description" onChange={e => handleChange(e.target.name, e.target.value)} type="file" placeholder="Enter description" />
+            <Form.Control name="product_doc" onChange={handleDocChange} type="file" placeholder="Please Upload document" />
           </Form.Group>
           <Button
             onClick={handleAddProduct}
             style={{ marginTop: "15px" }}
             variant="primary"
             type="submit"
-        
+
           >
             Submit
           </Button>

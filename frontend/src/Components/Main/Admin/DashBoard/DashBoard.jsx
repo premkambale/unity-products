@@ -1,4 +1,4 @@
-import React, { useRef, useMemo, useState } from 'react'
+import React, { useRef, useMemo, useState, useEffect } from 'react'
 import "./Dashboard.css"
 import Table from 'react-bootstrap/Table';
 import Badge from 'react-bootstrap/Badge';
@@ -9,6 +9,27 @@ import { useNavigate } from 'react-router-dom';
 
 
 const DashBoard = () => {
+
+
+  const token = sessionStorage.getItem("token")
+  useEffect(() => {
+    fetch("http://localhost:5500/products/all", {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then((res) => res.json())
+      .then((resData) => {
+        console.log("Fetched data:", resData);
+
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
+
+
 
   const products = [
     {

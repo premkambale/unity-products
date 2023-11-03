@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #150046;
+  background-color: #080710;
 }
 
 .Login_section {
@@ -17,6 +17,42 @@
   height: 82%;
   font-size: 14px;
   box-shadow: rgb(255, 255, 255) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+}
+
+.switchTabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.loginTab,
+.registerTab {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.loginTab.active,
+.registerTab.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.loginTab:focus,
+.registerTab:focus {
+  outline: none;
+}
+
+.loginTab:hover,
+.registerTab:hover {
+  background-color: #ddd;
+  color: #000;
 }
 
 .loginErrorAmin {
@@ -24,63 +60,62 @@
   height: 80px;
 }
 
-/* Add this CSS to your Login.css or a separate CSS file */
 
 .errorModal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .errorModalContent {
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 .errorModalContent h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #ff0000;
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ff0000;
 }
 
 .errorModalContent p {
-    font-size: 16px;
-    color: #333;
+  font-size: 16px;
+  color: #333;
 }
 
 .errorModalContent button {
-    background: #ff0000;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-size: 16px;
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 16px;
 }
 
 .errorModalContent button:hover {
-    background: #cc0000;
+  background: #cc0000;
 }
 
 
-.registerCard{
+.registerCard {
   text-align: center;
   margin-top: 10%;
 }
- 
 
-.switchTabs{
+
+.switchTabs {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -129,7 +164,7 @@
   margin-top: 5%;
 }
 
- 
+
 
 .loginErrorPopup p {
   font-size: .9rem;
