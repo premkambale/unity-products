@@ -19,56 +19,29 @@ const AddProduct = () => {
     product_price: 0,
     product_quantity: 0,
     product_image: [],
-    product_doc: {}
+    product_doc: {},
+    product_category: ""
 
   })
 
   const token = sessionStorage.getItem("token")
 
+  console.log("productData", productData)
 
-
-
-
-  // const handleFileChange = (e) => {
-  //   const file = e.target.files[0];
-  //   console.log("e.target.files[0]", e.target.files[0]
-  //   )
-
-  //   // if (file && file.type.startsWith("image/")) {
-  //   setProductData({
-  //     ...productData,
-  //     product_image: file,
-  //   });
-
-  //   // const reader = new FileReader();
-
-  //   // reader.onload = (e) => {
-  //   //   const imagePreview = e.target.result;
-  //   //   setProductData({
-  //   //     ...productData,
-  //   //     imagePreview,
-  //   //   });
-  //   // };
-
-  //   // reader.readAsDataURL(file);
-  //   // }
-  // };
 
   const handleFileChange = (e) => {
-    const files = e.target.files; // Get an array of selected files
+    const files = e.target.files;
 
     if (files) {
-      // Convert the files array to an array of File objects
       const fileList = Array.from(files);
 
       setProductData({
         ...productData,
-        product_image: fileList, // Store the array of selected image files
+        product_image: fileList,
       });
     }
   };
 
-  // I want to send image in array format
 
 
   const handleDocChange = (e) => {
@@ -101,44 +74,29 @@ const AddProduct = () => {
         console.log("resData", resData)
         if (resData.success == true) {
           alert(resData.message)
-          // setShowError(false)
-          //  sessionStorage.setItem("Role",  (resData.role))
-
-          debugger
-          // navigate("/Home")
+     
           alert(resData.message)
-
+          setProductData({})
         }
         else {
-          // setShowError(true)
-          alert(resData.message)
+           alert(resData.message)
 
         }
 
 
       })
       .catch((err) => {
-        console.log("error while login", err.message)
+        console.log("error while Adding Product", err.message)
       })
   }
 
-
-
-  // const onDrop = useCallback((acceptedFiles) => {
-  //   const file = acceptedFiles[0];
-  //   setUploadedFiles(acceptedFiles);
-  //   setImagePreview(URL.createObjectURL(file));
-  // }, []);
-
-  // const { getRootProps, getInputProps } = useDropzone({
-  //   onDrop,
-  //   accept: 'image/*',
-  // });
 
   const handleDropdownChange = (e) => {
     const selectedOption = e.target.value;
     setShowQuantityCounter(selectedOption === 'inventory');
   };
+
+
 
   const renderUploadedFiles = () => {
     return uploadedFiles.map((file, index) => (
@@ -174,6 +132,8 @@ const AddProduct = () => {
       [inputName]: inputValue
     }))
   }
+
+  
 
 
 
@@ -233,25 +193,23 @@ const AddProduct = () => {
 
           <Form.Group controlId="formFileImage" className="mb-3">
             <Form.Label>Image</Form.Label>
-            {/* <div className="dropzone">
-              {productData.imagePreview ? (
-                <img
-                  src={productData.imagePreview}
-                  alt="Preview"
-                  className="image-preview"
-                />
-              ) : (
-                <p>Drag & drop or click to upload an image</p>
-              )} */}
-            {/* <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              name='product_image'
-            /> */}
             <Form.Control name="product_image" onChange={handleFileChange} type="file" placeholder="Please Upload image" />
 
-            {/* </div> */}
+          </Form.Group>
+
+          <Form.Group style={{marginTop:"-16px"}}>
+            <Form.Label>Category</Form.Label>
+            <div className="dropdown-container">
+              <select
+                className="CategoryDropdown"
+                name="product_category"
+                onChange={(e) => handleChange("product_category", e.target.value)}
+                id=""
+              >
+                <option value="productCat1">SwitchGear</option>
+                <option value="productCat2">Panel</option>
+              </select>
+            </div>
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Document</Form.Label>
@@ -260,9 +218,8 @@ const AddProduct = () => {
           <Button
             onClick={handleAddProduct}
             style={{ marginTop: "15px" }}
-            variant="primary"
             type="submit"
-
+            className='addproductBTn'
           >
             Submit
           </Button>

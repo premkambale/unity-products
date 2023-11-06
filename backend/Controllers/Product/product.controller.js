@@ -4,21 +4,23 @@ const { productService } = require('../../Services');
 // -------------------------------------------------------------------------------to create product--------------------------------------------------------------------
 
 const create_product = async (req, res) => {
-  console.log({ req })
-  const productImages = req.files['product_image'];
-  const productDoc = req.files['product_doc'];
+  const body = req.body;
+  console.log({ body  })
+  // const productImages = req.files['product_image'];
+  // const productDoc = req.files['product_doc'];
 
-  let payload;
-  if (req.files) {
-    const productImagePaths = productImages.map(file => file.path)
-    const doc = productDoc[0].path;
+  // let payload;
+  // if (req.files) {
+  //   const productImagePaths = productImages.map(file => file.path)
+  //   const doc = productDoc[0].path;
 
-    payload = { ...req.body, product_image: productImagePaths, product_doc: doc };
-  }
-  else {
-    payload = { ...req.body };
-  }
-  const new_product = new productCollection(payload);
+  //   payload = { ...req.body, product_image: productImagePaths, product_doc: doc };
+  // }
+  // else {
+  //   payload = { ...req.body };
+  // }
+  console.log({ body })
+  const new_product = new productCollection(body);
   try {
     await new_product.save();
     res.send({
@@ -35,6 +37,7 @@ const create_product = async (req, res) => {
 const get_all_products = async (req, res) => {
   try {
     const products = await productService.fetch_all_products(req);
+    console.log({ products })
     if (products) {
       res.send({ success: true, data: products });
     }

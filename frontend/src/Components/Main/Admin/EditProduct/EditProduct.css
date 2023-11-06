@@ -57,7 +57,7 @@
 
 .scrollable-form {
     max-height: 200vh;
-     overflow-y: auto;
+    overflow-y: auto;
 }
 
 ::-webkit-scrollbar {
@@ -72,7 +72,7 @@
     justify-content: center;
     align-items: center;
     gap: 25px;
-    height: 100vh;
+    height: 120vh;
 
 
 }
@@ -134,4 +134,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 12px;
+    background-color: #ff5e14;
+    color: black;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.submitBTNFOrm:hover {
+    background-color: white;
+    color: #ff5e14;
 }

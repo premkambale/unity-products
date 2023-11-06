@@ -14,6 +14,29 @@
 
 }
 
+.CategoryDropdown {
+    width: 100%;
+    max-width: 238%;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.addproductBTn {
+    background-color: #ff5e14;
+    color: black;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.addproductBTn:hover {
+    background-color: white;
+    color: #ff5e14;
+}
+
 .ProductAddDropdown {
     width: 100%;
     max-width: 200px;
@@ -27,7 +50,7 @@
 @media (max-width: 768px) {
     .ProductAddDropdown {
         width: 100%;
-        
+
     }
 }
 
@@ -85,7 +108,7 @@
 .scrollable-form {
     max-height: 200vh;
     overflow-y: auto;
- }
+}
 
 ::-webkit-scrollbar {
     display: none;
@@ -99,7 +122,8 @@
     justify-content: center;
     align-items: center;
     gap: 25px;
-    height: 100vh;
+    height: 120vh;
+
 
 
 }

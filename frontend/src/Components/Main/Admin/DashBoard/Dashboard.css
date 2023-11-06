@@ -9,12 +9,30 @@
 
 .table-container Table {
     width: 75vw;
+    
 }
 
 .DashboardTitle {
     font-size: x-large;
     left: 49px;
     margin-bottom: 20px;
+}
+
+.tbodyDash .even {
+    background-color: #f2f2f2 !important;
+}
+
+.tbodyDash  .odd {
+    background-color: #7f2525 !important;
+}
+
+.DashTableHead {
+
+    background-color: #ff5e14 !important;
+    border-left: 1px solid black;
+    color: white !important;
+    font-size: 1rem;
+    font-family: monospace;
 }
 
 .EditProductDash>Modal {
@@ -27,6 +45,8 @@
 .table-scroll {
     height: 70vh;
     overflow-y: scroll !important;
+    /* border: 1px solid black; */
+
 }
 
 .DashboardAction {
