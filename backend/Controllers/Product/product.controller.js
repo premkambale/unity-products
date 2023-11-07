@@ -5,7 +5,7 @@ const { productService } = require('../../Services');
 
 const create_product = async (req, res) => {
   const body = req.body;
-  console.log({ body  })
+  // console.log({ body  })
   // const productImages = req.files['product_image'];
   // const productDoc = req.files['product_doc'];
 
@@ -85,7 +85,7 @@ const delete_product_by_id = async (req, res) => {
   try {
     const product = await productService.delete_product_by_productID(req);
     if (product) {
-      res.send({ success: true, data: product });
+      res.send({ success: true, message : "product deleted successfully",data: product });
     }
     else {
       res.send({ success: false, message: "failed to delete product" })

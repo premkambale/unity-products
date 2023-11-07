@@ -2,13 +2,13 @@
 .headerOfSolutions {
     text-align: center;
     padding: 40px 0;
-    background-color: #151414;
-    color: #ff5e14;
+    background: linear-gradient(#243b55, #141e30);
+    color: red;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.35);
 }
 
 
-.headerOfSolutions > h1 {
+.headerOfSolutions>h1 {
     font-size: 28px;
     margin: 10px 0;
     font-family: Garamond, serif;
@@ -75,5 +75,3 @@
 .attribution a:hover {
     text-decoration: underline;
 }
-
-

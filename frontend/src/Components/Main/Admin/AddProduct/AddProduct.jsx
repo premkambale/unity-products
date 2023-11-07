@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
+import { ToastContainer, toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 
 
@@ -73,14 +74,19 @@ const AddProduct = () => {
       .then((resData) => {
         console.log("resData", resData)
         if (resData.success == true) {
-          alert(resData.message)
-     
-          alert(resData.message)
+          toast.success(resData.message, {
+            position: "bottom-right",
+            theme: "colored",
+            className: "custom-success-msg"
+          });
           setProductData({})
         }
         else {
-           alert(resData.message)
-
+          toast.error(resData.message, {
+            position: "bottom-right",
+            theme: "colored",
+            className: "custom-error-msg"
+          });
         }
 
 
@@ -133,11 +139,13 @@ const AddProduct = () => {
     }))
   }
 
-  
+
 
 
 
   return (
+    <>
+    <ToastContainer />
     <div className="addProductPage">
       <div className="AddproductTitle">
         <Badge bg="info">Add Product</Badge>
@@ -197,7 +205,7 @@ const AddProduct = () => {
 
           </Form.Group>
 
-          <Form.Group style={{marginTop:"-16px"}}>
+          <Form.Group style={{ marginTop: "-16px" }}>
             <Form.Label>Category</Form.Label>
             <div className="dropdown-container">
               <select
@@ -226,6 +234,7 @@ const AddProduct = () => {
         </Form>
       </div>
     </div>
+    </>
   );
 };
 
