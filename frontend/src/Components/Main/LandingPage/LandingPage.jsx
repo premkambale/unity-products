@@ -3,17 +3,22 @@ import './LandingPage.css';
 import { useNavigate } from 'react-router';
 
 const LandingPage = () => {
+    const [blurRemoved, setBlurRemoved] = useState(false);
 
-    const [guest, setGuest] =useState("")
+
+
+    const [guest, setGuest] = useState("")
     const navigate = useNavigate();
 
     const handleHeroPage = () => {
 
         sessionStorage.setItem("Role", "guest");
-
+        sessionStorage.removeItem("token")
+        setBlurRemoved(true);
 
         navigate("/Home");
     }
+
 
     return (
         <div className='hero'>
@@ -33,8 +38,10 @@ const LandingPage = () => {
                     Get Started
                 </button>
             </h1>
+
         </div>
     );
 }
 
 export default LandingPage;
+

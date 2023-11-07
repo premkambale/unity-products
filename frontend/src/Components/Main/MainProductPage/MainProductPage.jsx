@@ -20,9 +20,9 @@ const MainProductPage = () => {
     navigate("/WhyUnity")
   }
 
-  useEffect(() => {
-    sessionStorage.clear();
-  }, [])
+  // useEffect(() => {
+  //   sessionStorage.clear();
+  // }, [])
 
   var roleOfGuest = sessionStorage.getItem("Role");
   console.log("roleOfGuest", roleOfGuest)
@@ -33,13 +33,15 @@ const MainProductPage = () => {
       <div className="HomepageWhoWeAre">
         <Container>
           <Row>
-            <Col xs={12} md={6}>
+            <Col data-aos="fade-right" data-aos-duration="1900"
+              xs={12} md={6}>
               <h2 style={{ fontFamily: "Garamond, serif", fontWeight: "600" }}>Who we are</h2>
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt illo in delectus exercitationem dignissimos dolorum debitis numquam vero ut consequatur. Modi impedit error sint pariatur voluptatem enim laudantium nesciunt maiores deleniti fuga mollitia commodi officiis consequatur aliquid repudiandae harum, unde illum aut. Explicabo tempore fugiat corrupti ex eligendi maxime obcaecati!              </p>
-              <Button onClick={handleReadMore} style={{ backgroundColor: "ff5e14" }} variant="warning" className='AllBTN'>Read More</Button>
+              <Button onClick={handleReadMore} style={{    background: "linear-gradient(#243b55, #141e30)" , color:"white"}}className='AllBTN'>Read More</Button>
             </Col>
-            <Col xs={12} md={6}>
+            <Col data-aos="fade-left" data-aos-duration="1900"
+              xs={12} md={6}>
               <Image style={{ boxShadow: " rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px" }} src={sampleImage} thumbnail />
             </Col>
           </Row>

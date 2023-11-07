@@ -9,7 +9,7 @@
 
 .table-container Table {
     width: 75vw;
-    
+
 }
 
 .DashboardTitle {
@@ -22,13 +22,17 @@
     background-color: #f2f2f2 !important;
 }
 
-.tbodyDash  .odd {
-    background-color: #7f2525 !important;
+.tbodyDash .odd {
+    background-color: white !important;
+}
+
+.tbodyDash td {
+    background-color: transparent;
 }
 
 .DashTableHead {
-
-    background-color: #ff5e14 !important;
+    
+    background-color: #002259 !important;
     border-left: 1px solid black;
     color: white !important;
     font-size: 1rem;

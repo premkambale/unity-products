@@ -4,12 +4,20 @@ import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_POST, POST, REG_POST } from '../../../Constants/FetchMethods';
 import { Url } from '../../../Constants/ApiUrlConstant';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const Login = () => {
     const navigate = useNavigate()
     const [showHide, setShowHide] = useState(false);
-    const [showError, setShowError] = useState(false);
-    const [switchTabs, setSwitchTabs] = useState(false)
+    const [errors, setErrors] = useState({
+        emailError: "",
+        passwordError: "",
+    });
+
+    console.log("errors", errors)
 
     const handleShowPassword = () => {
         const password = document.getElementById('password');
@@ -28,201 +36,276 @@ const Login = () => {
 
     });
 
-    const [RegisterData, setRegisterData] = useState({
-        FullName: '',
-        email: '',
-        password: '',
-        MobileNo: '',
+    // const [RegisterData, setRegisterData] = useState({
+    //     FullName: '',
+    //     email: '',
+    //     password: '',
+    //     MobileNo: '',
 
-    })
+    // })
 
 
-    const handleRegister = async () => {
+    // const handleRegister = async () => {
+
+    //     try {
+    //         const response = await REG_POST(Url.register, RegisterData);
+    //         if (response.ok) {
+    //             const responseData = await response.json();
+    //             setShowError(false)
+    //             // alert(responseData.message)
+    //             toast.success(responseData.message, {
+    //                 position: "bottom-right",
+    //                 theme: "colored",
+    //             });
+
+    //         }
+    //         else {
+    //             toast.error(response.message, {
+    //                 position: "bottom-right",
+    //                 theme: "colored",
+    //             });
+    //             // setShowError(true)
+    //             // alert(response.message)
+    //         }
+
+    //     } catch (error) {
+    //         console.log("error", error)
+    //     }
+    // }
+    const handleLogin = async (e) => {
+        e.preventDefault();
 
         try {
-            const response = await REG_POST(Url.register, RegisterData);
-            if (response.ok) {
-                const responseData = await response.json();
-                setShowError(false)
-                alert(responseData.message)
+            const newErrors = {};
+
+            if (!loginData?.email) {
+                newErrors.emailError = "Please Enter Your email";
             }
-            else {
-                setShowError(true)
-                alert(response.message)
+            if (!loginData?.password) {
+                newErrors.passwordError = "Please Enter Your password";
             }
 
-        } catch (error) {
-            console.log("error", error)
-        }
-    }
-
-    const handleLogin = async () => {
-
-        try {
-            const response = await LOGIN_POST(Url.login, loginData);
-
-            if (response.ok) {
-                const responseData = await response.json();
-                console.log("responseData",responseData)
-                sessionStorage.setItem("Role", responseData?.role)
-                sessionStorage.setItem("token", responseData?.token)
-
-                navigate("/Home")
-                setShowError(false)
-
-
-                alert('Login successful:', responseData);
+            if (newErrors.emailError || newErrors.passwordError) {
+                setErrors(newErrors);
             } else {
-                alert('Login failed:', response.status);
-                setShowError(true)
+                setErrors({
+                    emailError: "",
+                    passwordError: "",
+                });
 
+                const response = await LOGIN_POST(Url.login, loginData);
+                const responseData = await response.json();
+                console.log("responseData", responseData)
+
+                if (responseData.success == true) {
+                    console.log("responseData", responseData);
+                    sessionStorage.setItem("Role", responseData?.role);
+                    sessionStorage.setItem("token", responseData?.token);
+                    toast.success(responseData.message, {
+                        position: "bottom-right",
+                        theme: "colored",
+                        className: "custom-success-msg"
+                    });
+                    navigate("/Home");
+                } else {
+                    toast.error(responseData.message, {
+                        position: "bottom-right",
+                        theme: "colored",
+                        className: "custom-error-msg"
+
+                    });
+                }
             }
         } catch (error) {
             console.error('An error occurred:', error);
         }
-
     }
+
 
 
 
     const handleChange = (inputName, inputValue) => {
-        if (switchTabs == true) {
-            setLoginData(prevFormData => ({
-                ...prevFormData,
-                [inputName]: inputValue
-            }));
+
+        if (errors.emailError) {
+            setErrors({
+                emailError: "",
+            })
+        } else if (errors.passwordError) {
+            setErrors({
+                passwordError: ""
+            })
         }
-        else {
-            setRegisterData(prevFormData => ({
-                ...prevFormData,
-                [inputName]: inputValue
-            }))
-        }
+        setLoginData(prevFormData => ({
+            ...prevFormData,
+            [inputName]: inputValue
+        }));
     }
 
 
-    const handleLoginSwitch = () => {
-        setSwitchTabs(true)
-        document.querySelector('.loginTab').classList.add('active');
-        document.querySelector('.registerTab').classList.remove('active');
-    }
-
-    const handleRegisterSwitch = () => {
-        setSwitchTabs(false)
-        document.querySelector('.loginTab').classList.remove('active');
-        document.querySelector('.registerTab').classList.add('active');
-    }
 
 
-    return (
-        <div className="loginBackground">
 
-            <section className="Login_section">
+    return (<>
+        <ToastContainer />
+        <div style={{ background: "linearGradient(#141e30, #243b55)" }} className="loginBack">
 
-                <div className="switchTabs">
-                    <button className="loginTab" onClick={handleLoginSwitch}>
-                        login
-                    </button>
 
-                    <button className="registerTab" onClick={handleRegisterSwitch}>
-                        register
-                    </button>
+            <div className="login-box">
+                <h2>Login</h2>
+                <form>
+                    <div className="user-box">
+                        <input type="text"
+                            id='LoginName' name='email'
+                            placeholder='Enter Name'
+                            onChange={e => handleChange(e.target.name, e.target.value)} />
+                        <label htmlFor="Username" >Username<span className='mandatory_span'>*</span></label>
+                        {errors.emailError ? <div className="error-message">{errors.emailError}</div> : <div className="error-message"> </div>}
 
-                </div>
+                    </div>
+                    <div className="user-box">
+                        <input
+                            name='password'
+                            id='password'
+                            type={showHide ? "text" : "password"}
+                            placeholder='Enter Password'
+                            onChange={e => handleChange(e.target.name, e.target.value)}
+                        />
+                        <span className="passwordShowAndHide" onClick={handleShowPassword}>
+                            {showHide ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+                        </span>
+                        <label htmlFor="Password">Password<span className='mandatory_span'>*</span></label>
+                        {errors.passwordError ? <div className="error-message">{errors.passwordError}</div> : <div className="error-message"></div>}
 
-                {switchTabs ? <div className="LoginCard">
-                    <div className="LoginContent">
-                        <div className="LoginInput">
-                            <label className='inputLabel' htmlFor="Username">Username <span className='mandatory_span'>*</span></label>
-                            <input className='login_input' id='' name='email' type="text" placeholder='Enter Name'
-                                onChange={e => handleChange(e.target.name, e.target.value)}
-                            />
-                        </div>
+                    </div>
 
-                        <div className="LoginInput">
-                            <label className='inputLabel' htmlFor="Password">Password <span className='mandatory_span'>*</span></label>
-                            <div className="passwordInput">
-                                <input className='login_input' name='password' id='password' type={showHide ? "text" : "password"} placeholder='Enter Password'
-                                    onChange={e => handleChange(e.target.name, e.target.value)}
-                                />
-                                <span className="passwordShowAndHide" onClick={handleShowPassword}>
-                                    {showHide ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-                                </span>
-                            </div>
-                        </div>
+                    <div className="remember">
+                        <div className="remember_me">
+                            <label class="checkContainer">
+                                <input checked="checked" type="checkbox" />
+                                <div class="checkmark"></div>
+                            </label>
+                            {/* <input className='login_checkbox' type="checkbox" id="rememberMe" name="rememberMe" /> */}
 
-                        <div className="remember">
-                            <div className="remember_me">
-                                <input className='login_checkbox' type="checkbox" id="rememberMe" name="rememberMe" />
-                                <label style={{ marginLeft: "5px", color: "#03232F" }} htmlFor="rememberMe">Remember Me</label>
-                            </div>
-
-                        </div>
-
-                        <div className="loginBTN">
-                            <button onClick={handleLogin}>Login</button>
+                            <label className='rem' htmlFor="rememberMe">Remember Me</label>
                         </div>
                     </div>
 
+                    <a style={{ color: "white" }} onClick={handleLogin}>
 
-                </div>
-                    :
-
-                    <div className="registerCard">
-
-                        <div className="LoginContent">
-                            <div className="LoginInput">
-                                <label className='inputLabel' htmlFor="FullName">Full Name <span className='mandatory_span'>*</span></label>
-                                <input className='login_input' id='FullName' name='FullName' type="text" placeholder='Enter Full Name'
-                                    onChange={e => handleChange(e.target.name, e.target.value)}
-                                />
-                            </div>
-
-
-                            <div className="LoginInput">
-                                <label className='inputLabel' htmlFor="MobileNo">Mobile No <span className='mandatory_span'>*</span></label>
-                                <input className='login_input' id='MobileNo' name='MobileNo' type="text" placeholder='Enter Mobile No'
-                                    onChange={e => handleChange(e.target.name, e.target.value)}
-                                />
-                            </div>
-                            <div className="LoginInput">
-                                <label className='inputLabel' htmlFor="email">Email<span className='mandatory_span'>*</span></label>
-                                <input className='login_input' id='email' name='email' type="text" placeholder='Enter email'
-                                    onChange={e => handleChange(e.target.name, e.target.value)}
-                                />
-                            </div>
-                            <div className="LoginInput">
-                                <label className='inputLabel' htmlFor="Password">Password <span className='mandatory_span'>*</span></label>
-                                <div className="passwordInput">
-                                    <input className='login_input' name='password' id='password' type={showHide ? "text" : "password"} placeholder='Enter Password'
-                                        onChange={e => handleChange(e.target.name, e.target.value)}
-                                    />
-                                    <span className="passwordShowAndHide" onClick={handleShowPassword}>
-                                        {showHide ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div className="loginBTN">
-                                <button onClick={handleRegister}>Register</button>
-                            </div>
-                        </div>
-
-                    </div>}
-            </section>
-            {showError && (
-                <div className="errorModal">
-                    <div className="errorModalContent">
-                        <h2>Login Error</h2>
-                        <p>Incorrect username or password. Please try again.</p>
-                        <button onClick={() => setShowError(false)}>OK</button>
-                    </div>
-                </div>
-            )}
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Submit
+                    </a>
+                </form>
+            </div>
         </div>
+    </>
     );
 }
 
 export default Login;
 
 
+
+
+
+// import React, { useState } from 'react';
+
+// function YourComponent() {
+//     const [email, setEmail] = useState('');
+//     const [password, setPassword] = useState('');
+//     const [showHide, setShowHide] = useState(false);
+//     const [errors, setErrors] = useState({});
+//     const [isSuccess, setIsSuccess] = useState(false);
+
+//     const handleChange = (name, value) => {
+//         if (name === 'email') {
+//             setEmail(value);
+//         } else if (name === 'password') {
+//             setPassword(value);
+//         }
+//     };
+
+//     const handleShowPassword = () => {
+//         setShowHide(!showHide);
+//     };
+
+//     const handleLogin = (e) => {
+//         e.preventDefault();
+
+//         // Basic validation
+//         const newErrors = {};
+//         if (!email.trim()) {
+//             newErrors.email = 'Email is required';
+//         }
+//         if (!password.trim()) {
+//             newErrors.password = 'Password is required';
+//         }
+
+//         // Check if there are errors
+//         if (Object.keys(newErrors).length === 0) {
+//             setIsSuccess(true);
+//             setErrors({});
+//             // You can proceed with form submission here
+//         } else {
+//             setIsSuccess(false);
+//             setErrors(newErrors);
+//         }
+//     };
+
+//     return (
+//         <div style={{ background: "linear-gradient(#141e30, #243b55)" }} className="loginBack">
+//             <div className="login-box">
+//                 <h2>Login</h2>
+//                 <form>
+//                     <div className="user-box">
+//                         <input
+//                             type="text"
+//                             id='LoginName'
+//                             name='email'
+//                             placeholder='Enter Name'
+//                             value={email}
+//                             onChange={e => handleChange(e.target.name, e.target.value)}
+//                         />
+//                         <label htmlFor="Username">Username<span className='mandatory_span'>*</span></label>
+//                         {errors.email && <div className="error-message">{errors.email}</div>}
+//                     </div>
+//                     <div className="user-box">
+//                         <input
+//                             name='password'
+//                             id='password'
+//                             type={showHide ? "text" : "password"}
+//                             placeholder='Enter Password'
+//                             value={password}
+//                             onChange={e => handleChange(e.target.name, e.target.value)}
+//                         />
+//                         <span className="passwordShowAndHide" onClick={handleShowPassword}>
+//                             {showHide ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+//                         </span>
+//                         <label htmlFor="Password">Password<span className='mandatory_span'>*</span></label>
+//                         {errors.password && <div className="error-message">{errors.password}</div>}
+//                     </div>
+
+//                     <div className="remember">
+//                         <div className="remember_me">
+//                             <input className='login_checkbox' type="checkbox" id="rememberMe" name="rememberMe" />
+//                             <label style={{ marginLeft: "5px", color: "black" }} htmlFor="rememberMe">Remember Me</label>
+//                         </div>
+//                     </div>
+//                     {isSuccess && <div className="success-message">Login successful!</div>}
+//                     <a style={{ color: "white" }} onClick={handleLogin}>
+//                         <span></span>
+//                         <span></span>
+//                         <span></span>
+//                         <span></span>
+//                         Submit
+//                     </a>
+//                 </form>
+//             </div>
+//         </div>
+//     );
+// }
+
+// export default YourComponent;

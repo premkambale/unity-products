@@ -3,11 +3,13 @@ import "./Loader.css"
 
 const Loader = () => {
     return (
-        <>
-            <div className="loader">Loading
-                <span></span>
-            </div>        </>
-    );
+        <ul class="loader">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>);
 };
 
 export default Loader;

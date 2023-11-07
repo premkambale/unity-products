@@ -17,8 +17,12 @@ import ErrorPage from '../ErrorPage/ErrorPage';
 
 const Main = () => {
 
-        const role = sessionStorage.getItem("Role");
-        console.log("role",role)
+
+
+
+    const role = sessionStorage.getItem("Role")
+    console.log("role", role)
+
     return (
         <div>
             <BrowserRouter>

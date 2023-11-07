@@ -11,7 +11,7 @@ const OurNews = () => {
     };
 
     const handleBackToFront = () => {
-        setSelectedCard(-1); 
+        setSelectedCard(-1);
     };
 
     const articlesData = [
@@ -21,6 +21,7 @@ const OurNews = () => {
             title: 'This is some title 1',
             content:
                 'Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.',
+            animate: "fade-right"
         },
         {
             id: 2,
@@ -28,6 +29,8 @@ const OurNews = () => {
             title: 'This is some title 2',
             content:
                 'Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.',
+            animate: "fade-up"
+
         },
         {
             id: 3,
@@ -35,6 +38,8 @@ const OurNews = () => {
             title: 'This is some title 3',
             content:
                 'Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.',
+            animate: "fade-left"
+
         },
     ];
 
@@ -44,11 +49,11 @@ const OurNews = () => {
             <div className="HomeOfNews">
                 <section className="articles">
                     {articlesData.map((article, index) => (
-                        <article key={article.id} className={index % 2 === 0 ? 'business' : ''}>
+                        <article key={article.id} className={index % 2 === 0 ? 'business' : ''} data-aos={article.animate} data-aos-duration="1900">
                             <div className={`article-wrapper ${selectedCard === index ? 'flipped' : ''}`}>
                                 <div className="front">
                                     <figure className='imag-container'>
-                                        <img style={{width:"    width: 100%"}} className='img-img' src={electric1} alt="" />
+                                        <img style={{ width: "    width: 100%" }} className='img-img' src={electric1} alt="" />
                                     </figure>
                                     <div className="article-body">
                                         <p>{article.content}</p>
@@ -81,7 +86,7 @@ const OurNews = () => {
                         </article>
                     ))}
                 </section>
-            </div>
+            </div >
         </>
     );
 };
