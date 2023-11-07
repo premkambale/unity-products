@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Main.css"
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Home from '../Home/Home';
@@ -16,7 +16,9 @@ import Login from '../Login/Login';
 import ErrorPage from '../ErrorPage/ErrorPage';
 
 const Main = () => {
-    const role = sessionStorage.getItem("Role");
+
+        const role = sessionStorage.getItem("Role");
+        console.log("role",role)
     return (
         <div>
             <BrowserRouter>

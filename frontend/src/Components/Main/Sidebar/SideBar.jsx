@@ -17,33 +17,33 @@ import {
 
 export default function SideBar() {
   console.log("Hi")
- 
+
   const navigate = useNavigate()
 
   return (
-    <div className='SideBarContent' style={{ display: 'flex', height: '110vh',  overflow: 'scroll initial' ,"boxShadow":"  rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" }}>
-  <CDBSidebar textColor="#000" backgroundColor="#fff"> 
-    <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-      <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
-        Admin Panel
-      </a>
-    </CDBSidebarHeader>
+    <div className='SideBarContent' style={{ display: 'flex', height: '110vh', overflow: 'scroll initial', "boxShadow": "  rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" }}>
+      <CDBSidebar textColor="#000" backgroundColor="#fff">
+        <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
+          <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
+            Admin Panel
+          </a>
+        </CDBSidebarHeader>
 
-    <CDBSidebarContent className="sidebar-content">
-      <CDBSidebarMenu>
-        <NavLink exact to="/Admin/" activeClassName="activeClicked">
-          <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
-        </NavLink>
-        <NavLink exact to="/Admin/AddProduct" activeClassName="activeClicked">
-          <CDBSidebarMenuItem icon="table">Add Product</CDBSidebarMenuItem>
-        </NavLink>
-        <NavLink exact to="/Admin/Analytics" activeClassName="activeClicked">
-          <CDBSidebarMenuItem icon="chart-line">Analytics</CDBSidebarMenuItem>
-        </NavLink>
-      </CDBSidebarMenu>
-    </CDBSidebarContent>
-  </CDBSidebar>
-</div>
+        <CDBSidebarContent className="sidebar-content">
+          <CDBSidebarMenu>
+            <NavLink exact to="/Admin/" className='dashBoardSide' activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/Admin/AddProduct" className='AddProductSide' activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="table">Add Product</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/Admin/Analytics" className='AnalyticsSide' activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="chart-line">Analytics</CDBSidebarMenuItem>
+            </NavLink>
+          </CDBSidebarMenu>
+        </CDBSidebarContent>
+      </CDBSidebar>
+    </div>
 
   )
 }

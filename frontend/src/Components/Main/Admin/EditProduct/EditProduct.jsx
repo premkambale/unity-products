@@ -14,9 +14,9 @@ const EditProduct = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [showQuantityCounter, setShowQuantityCounter] = useState(true);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("counter :", showQuantityCounter);
-  },[])
+  }, [])
   const [productData, setProductData] = useState({
 
     product_name: "",
@@ -64,7 +64,6 @@ const EditProduct = () => {
   };
 
   const handleChange = (inputName, inputValue) => {
-    console.log("inputName", inputName, "inputValue", inputValue)
     setProductData(prevProductData => ({
       ...prevProductData,
       [inputName]: inputValue
@@ -133,13 +132,21 @@ const EditProduct = () => {
               </div>
               {renderUploadedFiles()}
             </Form.Group>
+            <Form.Group style={{ marginTop: "-16px" }}>
+              <Form.Label>Category</Form.Label>
+              <div className="dropdown-container">
+                <select className="CategoryDropdown" name="product_category" onChange={(e) => handleChange(e.target.name, e.target.value)} id="">
+                  <option value="productCat1">switchGear</option>
+                  <option value="productCat1">Panel</option>
+                </select>
+              </div>
+            </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Document</Form.Label>
               <Form.Control name="product_description" onChange={e => handleChange(e.target.name, e.target.value)} type="file" placeholder="Enter description" />
             </Form.Group>
             <Button
               className='submitBTNFOrm'
-              variant="primary"
               type="submit"
               onClick={(e) => {
                 e.preventDefault();

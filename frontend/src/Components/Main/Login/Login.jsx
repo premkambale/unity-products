@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import "./Login.css";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
+import { LOGIN_POST, POST, REG_POST } from '../../../Constants/FetchMethods';
+import { Url } from '../../../Constants/ApiUrlConstant';
 
 const Login = () => {
     const navigate = useNavigate()
@@ -34,75 +36,50 @@ const Login = () => {
 
     })
 
-    console.log("RegisterData", RegisterData)
 
-    const handleRegister = () => {
-        fetch("http://localhost:5500/users/register", {
-            method: "POST",
-            headers: {
-                'content-type': "application/json",
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(RegisterData)
+    const handleRegister = async () => {
 
-        }).then((res) => res.json())
-            .then((resData) => {
+        try {
+            const response = await REG_POST(Url.register, RegisterData);
+            if (response.ok) {
+                const responseData = await response.json();
+                setShowError(false)
+                alert(responseData.message)
+            }
+            else {
+                setShowError(true)
+                alert(response.message)
+            }
 
-                if (resData.succces == true) {
-                    alert(resData.message)
-
-                    setShowError(false)
-                }
-                else {
-                    setShowError(true)
-                    alert(resData.message)
-
-                }
-
-            })
-            .catch((err) => {
-                console.log("error while login", err.message)
-            })
-
+        } catch (error) {
+            console.log("error", error)
+        }
     }
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
 
-        fetch("http://localhost:5500/users/login-user", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify(loginData)
-        })
-            .then((res) => res.json())
-            .then((resData) => {
-                console.log("resData", resData)
-                if (resData.success == true) {
-                    setShowError(false)
-                    sessionStorage.setItem("Role", (resData.role))
-                    sessionStorage.setItem("token", (resData.token))
+        try {
+            const response = await LOGIN_POST(Url.login, loginData);
+
+            if (response.ok) {
+                const responseData = await response.json();
+                console.log("responseData",responseData)
+                sessionStorage.setItem("Role", responseData?.role)
+                sessionStorage.setItem("token", responseData?.token)
+
+                navigate("/Home")
+                setShowError(false)
 
 
+                alert('Login successful:', responseData);
+            } else {
+                alert('Login failed:', response.status);
+                setShowError(true)
 
-                    debugger
-                    navigate("/Home")
-                    alert(resData.message)
-
-                }
-                else {
-                    setShowError(true)
-                    alert(resData.message)
-
-                }
-
-            })
-            .catch((err) => {
-                console.log("error while login", err.message)
-            })
-
-
+            }
+        } catch (error) {
+            console.error('An error occurred:', error);
+        }
 
     }
 

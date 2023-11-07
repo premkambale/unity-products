@@ -1,26 +1,38 @@
-.mainProductContainer{
+.mainProductContainer {
   height: 100%;
   width: 100%;
-    
+
 }
 
- 
+
 
 .mobile-carousel-container {
-     width: 100%;
-    padding: 0;
-    margin-top: 5vh;
- }
-  
- .HomepageWhoWeAre {
+  width: 100%;
+  padding: 0;
+  margin-top: 5vh;
+}
+
+.HomepageWhoWeAre {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   margin-top: 5%;
- }
-  
- .carousel-fade .carousel-item {
+}
+
+.AllBTN {
+  background-color: #ff5e14;
+  color: black;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.AllBTN:hover{
+  background-color: white;
+  color:#ff5e14;
+}
+
+.carousel-fade .carousel-item {
   opacity: 0;
   transition-duration: 1s;
 }
@@ -42,23 +54,34 @@
 
 
 .HeadingStyles h1 {
-  font-size:26px; font-weight:700;  letter-spacing:1px; text-transform:uppercase; width:160px; text-align:center; margin:auto; white-space:nowrap; padding-bottom:13px;
-}
-.HeadingStyles h1:before {
-    background-color: #c50000;
-    content: '';
-    display: block;
-    height: 3px;
-    width: 75px;
-    margin-bottom: 5px;
-}
-.HeadingStyles h1:after {
-    background-color: #c50000;
-    content: '';
-    display: block;
-  position:absolute; right:0; bottom:0;
-    height: 3px;
-    width: 75px;
-    margin-bottom: 0.25em;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: 160px;
+  text-align: center;
+  margin: auto;
+  white-space: nowrap;
+  padding-bottom: 13px;
 }
 
+.HeadingStyles h1:before {
+  background-color: #c50000;
+  content: '';
+  display: block;
+  height: 3px;
+  width: 75px;
+  margin-bottom: 5px;
+}
+
+.HeadingStyles h1:after {
+  background-color: #c50000;
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  width: 75px;
+  margin-bottom: 0.25em;
+}
