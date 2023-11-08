@@ -14,14 +14,14 @@ code {
 
 
 
-.custom-error-msg{
-  font-size: 14px;   
-  background-color: #ff5e14;
-  color: #FFFFFF;       
+.custom-error-msg {
+  font-size: 14px;
+  background-color: red;
+  color: #FFFFFF;
 }
 
-.custom-success-msg{
-  font-size: 14px;   
+.custom-success-msg {
+  font-size: 14px;
   background-color: green;
-  color: #FFFFFF;   
+  color: #FFFFFF;
 }
