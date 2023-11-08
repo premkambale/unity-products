@@ -5,22 +5,21 @@ const { productService } = require('../../Services');
 
 const create_product = async (req, res) => {
   const body = req.body;
-  // console.log({ body  })
-  // const productImages = req.files['product_image'];
-  // const productDoc = req.files['product_doc'];
+  const productImages = req.files['product_image'];
+  const productDoc = req.files['product_doc'];
+  let payload;
 
-  // let payload;
-  // if (req.files) {
-  //   const productImagePaths = productImages.map(file => file.path)
-  //   const doc = productDoc[0].path;
+  if (req.files) {
+    const productImagePaths = productImages.map(file => file.path)
+    const doc = productDoc[0].path;
 
-  //   payload = { ...req.body, product_image: productImagePaths, product_doc: doc };
-  // }
-  // else {
-  //   payload = { ...req.body };
-  // }
+    payload = { ...req.body, product_image: productImagePaths, product_doc: doc };
+  }
+  else {
+    payload = { ...req.body };
+  }
   console.log({ body })
-  const new_product = new productCollection(body);
+  const new_product = new productCollection(payload);
   try {
     await new_product.save();
     res.send({
@@ -85,7 +84,7 @@ const delete_product_by_id = async (req, res) => {
   try {
     const product = await productService.delete_product_by_productID(req);
     if (product) {
-      res.send({ success: true, message : "product deleted successfully",data: product });
+      res.send({ success: true, message: "product deleted successfully", data: product });
     }
     else {
       res.send({ success: false, message: "failed to delete product" })
@@ -96,11 +95,23 @@ const delete_product_by_id = async (req, res) => {
   }
 }
 
+// -------------------------------------------------------------------------------To Update Product By Product Id--------------------------------------------------------------------
+const update_product = async (req, res) => {
+  const payload = req.body;
+  console.log({payload})
+  try {
+    await productService.update_product_by_id(req);
+    res.send({ success: true, message: "product updated successfully" })
+  } catch (error) {
+    res.send({ success: false, message: "failed to update product" })
+  }
+}
 
 module.exports = {
   create_product,
   get_all_products,
   get_product_by_id,
   delete_all_products,
-  delete_product_by_id
+  delete_product_by_id,
+  update_product
 }

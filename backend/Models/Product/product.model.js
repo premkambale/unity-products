@@ -25,15 +25,13 @@ const productCollection = mongoose.Schema({
     type: Number,
     require: true
   },
-  // product_image: [{
-  //   type: String,
-  //   require: false
-  // }],
-
-  // product_doc: {
-  //   type: String,
-  //   require: false
-  // }
-
+  product_image: [{
+    type: String,
+    require: true
+  }],
+  product_doc: {
+    type: String,
+    require: true
+  }
 })
 module.exports = mongoose.model("products", productCollection);
