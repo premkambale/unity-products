@@ -19,7 +19,7 @@
 .UnityWhyTab {
 
     margin-top: 6%;
-    background-color: #151414;
+    background: linear-gradient(#243b55, #141e30);
     width: 100%;
     height: 40vh;
     color: white;
@@ -209,7 +209,7 @@
         grid-column: 3;
     }
 
-     .timeline-item:nth-child(2) {
+    .timeline-item:nth-child(2) {
         grid-row: 2/4;
     }
 

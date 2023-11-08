@@ -1,59 +1,80 @@
-  
 .analyticsContainer {
-    padding: 20px;
-  }
-  
-  .AnalyticsTabs {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .TabButtons {
-    display: flex;
-    background-color: #333;
-    padding: 10px;
-  }
-  
-  .TabButtons button {
-    background: none;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    cursor: pointer;
-    outline: none;
-    font-weight: bold;
-  }
-  
-  .TabButtons button.active {
-    background-color: #4CAF50;
-  }
-  
-  .TabContent {
-    padding: 20px;
-  }
-  
-  .AnaProductTable {
-  }
-  
-  .AnaProductCard {
-    /* display: none; */
-  }
-  
-  /* Show the active tab content */
-  .AnaProductTable.active {
-    display: block;
-  }
-  
-  .AnaProductCard.active {
-    display: block;
-  }
+  display: flex;
+  align-items: flex-start;
+  height: 100vh;
+  width: 79vw;
+  padding: 4px;
+  justify-content: flex-start;
+  margin-top: 40px;
+}
 
 
-  .AnaProductietm{
-    
+.analyticsTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: none;
+  font-weight: 600;
+  background-color: #0fcaf0;
+  color: white;
+  position: absolute;
+  border-radius: 10px;
+  top: 14%;
+  height: 33px;
+  left: 22%;
+  width: 10%;
+}
+
+.tab1 {
+  width: 15%;
+  height: 40%;
+  background: linear-gradient(#243b55, #141e30);
+  border-radius: 3px;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.tableTitleAna {
+  position: absolute;
+  top: -10%;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: cursive;
+}
+
+.anaTabs {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
+.anatable {
+  width: 78%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 60%;
+
+}
+
+@media screen and (max-width: 600px) {
+  .analyticsTitle {
+    width: 20%;
+    font-size: 15px;
   }
-  
+
+  .anaTabs {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

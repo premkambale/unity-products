@@ -37,7 +37,8 @@ const MainProductPage = () => {
               xs={12} md={6}>
               <h2 style={{ fontFamily: "Garamond, serif", fontWeight: "600" }}>Who we are</h2>
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt illo in delectus exercitationem dignissimos dolorum debitis numquam vero ut consequatur. Modi impedit error sint pariatur voluptatem enim laudantium nesciunt maiores deleniti fuga mollitia commodi officiis consequatur aliquid repudiandae harum, unde illum aut. Explicabo tempore fugiat corrupti ex eligendi maxime obcaecati!              </p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt illo in delectus exercitationem dignissimos dolorum debitis numquam vero ut consequatur. Modi impedit error sint pariatur voluptatem enim laudantium nesciunt maiores deleniti fuga mollitia commodi officiis consequatur aliquid repudiandae harum, unde illum aut. Explicabo tempore fugiat corrupti ex eligendi maxime obcaecati! 
+             </p>
               <Button onClick={handleReadMore} style={{    background: "linear-gradient(#243b55, #141e30)" , color:"white"}}className='AllBTN'>Read More</Button>
             </Col>
             <Col data-aos="fade-left" data-aos-duration="1900"

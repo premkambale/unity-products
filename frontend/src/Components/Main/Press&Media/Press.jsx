@@ -4,28 +4,27 @@ import Header from '../Layout/Header/Header'
 import Footer from '../Layout/Header/Footer'
 import OurNews from '../OurNews/OurNews'
 import { Container, Breadcrumb } from 'react-bootstrap';
+import { BiHome } from 'react-icons/bi'
+import { useNavigate } from 'react-router-dom'
 
 
 
 const Press = () => {
-  const breadcrumbItems = [
-    { label: 'Home', link: '/' },
-    { label: ' Press & Medi' },
-];
+  const navigate = useNavigate()
     return (
         <>
-        <Header />
-        <div className='UnityWhyTab'>
-                    <Breadcrumb>
-                        {breadcrumbItems.map((item, index) => (
-                            <Breadcrumb.Item key={index} href={item.link}>{item.label}</Breadcrumb.Item>
-                        ))}
-                    </Breadcrumb>
-                    <h1 className='headingOfHistory' style={{ textAlign: "center" }}>  Press & Media</h1>
+            <Header />
+            <div className='UnityWhyTab'>
+                <div className="breadCrump">
+                    <span onClick={() => navigate("/Home")} className='breadItems'> <BiHome fontSize='13px' /> Home &gt;
+                    </span>
+                    <span onClick={() => navigate("/OurHistory")} className='breadItems2'>Our History</span>
                 </div>
+                <h1 className='headingOfHistory' style={{ textAlign: "center" }}>  Press & Media</h1>
+            </div>
             <OurNews />
-      <Footer />
-      </>
+            <Footer />
+        </>
     )
 }
 

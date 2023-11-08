@@ -125,7 +125,39 @@
      transition: all ease-in-out 0.2s;
  }
 
+
+ .breadCrump {
+     display: flex;
+     align-items: center;
+     justify-content: start;
+     font-size: 12px;
+     font-family: cursive;
+     cursor: pointer;
+ }
+
+ .breadItems2 {
+     transition: all ease-in-out 0.3s;
+
+ }
+
+ .breadItems {
+
+     transition: all ease-in-out 0.3s;
+
+ }
+ .breadItems:hover{
+    color: #03e9f4;
+ }
+
+
+ .breadItems2:hover {
+    color: #03e9f4;
+
+ }
+
+
+
  .contact-button:hover {
-     background-color:white;
+     background-color: white;
      color: #ff5e14;
  }

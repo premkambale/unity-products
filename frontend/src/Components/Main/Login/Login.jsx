@@ -16,6 +16,13 @@ const Login = () => {
         emailError: "",
         passwordError: "",
     });
+    const [isChecked, setIsChecked] = useState(true);
+
+    const handleCheckboxChange = () => {
+        setIsChecked(!isChecked);
+    };
+
+
 
     console.log("errors", errors)
 
@@ -144,7 +151,6 @@ const Login = () => {
 
 
 
-
     return (<>
         <ToastContainer />
         <div style={{ background: "linearGradient(#141e30, #243b55)" }} className="loginBack">
@@ -177,16 +183,19 @@ const Login = () => {
                         {errors.passwordError ? <div className="error-message">{errors.passwordError}</div> : <div className="error-message"></div>}
 
                     </div>
-
                     <div className="remember">
                         <div className="remember_me">
-                            <label class="checkContainer">
-                                <input checked="checked" type="checkbox" />
-                                <div class="checkmark"></div>
+                            <label className="checkContainer">
+                                <input
+                                    type="checkbox"
+                                    checked={isChecked}
+                                    onChange={handleCheckboxChange}
+                                />
+                                <div className="checkmark"></div>
                             </label>
-                            {/* <input className='login_checkbox' type="checkbox" id="rememberMe" name="rememberMe" /> */}
-
-                            <label className='rem' htmlFor="rememberMe">Remember Me</label>
+                            <label className="rem" htmlFor="rememberMe">
+                                Remember Me
+                            </label>
                         </div>
                     </div>
 

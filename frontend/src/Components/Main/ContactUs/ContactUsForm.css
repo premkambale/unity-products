@@ -10,16 +10,18 @@
 
 .contact-title {
   text-align: center;
-  font-family: Garamond, serif;
+  font-family: serif;
   font-weight: 500;
-  font-size: 3rem;
+  font-size: 2rem;
   margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
 .contact-container {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10%;
+  padding: 10px;
 }
 
 .contactButton {
@@ -71,18 +73,22 @@
   padding: 20px;
   margin-right: 10px;
   border: 1px solid black;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0.4) 100%), url(../Sources/picture-two-electrical-engineers-checking-electrical-work-using-computer-standing-power-station-see-planning-work-high-voltage-electrodes_140555-3.avif) no-repeat no-repeat center center/cover;
+  background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
   margin-bottom: 5%;
-  color: black;
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
 }
 
 .contact-details {
+  border-radius: 10px;
   flex: 1 1px;
   padding: 20px;
   border: 1px solid black;
   font-family: Garamond, serif;
-  height: 44vh;
-  background: linear-gradient(to left, rgba(228, 84, 7, 0) 0%, rgba(112, 0, 152, 1) 271%);
+  height: 50vh;
+  color: white;
+  background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
 }
 
 .form-body {
