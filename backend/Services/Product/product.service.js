@@ -16,9 +16,16 @@ const delete_all_products = async (req) => {
 const delete_product_by_productID = async (req) => {
   return await productCollection.findOneAndDelete({ _id: req.params.productId });
 }
+
+// -----------------------------------------------------------------------------------To Delete Product By user _id -------------------------------------------------------------------------------------------------------
+const update_product_by_id = async (req) => {
+  return await productCollection.findByIdAndUpdate(req.params.productId, req.body, { new: true })
+}
+
 module.exports = {
   fetch_all_products,
   fetch_product_by_productID,
   delete_all_products,
-  delete_product_by_productID
+  delete_product_by_productID,
+  update_product_by_id
 }

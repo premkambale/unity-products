@@ -7,13 +7,16 @@ const authRoutes = require('./Auth/auth.routes');
 const userRoutes = require('./Users/user.routes');
 const productRoutes = require('./Products/product.routes');
 const projectRoutes = require('./Project/project.routes');
+const blogRoutes = require('./Blog/blogs.routes');
 
- 
+
+
 const routes = [
   { path: '/users', route: authRoutes },
   { path: '/users', route: userRoutes },
   { path: '/products', route: productRoutes },
   { path: '/projects', route: projectRoutes },
+  { path: '/blogs', route: blogRoutes },
 ]
 
 routes.map((item) => {

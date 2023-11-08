@@ -3,5 +3,5 @@ module.exports = {
   userService: require('./User/user.service'),
   productService: require('./Product/product.service'),
   projectService: require('./Project/project.service'),
-
+  blogService: require('./Blog/blog.service'),
 }
