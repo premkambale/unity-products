@@ -1,10 +1,13 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useContext } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from "react-bootstrap/Button"
 import Badge from 'react-bootstrap/esm/Badge';
 import { useDropzone } from 'react-dropzone';
 
 import "./EditProduct.css"
+import { GET, PUT } from '../../../../Constants/FetchMethods';
+import { Url } from '../../../../Constants/ApiUrlConstant';
+import { contextData } from '../../../../Context/UnityContext';
 
 
 
@@ -13,20 +16,61 @@ const EditProduct = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [imagePreview, setImagePreview] = useState(null);
   const [showQuantityCounter, setShowQuantityCounter] = useState(true);
+  const { productIdToEdit } = useContext(contextData);
 
-  useEffect(() => {
-    console.log("counter :", showQuantityCounter);
-  }, [])
+
+
   const [productData, setProductData] = useState({
-
     product_name: "",
     product_description: "",
     company_name: "",
     product_price: "",
     product_image: "",
+    product_category: "",
     document: ""
-
   })
+
+
+
+
+
+  const getProductData = async () => {
+    try {
+      const getProductDataById = await GET(Url.getProductById.replace('id', productIdToEdit))
+      const getProdById = await getProductDataById.json();
+      console.log("getAllProd ======================================", getProdById)
+      const {
+        product_name,
+        company_name,
+        product_price,
+        product_category,
+        product_quantity,
+        product_image,
+        product_doc,
+        product_description
+      } = getProdById.data[0];
+      setProductData({
+        product_name: product_name,
+        product_description: product_description,
+        company_name: company_name,
+        product_price: product_price,
+        product_image: product_image,
+        product_category: product_category,
+        document: product_doc
+      })
+
+    } catch (error) {
+      console.log("error", error)
+    }
+  }
+
+
+  useEffect(() => {
+    getProductData()
+  }, [])
+
+
+
 
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -69,6 +113,22 @@ const EditProduct = () => {
       [inputName]: inputValue
     }))
   }
+
+  const handleEditProduct = async () => {
+    const token = sessionStorage.getItem("token")
+    try {
+      const editResp = PUT(Url.editProducts + productIdToEdit, token, productData);
+      const jsonResp = await editResp.json();
+      if (jsonResp.success) {
+        alert('product deleted successfully')
+      }
+      else {
+        alert('failed to delete product')
+      }
+    } catch (error) {
+      alert('failed to delete product')
+    }
+  }
   return (
     <>
       <div className="addProductPage">
@@ -85,19 +145,19 @@ const EditProduct = () => {
           <Form className="form-container">
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Product Name</Form.Label>
-              <Form.Control type="text" placeholder="Enter product name" />
+              <Form.Control name='product_name' type="text" onChange={e => handleChange(e.target.name, e.target.value)} value={productData?.product_name} placeholder="Enter product name" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Company name</Form.Label>
-              <Form.Control type="email" placeholder="Enter company name" />
+              <Form.Control name='company_name' type="email" onChange={e => handleChange(e.target.name, e.target.value)} value={productData?.company_name} placeholder="Enter company name" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label> Price</Form.Label>
-              <Form.Control type="email" placeholder="Enter price" />
+              <Form.Control name='product_price' type="email" onChange={e => handleChange(e.target.name, e.target.value)} value={productData?.product_price} placeholder="Enter price" />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Description</Form.Label>
-              <Form.Control type="email" placeholder="Enter description" />
+              <Form.Control name='product_description' type="email" onChange={e => handleChange(e.target.name, e.target.value)} value={productData?.product_description} placeholder="Enter description" />
             </Form.Group>
             {showQuantityCounter == true && (
               <Form.Group>
@@ -108,6 +168,7 @@ const EditProduct = () => {
                   </Button>
                   <Form.Control
                     type="number"
+                    name='quantity'
                     value={quantity}
                     readOnly
                     className="text-center"
@@ -135,7 +196,7 @@ const EditProduct = () => {
             <Form.Group style={{ marginTop: "-16px" }}>
               <Form.Label>Category</Form.Label>
               <div className="dropdown-container">
-                <select className="CategoryDropdown" name="product_category" onChange={(e) => handleChange(e.target.name, e.target.value)} id="">
+                <select className="CategoryDropdown" name="product_category" value={productData?.product_category} onChange={(e) => handleChange(e.target.name, e.target.value)} id="">
                   <option value="productCat1">switchGear</option>
                   <option value="productCat1">Panel</option>
                 </select>
@@ -150,6 +211,7 @@ const EditProduct = () => {
               type="submit"
               onClick={(e) => {
                 e.preventDefault();
+                handleEditProduct()
               }}
             >
               Submit

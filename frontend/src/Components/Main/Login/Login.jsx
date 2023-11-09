@@ -16,10 +16,15 @@ const Login = () => {
         emailError: "",
         passwordError: "",
     });
-    const [isChecked, setIsChecked] = useState(true);
+    const [rememberMe, setRememberMe] = useState(false)
+    const [loginData, setLoginData] = useState({
+        "email": "",
+        "password": ""
+
+    });
 
     const handleCheckboxChange = () => {
-        setIsChecked(!isChecked);
+        setRememberMe(!rememberMe); // Toggle the checkbox status
     };
 
 
@@ -37,48 +42,63 @@ const Login = () => {
         }
     }
 
-    const [loginData, setLoginData] = useState({
-        "email": "",
-        "password": ""
-
-    });
-
-    // const [RegisterData, setRegisterData] = useState({
-    //     FullName: '',
-    //     email: '',
-    //     password: '',
-    //     MobileNo: '',
-
-    // })
 
 
-    // const handleRegister = async () => {
+    const handleRememberMe = () => {
+        if (rememberMe) {
+            let today = new Date();
+            var expire = new Date();
+            expire.setTime(today.getTime() + 3600000 * 24 * 17);
+            document.cookie = "UserId=" + loginData?.email + ";path=/http://localhost:3002/Login#/login;expires=" + expire.toUTCString();
+            document.cookie = "Password=" + loginData?.password +";path=/http://localhost:3002/Login#/login;expires=" + expire.toUTCString();
+        } else {
+            // console.log('Not remembering login details.');
+        }
+    };
 
-    //     try {
-    //         const response = await REG_POST(Url.register, RegisterData);
-    //         if (response.ok) {
-    //             const responseData = await response.json();
-    //             setShowError(false)
-    //             // alert(responseData.message)
-    //             toast.success(responseData.message, {
-    //                 position: "bottom-right",
-    //                 theme: "colored",
-    //             });
 
-    //         }
-    //         else {
-    //             toast.error(response.message, {
-    //                 position: "bottom-right",
-    //                 theme: "colored",
-    //             });
-    //             // setShowError(true)
-    //             // alert(response.message)
-    //         }
+    React.useEffect(() => {
+        GetLoginDetailsFromCokkie()
+    }, [])
 
-    //     } catch (error) {
-    //         console.log("error", error)
-    //     }
-    // }
+
+    const GetLoginDetailsFromCokkie = () => {
+        let cokkieUser = getDataFromCokkie("UserId");
+        let cokkiePass = getDataFromCokkie("Password");
+        if (cokkieUser != "" || cokkiePass != "") {
+            setLoginData(prevState => ({
+                ...prevState,
+                email: cokkieUser,
+                password: cokkiePass
+            }));
+        }
+    }
+
+    const getDataFromCokkie = (Name) => {
+        var CokkieName = Name + "=";
+        var CokkieData = decodeURIComponent(document.cookie);
+        var cData = CokkieData?.split(";");
+        for (var i = 0; i < cData?.length; i++) {
+            var Data = cData[i];
+            while (Data?.charAt(0) == ',') {
+                Data = Data?.substring(1)
+            }
+            if (Name == 'UserName') {
+                if (Data?.indexOf(CokkieName) == 0) {
+                    return Data?.substring(CokkieName?.length, Data?.length)
+                }
+            } else {
+                if (Data?.indexOf(CokkieName) == 1) {
+
+                    var Pasword = Data?.substring(CokkieName?.length, Data?.length);
+                    let RetunrnVar = Pasword.replaceAll('=', '');
+                    return RetunrnVar;
+                }
+            }
+        }
+        return '';
+    }
+
     const handleLogin = async (e) => {
         e.preventDefault();
 
@@ -105,6 +125,8 @@ const Login = () => {
                 console.log("responseData", responseData)
 
                 if (responseData.success == true) {
+                    handleRememberMe()
+
                     console.log("responseData", responseData);
                     sessionStorage.setItem("Role", responseData?.role);
                     sessionStorage.setItem("token", responseData?.token);
@@ -162,6 +184,7 @@ const Login = () => {
                     <div className="user-box">
                         <input type="text"
                             id='LoginName' name='email'
+                            value={loginData?.email}
                             placeholder='Enter Name'
                             onChange={e => handleChange(e.target.name, e.target.value)} />
                         <label htmlFor="Username" >Username<span className='mandatory_span'>*</span></label>
@@ -172,6 +195,7 @@ const Login = () => {
                         <input
                             name='password'
                             id='password'
+                            value={loginData?.password}
                             type={showHide ? "text" : "password"}
                             placeholder='Enter Password'
                             onChange={e => handleChange(e.target.name, e.target.value)}
@@ -188,7 +212,6 @@ const Login = () => {
                             <label className="checkContainer">
                                 <input
                                     type="checkbox"
-                                    checked={isChecked}
                                     onChange={handleCheckboxChange}
                                 />
                                 <div className="checkmark"></div>
@@ -215,106 +238,3 @@ const Login = () => {
 }
 
 export default Login;
-
-
-
-
-
-// import React, { useState } from 'react';
-
-// function YourComponent() {
-//     const [email, setEmail] = useState('');
-//     const [password, setPassword] = useState('');
-//     const [showHide, setShowHide] = useState(false);
-//     const [errors, setErrors] = useState({});
-//     const [isSuccess, setIsSuccess] = useState(false);
-
-//     const handleChange = (name, value) => {
-//         if (name === 'email') {
-//             setEmail(value);
-//         } else if (name === 'password') {
-//             setPassword(value);
-//         }
-//     };
-
-//     const handleShowPassword = () => {
-//         setShowHide(!showHide);
-//     };
-
-//     const handleLogin = (e) => {
-//         e.preventDefault();
-
-//         // Basic validation
-//         const newErrors = {};
-//         if (!email.trim()) {
-//             newErrors.email = 'Email is required';
-//         }
-//         if (!password.trim()) {
-//             newErrors.password = 'Password is required';
-//         }
-
-//         // Check if there are errors
-//         if (Object.keys(newErrors).length === 0) {
-//             setIsSuccess(true);
-//             setErrors({});
-//             // You can proceed with form submission here
-//         } else {
-//             setIsSuccess(false);
-//             setErrors(newErrors);
-//         }
-//     };
-
-//     return (
-//         <div style={{ background: "linear-gradient(#141e30, #243b55)" }} className="loginBack">
-//             <div className="login-box">
-//                 <h2>Login</h2>
-//                 <form>
-//                     <div className="user-box">
-//                         <input
-//                             type="text"
-//                             id='LoginName'
-//                             name='email'
-//                             placeholder='Enter Name'
-//                             value={email}
-//                             onChange={e => handleChange(e.target.name, e.target.value)}
-//                         />
-//                         <label htmlFor="Username">Username<span className='mandatory_span'>*</span></label>
-//                         {errors.email && <div className="error-message">{errors.email}</div>}
-//                     </div>
-//                     <div className="user-box">
-//                         <input
-//                             name='password'
-//                             id='password'
-//                             type={showHide ? "text" : "password"}
-//                             placeholder='Enter Password'
-//                             value={password}
-//                             onChange={e => handleChange(e.target.name, e.target.value)}
-//                         />
-//                         <span className="passwordShowAndHide" onClick={handleShowPassword}>
-//                             {showHide ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
-//                         </span>
-//                         <label htmlFor="Password">Password<span className='mandatory_span'>*</span></label>
-//                         {errors.password && <div className="error-message">{errors.password}</div>}
-//                     </div>
-
-//                     <div className="remember">
-//                         <div className="remember_me">
-//                             <input className='login_checkbox' type="checkbox" id="rememberMe" name="rememberMe" />
-//                             <label style={{ marginLeft: "5px", color: "black" }} htmlFor="rememberMe">Remember Me</label>
-//                         </div>
-//                     </div>
-//                     {isSuccess && <div className="success-message">Login successful!</div>}
-//                     <a style={{ color: "white" }} onClick={handleLogin}>
-//                         <span></span>
-//                         <span></span>
-//                         <span></span>
-//                         <span></span>
-//                         Submit
-//                     </a>
-//                 </form>
-//             </div>
-//         </div>
-//     );
-// }
-
-// export default YourComponent;
