@@ -15,7 +15,8 @@ export const Url = {
     createProduct: baseURL + "products/create-product",  //===========create product,
     deleteAllProducts :baseURL + "products/all"  ,    //============Delete all products,
     deleteProductById: baseURL + "products/product/id",  //==========delete product by Id
-    getAllProjects : baseURL + "products/all" //===========get all products
-
+    getAllProducts : baseURL + "products/all", //===========get all products
+    editProducts: baseURL + "products/product/",  //+===========edit products
+    getProductById : baseURL + "products/product/id" //==============get product By ID
 
 };

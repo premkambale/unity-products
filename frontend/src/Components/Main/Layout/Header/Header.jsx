@@ -107,7 +107,7 @@ const Header = () => {
                       Admin
                     </NavDropdown.Item>
                     <NavDropdown.Divider className="nav-dropdown-divider" />
-                    <NavDropdown.Item className="nav-dropdown-item" href="#action/3.2">
+                    <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/Login")} >
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>
