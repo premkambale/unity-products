@@ -8,6 +8,8 @@ import DashBoard from "../Admin/DashBoard/DashBoard"
 import AddProduct from "../Admin/AddProduct/AddProduct"
 import EditProduct from "../Admin/EditProduct/EditProduct"
 import Analytics from './Analytics/Analytics';
+import CreateNews from './News/CreateNews/CreateNews';
+import EditNews from './EditNews/EditNews';
 
 
 export default function Admin() {
@@ -26,6 +28,10 @@ export default function Admin() {
                         <Route exact path="/AddProduct" element={<AddProduct />} />
                         <Route exact path="/Admin/EditProduct" element={<EditProduct />} />
                         <Route exact path="/Analytics" element={<Analytics />} />
+                        <Route exact path="/CreateNews" element={<CreateNews />} />
+                        <Route exact path="/EditNews" element={<EditNews />} />
+
+
                     </Routes>
                 </div>
             </div>

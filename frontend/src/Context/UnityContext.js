@@ -5,11 +5,15 @@ export const contextData = createContext();
 
 const UnityContext = ({ children }) => {
     const [productIdToEdit, setProductIdToEdit] = useState("");
+    const [activeTab, setActiveTab] = useState("tab1")
+    console.log(activeTab)
     return (
         <contextData.Provider
             value={{
                 productIdToEdit,
-                setProductIdToEdit
+                setProductIdToEdit,
+                setActiveTab,
+                activeTab
             }}>
             {children}
         </contextData.Provider>

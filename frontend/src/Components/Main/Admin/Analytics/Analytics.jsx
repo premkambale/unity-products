@@ -50,12 +50,10 @@ const Analytics = () => {
 
     return (
         <div className="analyticsContainer">
-            <div className="analyticsTitle">
-                <span>Analytics</span>
-            </div>
             <div className="anaTabs">
                 <div className="tab1">
-                    Online products                </div>
+                    Online products
+                </div>
                 <div className="tab1">
                     Inventory
                 </div>
@@ -100,7 +98,7 @@ const Analytics = () => {
                                             <MdModeEditOutline />
                                         </button>
                                         <button onClick={() => handleDelete(product._id)}>
-                                            <MdDelete />    
+                                            <MdDelete />
                                         </button>
                                     </td>
                                 </tr>

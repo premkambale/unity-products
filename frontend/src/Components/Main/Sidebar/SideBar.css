@@ -1,0 +1,10 @@
+.activeTab{
+    background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
+    color:white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+
+.normalTab{
+    background-color:white;
+}

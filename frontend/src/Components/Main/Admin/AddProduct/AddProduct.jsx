@@ -4,9 +4,12 @@ import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import { ToastContainer, toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
-
+import sampleImage from "../../Sources/sampleImage.jpg"
+import samplePdf from "../../Sources/Sample Product Description.pdf"
 
 import './AddProduct.css';
+import { POSTWImage } from '../../../../Constants/FetchMethods';
+import { Url } from '../../../../Constants/ApiUrlConstant';
 
 const AddProduct = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -33,15 +36,11 @@ const AddProduct = () => {
   const handleFileChange = (e) => {
     const files = e.target.files;
 
-    if (files) {
-      const fileList = Array.from(files);
-
-      setProductData({
-        ...productData,
-        product_image: fileList,
-      });
-    }
-  };
+    setProductData({
+      ...productData,
+      product_image: files,
+    });
+  }
 
 
 
@@ -51,49 +50,44 @@ const AddProduct = () => {
       ...productData,
       product_doc: doc,
     });
-
   }
 
-  const handleAddProduct = (e) => {
-    console.log("token", token)
-    console.log("productData", productData)
-    const body = { ...productData }
-    const price = parseInt(productData.product_price);
-    e.preventDefault()
-    fetch("http://localhost:5500/products/create-product", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        "Authorization": "Bearer " + token,
-
-      },
-      body: JSON.stringify({ ...body, product_price: price })
-    })
-      .then((res) => res.json())
-      .then((resData) => {
-        console.log("resData", resData)
-        if (resData.success == true) {
-          toast.success(resData.message, {
-            position: "bottom-right",
-            theme: "colored",
-            className: "custom-success-msg"
-          });
-          setProductData({})
-        }
-        else {
-          toast.error(resData.message, {
-            position: "bottom-right",
-            theme: "colored",
-            className: "custom-error-msg"
-          });
-        }
 
 
-      })
-      .catch((err) => {
-        console.log("error while Adding Product", err.message)
-      })
+
+  // console.log("token", token)
+  // console.log("productData", productData)
+  // const body = { ...productData }
+  // const price = parseInt(productData.product_price);
+  // e.preventDefault()
+
+  // var formdata = new FormData();
+  // formdata.append("product_name", productData?.product_name);
+  // formdata.append("product_description", productData?.product_description)
+  // formdata.append("company_name", productData?.company_name);
+  // formdata.append("product_price", productData?.product_price);
+  // formdata.append("product_quantity", productData?.product_quantity);
+  // formdata.append("product_image", productData?.product_image[0]);
+  // formdata.append("product_doc", productData?.product_doc);
+  // formdata.append("product_category", productData?.product_category);
+
+
+  const handleAddProduct = async (e) => {
+    e.preventDefault();
+    var formdata = new FormData();
+    formdata.append("product_name", productData?.product_name);
+    formdata.append("product_description", productData?.product_description)
+    formdata.append("company_name", productData?.company_name);
+    formdata.append("product_price", productData?.product_price);
+    formdata.append("product_quantity", productData?.product_quantity);
+    formdata.append("product_image", productData?.product_image);
+    formdata.append("product_doc", productData?.product_doc);
+    formdata.append("product_category", productData?.product_category);
+
+    const addProductData = await POSTWImage(Url.createProduct, token, formdata)
+    const addproduct=  await addProductData.json()
+    console.log("addproduct",addproduct)
+
   }
 
 
@@ -116,18 +110,17 @@ const AddProduct = () => {
 
 
   const incrementQuantity = () => {
-    setProductData((prevProductData) => ({
-      ...prevProductData,
-      product_quantity: prevProductData.product_quantity + 1,
-    }));
+
+    setProductData((prevState) => {
+      return { ...prevState, product_quantity: prevState.product_quantity + 1 }
+    })
   };
 
 
   const decrementQuantity = () => {
-    setProductData((prevProductData) => ({
-      ...prevProductData,
-      product_quantity: prevProductData.product_quantity - 1,
-    }));
+    setProductData((prevState) => {
+      return { ...prevState, product_quantity: prevState.product_quantity - 1 }
+    })
   };
 
 
@@ -145,95 +138,95 @@ const AddProduct = () => {
 
   return (
     <>
-    <ToastContainer />
-    <div className="addProductPage">
-      <div className="AddproductTitle">
-        <Badge bg="info">Add Product</Badge>
-        <div className="dropdown-container">
-          <select className="ProductAddDropdown" name="productType" onChange={handleDropdownChange} id="">
-            <option value="inventory">Add to inventory</option>
-            <option value="showCase">Add to showcase users</option>
-          </select>
+      <ToastContainer />
+      <div className="addProductPage">
+        <div className="AddproductTitle">
+          <Badge bg="info">Add Product</Badge>
+          <div className="dropdown-container">
+            <select className="ProductAddDropdown" name="productType" onChange={handleDropdownChange} id="">
+              <option value="inventory">Add to inventory</option>
+              <option value="showCase">Add to showcase users</option>
+            </select>
+          </div>
+        </div>
+        <div className="scrollable-form">
+          <form className="form-container"   onSubmit={handleAddProduct}>
+            <div className="mb-3" controlId="exampleForm.ControlInput1">
+              <label>Product Name</label>
+              <input onChange={e => handleChange(e.target.name, e.target.value)}
+                name="product_name"
+                type="text" placeholder="Enter product name" />
+            </div>
+            <div className="mb-3" controlId="exampleForm.ControlInput1">
+              <label>Company name</label>
+              <input name="company_name" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter company name" />
+            </div>
+            <div className="mb-3" controlId="exampleForm.ControlInput1">
+              <label> Price</label>
+              <input name="product_price" onChange={e => handleChange(e.target.name, e.target.value)} type="number" placeholder="Enter price" />
+            </div>
+            <div className="mb-3" controlId="exampleForm.ControlInput1">
+              <label>Description</label>
+              <input name="product_description" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter description" />
+            </div>
+
+            {showQuantityCounter == true && (
+              <div>
+                <label>Quantity</label>
+                <div className="d-flex align-items-center width-21vh">
+                  <button type='button' variant="outline-secondary" onClick={decrementQuantity}>
+                    -
+                  </button>
+                  <input
+                    type="number"
+                    name='product_quantity'
+                    value={productData?.product_quantity}
+                    readOnly
+                    className="text-center"
+                    onChange={(e) => handleChange(e.target.name, e.target.value)}
+                  />
+                  <button variant="outline-secondary" type='button' onClick={incrementQuantity}>
+                    +
+                  </button>
+                </div>
+              </div>
+            )}
+
+            <div controlId="formFileImage" className="mb-3">
+              <label>Image</label>
+              <input name="product_image" onChange={handleFileChange} type="file" placeholder="Please Upload image" />
+
+            </div>
+
+            <div style={{ marginTop: "-16px" }}>
+              <label>Category</label>
+              <div className="dropdown-container">
+                <select
+                  className="CategoryDropdown"
+                  name="product_category"
+                  onChange={(e) => handleChange("product_category", e.target.value)}
+                  id=""
+                >
+                  <option value="productCat1">SwitchGear</option>
+                  <option value="productCat2">Panel</option>
+                </select>
+              </div>
+            </div>
+            <div className="mb-3" controlId="exampleForm.ControlInput1">
+              <label>Document</label>
+              <input name="product_doc" onChange={handleDocChange} type="file" placeholder="Please Upload document" />
+            </div>
+            <button
+
+              style={{ marginTop: "15px" }}
+              type="submit"
+              className='addproductBTn'
+            >
+              Submit
+            </button>
+          </form>
         </div>
       </div>
-      <div className="scrollable-form">
-        <Form className="form-container" enctype="multipart/form-data">
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Product Name</Form.Label>
-            <Form.Control onChange={e => handleChange(e.target.name, e.target.value)}
-              name="product_name"
-              type="text" placeholder="Enter product name" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Company name</Form.Label>
-            <Form.Control name="company_name" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter company name" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label> Price</Form.Label>
-            <Form.Control name="product_price" onChange={e => handleChange(e.target.name, e.target.value)} type="number" placeholder="Enter price" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Description</Form.Label>
-            <Form.Control name="product_description" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter description" />
-          </Form.Group>
-
-          {showQuantityCounter == true && (
-            <Form.Group>
-              <Form.Label>Quantity</Form.Label>
-              <div className="d-flex align-items-center width-21vh">
-                <Button variant="outline-secondary" onClick={decrementQuantity}>
-                  -
-                </Button>
-                <Form.Control
-                  type="number"
-                  name='product_quantity'
-                  value={productData?.product_quantity}
-                  readOnly
-                  className="text-center"
-                  onChange={(e) => handleChange(e.target.name, e.target.value)}
-                />
-                <Button variant="outline-secondary" onClick={incrementQuantity}>
-                  +
-                </Button>
-              </div>
-            </Form.Group>
-          )}
-
-          <Form.Group controlId="formFileImage" className="mb-3">
-            <Form.Label>Image</Form.Label>
-            <Form.Control name="product_image" onChange={handleFileChange} type="file" placeholder="Please Upload image" />
-
-          </Form.Group>
-
-          <Form.Group style={{ marginTop: "-16px" }}>
-            <Form.Label>Category</Form.Label>
-            <div className="dropdown-container">
-              <select
-                className="CategoryDropdown"
-                name="product_category"
-                onChange={(e) => handleChange("product_category", e.target.value)}
-                id=""
-              >
-                <option value="productCat1">SwitchGear</option>
-                <option value="productCat2">Panel</option>
-              </select>
-            </div>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Label>Document</Form.Label>
-            <Form.Control name="product_doc" onChange={handleDocChange} type="file" placeholder="Please Upload document" />
-          </Form.Group>
-          <Button
-            onClick={handleAddProduct}
-            style={{ marginTop: "15px" }}
-            type="submit"
-            className='addproductBTn'
-          >
-            Submit
-          </Button>
-        </Form>
-      </div>
-    </div>
     </>
   );
 };

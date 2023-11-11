@@ -50,7 +50,7 @@ const Login = () => {
             var expire = new Date();
             expire.setTime(today.getTime() + 3600000 * 24 * 17);
             document.cookie = "UserId=" + loginData?.email + ";path=/http://localhost:3002/Login#/login;expires=" + expire.toUTCString();
-            document.cookie = "Password=" + loginData?.password +";path=/http://localhost:3002/Login#/login;expires=" + expire.toUTCString();
+            document.cookie = "Password=" + loginData?.password + ";path=/http://localhost:3002/Login#/login;expires=" + expire.toUTCString();
         } else {
             // console.log('Not remembering login details.');
         }
@@ -216,9 +216,11 @@ const Login = () => {
                                 />
                                 <div className="checkmark"></div>
                             </label>
-                            <label className="rem" htmlFor="rememberMe">
+                            <label  className="rem" htmlFor="rememberMe">
                                 Remember Me
                             </label>
+ 
+
                         </div>
                     </div>
 
