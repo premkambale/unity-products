@@ -1,0 +1,93 @@
+.addNewsPage {
+    height: 90vh;
+    padding: 0px 20px;
+    /* margin-top: 3vh; */
+    overflow-y: scroll;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex-direction: column;
+}
+
+
+.addNewsBTn {
+    background-color: #ff5e14;
+    color: black;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.addNewsBTn:hover {
+    background-color: white;
+    color: #ff5e14;
+}
+
+
+
+@media (max-width: 768px) {
+  
+}
+
+.scrollable-form {
+    max-height: 200vh;
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.form-container {
+    margin-top: 5%;
+    justify-self: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    height: 70vh;
+}
+
+@media screen and (max-width: 600px) {
+
+
+    .buttonAddProduct>button {
+        margin-top: 20px;
+        width: 55vw;
+        background-color: #FF6A00;
+        color: white;
+        border: none;
+    }
+
+    .form-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+
+.scrollable-form {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.dropzone {
+    border: 2px dashed #cccccc;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 200px;
+    display: block;
+    margin: 10px 0;
+}

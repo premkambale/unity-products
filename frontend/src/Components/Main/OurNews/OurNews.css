@@ -41,7 +41,7 @@ figure {
   overflow: hidden;
 }
 
-article img {
+.News-img {
   max-width: 100%;
   height: auto;
   display: block;
@@ -94,17 +94,26 @@ a.read-more {
 
 .imag-container img {
   transition: transform 0.3s;
+  width: 94%;
 }
 
 
 
 .article-wrapper {
   width: 350px;
-  height: 400px;
+  height: 440px;
   perspective: 1000px;
   position: relative;
 }
 
+.NewsEditBTN{
+  border: none;
+  background: none;
+}
+
+.back-content{
+  overflow: hidden;
+}
 .front,
 .back {
   width: 100%;

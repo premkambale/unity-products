@@ -110,8 +110,3 @@
 .next-button:hover {
   background-color: #555;
 }
-
-.manual-carousel:hover .prev-button,
-.manual-carousel:hover .next-button {
-  background-color: #555;
-}

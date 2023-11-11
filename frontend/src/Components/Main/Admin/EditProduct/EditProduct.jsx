@@ -116,17 +116,18 @@ const EditProduct = () => {
 
   const handleEditProduct = async () => {
     const token = sessionStorage.getItem("token")
-    try {
-      const editResp = PUT(Url.editProducts + productIdToEdit, token, productData);
+     try {
+      const editResp = await PUT(Url.editProducts + productIdToEdit, token, productData);
       const jsonResp = await editResp.json();
-      if (jsonResp.success) {
-        alert('product deleted successfully')
+      console.log("jsonResp",jsonResp)
+      if (jsonResp.success == true) {
+        alert('product Edited successfully')
       }
       else {
-        alert('failed to delete product')
+        alert('failed to Edit product aoids')
       }
     } catch (error) {
-      alert('failed to delete product')
+      console.log('failed to Edit product')
     }
   }
   return (
@@ -198,7 +199,7 @@ const EditProduct = () => {
               <div className="dropdown-container">
                 <select className="CategoryDropdown" name="product_category" value={productData?.product_category} onChange={(e) => handleChange(e.target.name, e.target.value)} id="">
                   <option value="productCat1">switchGear</option>
-                  <option value="productCat1">Panel</option>
+                  <option value="productCat2">Panel</option>
                 </select>
               </div>
             </Form.Group>

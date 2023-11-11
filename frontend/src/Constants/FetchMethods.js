@@ -27,7 +27,7 @@ export const GETExcept = async (URL) => {
 }
 
 //POST for register 
-export const REG_POST = async (URL, body) => {
+export const REG_POST = async (URL, body,) => {
     const res = await fetch(URL, {
         method: 'POST',
         headers: {
@@ -70,6 +70,23 @@ export const POST = async (URL, token, body) => {
 
     return res;
 }
+
+
+//Post method form In which Image upload
+export const POSTWImage = async (URL, token, body) => {
+    const res = await fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/pdf',
+            'Accept': 'application/json',
+            "Authorization": "Bearer " + token,
+        },
+        body: JSON.stringify(body)
+    });
+
+    return res;
+}
+
 
 // PUT method
 export const PUT = async (URL, token, body) => {
