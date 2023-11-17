@@ -1,12 +1,35 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import "./OurProducts.css";
 import PdfModal from './PdfModal'; // Import the PdfModal component
 import electricalImg from "../Sources/electricity-generation-transmission-distribution-guides.jpg"
-import pdf from "../Sources/Sample Product Description.pdf"
+import { contextData } from '../../../Context/UnityContext';
+import { GET, GETExcept } from '../../../Constants/FetchMethods';
+import { Url } from '../../../Constants/ApiUrlConstant';
+import { FaEye } from "react-icons/fa";
+
 
 const OurProducts = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [productData, setProductData] = useState([])
   const [selectedPdfUrl, setSelectedPdfUrl] = useState('');
+
+
+  const getAllProducts = async () => {
+    try {
+      const productDataResponse = await GETExcept(Url.getAllProducts);
+
+      const getAllProduct = await productDataResponse.json();
+      console.log("getAllProduct", getAllProduct)
+      setProductData(getAllProduct);
+    } catch (error) {
+      console.error('Error occurred:', error);
+    }
+  };
+
+  React.useEffect(() => {
+    getAllProducts()
+  }, [])
+
 
   const articlesData = [
     {
@@ -77,29 +100,65 @@ const OurProducts = () => {
     setModalIsOpen(false);
   };
 
+
+  //   {
+  //     "_id": "654bc3083ac3fc8d625181df",
+  //     "product_name": "N32232",
+  //     "company_name": "dasdqwd`asdasd",
+  //     "product_price": 98239042323213220,
+  //     "product_category": "productCat2",
+  //     "product_quantity": 2,
+  //     "product_image": [
+  //         "product_images\\1699463943860NS200.jpg"
+  //     ],
+  //     "product_doc": "product_doc\\1699463943863dummy.pdf",
+  //     "__v": 0,
+  //     "product_description": "prem weds n"
+  // }
+
   return (
     <>
       <h2 className='OurProductTitle'>our Products</h2>
       <div className="HomeOfProduct">
         <section className="ProductArticles">
-          {articlesData.map((article, index) => (
-            <article className="productArticle" key={article.id}>
+          {console.log(productData)}
+          {productData?.data?.map((article, index) => (
+            <article className="productArticle" key={index}>
+              {console.log("article", article)}
               <div className="article-wrapper_Products">
-                <figure>
-                  <img src={electricalImg} alt="" />
+                <figure style={{ width: '200px', height: '200px', overflow: 'hidden' }}>
+                  <img
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    src={Url.getImage + article.product_image}
+                    alt=""
+                  />
                 </figure>
+
                 <div className="ProductArticle-body">
-                  <p onClick={() => handleProductOverView(article.pdfUrl)}>
-                    {article.content}
+                  <p >
+                    {article.product_name}
                   </p>
+                  <p className="productCategory">
+                    {article.product_category}
+                  </p>
+                  <p className="productDesc">
+                    {article.product_description}
+
+                  </p>
+                  <p onClick={() => handleProductOverView(Url.getImage + article.product_doc)} className="viewprodDOC">
+                    view<FaEye />
+
+                  </p>
+
                 </div>
               </div>
             </article>
           ))}
         </section>
+        <p className='viewMoreLink'> view more</p>
       </div>
+      <PdfModal isOpen={modalIsOpen} closeModal={closeModal} pdfUrl={Url.getImage + productData.product_doc} />
 
-      <PdfModal isOpen={modalIsOpen} closeModal={closeModal} pdfUrl={pdf} />
     </>
   );
 };

@@ -135,7 +135,10 @@ const Login = () => {
                         theme: "colored",
                         className: "custom-success-msg"
                     });
-                    navigate("/Home");
+
+                        navigate("/Home");
+                 
+
                 } else {
                     toast.error(responseData.message, {
                         position: "bottom-right",
@@ -216,10 +219,10 @@ const Login = () => {
                                 />
                                 <div className="checkmark"></div>
                             </label>
-                            <label  className="rem" htmlFor="rememberMe">
+                            <label className="rem" htmlFor="rememberMe">
                                 Remember Me
                             </label>
- 
+
 
                         </div>
                     </div>

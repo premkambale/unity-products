@@ -5,6 +5,8 @@ import { MdAddBusiness } from "react-icons/md"
 import { TbTruckDelivery } from "react-icons/tb"
 import { FaUsers } from "react-icons/fa"
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { FaRegNewspaper } from "react-icons/fa";
+
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -62,12 +64,13 @@ export default function SideBar() {
               <CDBSidebarMenuItem onClick={() => handleChangeActive("/Admin/Analytics", "tab3")} icon="chart-line">Analytics</CDBSidebarMenuItem>
             </div>
             <div className={activeTab == "tab4" ? "activeTab" : "normalTab"}>
-              <CDBSidebarMenuItem onClick={() => handleChangeActive("/Admin/CreateNews", "tab4")} icon="chart-line">Create News</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem onClick={() => handleChangeActive("/Admin/CreateNews", "tab4")} ><FaRegNewspaper style={{marginRight:"10px"}}/>
+                Create News</CDBSidebarMenuItem>
             </div>
           </CDBSidebarMenu>
         </CDBSidebarContent>
       </CDBSidebar>
     </div>
 
-  )
+)
 }

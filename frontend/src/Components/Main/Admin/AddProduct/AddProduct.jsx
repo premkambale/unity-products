@@ -52,28 +52,8 @@ const AddProduct = () => {
     });
   }
 
-
-
-
-  // console.log("token", token)
-  // console.log("productData", productData)
-  // const body = { ...productData }
-  // const price = parseInt(productData.product_price);
-  // e.preventDefault()
-
-  // var formdata = new FormData();
-  // formdata.append("product_name", productData?.product_name);
-  // formdata.append("product_description", productData?.product_description)
-  // formdata.append("company_name", productData?.company_name);
-  // formdata.append("product_price", productData?.product_price);
-  // formdata.append("product_quantity", productData?.product_quantity);
-  // formdata.append("product_image", productData?.product_image[0]);
-  // formdata.append("product_doc", productData?.product_doc);
-  // formdata.append("product_category", productData?.product_category);
-
-
   const handleAddProduct = async (e) => {
-    e.preventDefault();
+     e.preventDefault();
     var formdata = new FormData();
     formdata.append("product_name", productData?.product_name);
     formdata.append("product_description", productData?.product_description)
@@ -85,8 +65,8 @@ const AddProduct = () => {
     formdata.append("product_category", productData?.product_category);
 
     const addProductData = await POSTWImage(Url.createProduct, token, formdata)
-    const addproduct=  await addProductData.json()
-    console.log("addproduct",addproduct)
+    const addproduct = await addProductData.json()
+    console.log("addproduct", addproduct)
 
   }
 
@@ -150,33 +130,33 @@ const AddProduct = () => {
           </div>
         </div>
         <div className="scrollable-form">
-          <form className="form-container"   onSubmit={handleAddProduct}>
+          <form className="form-container" onSubmit={handleAddProduct}>
             <div className="mb-3" controlId="exampleForm.ControlInput1">
               <label>Product Name</label>
-              <input onChange={e => handleChange(e.target.name, e.target.value)}
+              <input required onChange={e => handleChange(e.target.name, e.target.value)}
                 name="product_name"
                 type="text" placeholder="Enter product name" />
             </div>
             <div className="mb-3" controlId="exampleForm.ControlInput1">
               <label>Company name</label>
-              <input name="company_name" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter company name" />
+              <input required name="company_name" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter company name" />
             </div>
             <div className="mb-3" controlId="exampleForm.ControlInput1">
               <label> Price</label>
-              <input name="product_price" onChange={e => handleChange(e.target.name, e.target.value)} type="number" placeholder="Enter price" />
+              <input required name="product_price" onChange={e => handleChange(e.target.name, e.target.value)} type="number" placeholder="Enter price" />
             </div>
             <div className="mb-3" controlId="exampleForm.ControlInput1">
               <label>Description</label>
-              <input name="product_description" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter description" />
+              <input required name="product_description" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter description" />
             </div>
 
             {showQuantityCounter == true && (
               <div>
                 <label>Quantity</label>
                 <div className="d-flex align-items-center width-21vh">
-                  <button type='button' variant="outline-secondary" onClick={decrementQuantity}>
+                  <Button type='button' variant="outline-secondary" onClick={decrementQuantity}>
                     -
-                  </button>
+                  </Button>
                   <input
                     type="number"
                     name='product_quantity'
@@ -185,23 +165,23 @@ const AddProduct = () => {
                     className="text-center"
                     onChange={(e) => handleChange(e.target.name, e.target.value)}
                   />
-                  <button variant="outline-secondary" type='button' onClick={incrementQuantity}>
+                  <Button variant="outline-secondary" type='button' onClick={incrementQuantity}>
                     +
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}
 
             <div controlId="formFileImage" className="mb-3">
               <label>Image</label>
-              <input name="product_image" onChange={handleFileChange} type="file" placeholder="Please Upload image" />
+              <input required name="product_image" onChange={handleFileChange} type="file" placeholder="Please Upload image" />
 
             </div>
 
             <div style={{ marginTop: "-16px" }}>
               <label>Category</label>
               <div className="dropdown-container">
-                <select
+                <select required
                   className="CategoryDropdown"
                   name="product_category"
                   onChange={(e) => handleChange("product_category", e.target.value)}
@@ -214,7 +194,7 @@ const AddProduct = () => {
             </div>
             <div className="mb-3" controlId="exampleForm.ControlInput1">
               <label>Document</label>
-              <input name="product_doc" onChange={handleDocChange} type="file" placeholder="Please Upload document" />
+              <input required name="product_doc" onChange={handleDocChange} type="file" placeholder="Please Upload document" />
             </div>
             <button
 

@@ -4,6 +4,7 @@ import Table from 'react-bootstrap/Table';
 import { Badge } from 'react-bootstrap';
 import { MdDelete, MdModeEditOutline } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../../Loader/Loader';
 
 const Analytics = () => {
     const [activeTab, setActiveTab] = useState('table');
@@ -52,13 +53,13 @@ const Analytics = () => {
         <div className="analyticsContainer">
             <div className="anaTabs">
                 <div className="tab1">
-                    Online products
+                    Online products (22)
                 </div>
                 <div className="tab1">
-                    Inventory
+                    Inventory (30)
                 </div>
                 <div className="tab1">
-                    tab1
+                    Active News(2)
                 </div>
                 <div className="tab1">
                     tab1
@@ -66,49 +67,53 @@ const Analytics = () => {
 
             </div>
 
-            <div className="anatable">
-                <span className="tableTitleAna">
-                    Inventory Table
-                </span>
+            {loading ? (
+                <Loader />
+            ) : (
+                <div className="table-container_Analytics">
+                    <>
 
-                <div style={{ width: "100%" }} className="table-scroll">
-                    <Table responsive="md" scroll borderless bordered hover>
-                        <thead style={{ marginTop: "2vh" }}>
-                            <tr>
-                                <th className='DashTableHead'>Sr.No</th>
-                                <th className='DashTableHead'>product_name</th>
-                                <th className='DashTableHead'>category</th>
-                                <th className='DashTableHead'>company_name</th>
-                                <th className='DashTableHead'>price</th>
-                                <th className='DashTableHead'>description</th>
-                                <th className='DashTableHead'>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody className='tbodyDash' style={{ fontSize: "0.9rem", fontFamily: "revert", textAlign: "start" }}>
-                            {ProductData.map((product, index) => (
-                                <tr key={index} className={index % 2 === 0 ? 'even' : 'odd'}>
-                                    <td>{index + 1}</td>
-                                    <td>{product.product_name}</td>
-                                    <td>{product.product_category}</td>
-                                    <td>{product.company_name}</td>
-                                    <td>{product.product_price}</td>
-                                    <td>{product.product_description}</td>
-                                    <td className="DashboardAction">
-                                        <button onClick={handleEdit}>
-                                            <MdModeEditOutline />
-                                        </button>
-                                        <button onClick={() => handleDelete(product._id)}>
-                                            <MdDelete />
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Table>
+                        <div className="table-scroll_addAnalysis">
+                            <p className='tableHeadAna'>Inventory table</p>
+                            <Table responsive="md" scroll borderless bordered hover>
+                                <thead style={{ marginTop: "2vh" }}>
+                                    <tr>
+                                        <th className='DashTableHead_Analytics'>Sr.No</th>
+                                        <th className='DashTableHead_Analytics'>product_name</th>
+                                        <th className='DashTableHead_Analytics'>category</th>
+                                        <th className='DashTableHead_Analytics'>company_name</th>
+                                        <th className='DashTableHead_Analytics'>price</th>
+                                        <th className='DashTableHead_Analytics'>description</th>
+                                        <th className='DashTableHead_Analytics'>Quantity</th>
+                                        <th className='DashTableHead_Analytics'>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody className='tbodyDash' style={{ fontSize: "0.9rem", fontFamily: "revert", textAlign: "start" }}>
+                                    {ProductData.map((product, index) => (
+                                        <tr key={index} className={index % 2 === 0 ? 'even' : 'odd'}>
+                                            <td>{index + 1}</td>
+                                            <td>{product.product_name}</td>
+                                            <td>{product.product_category}</td>
+                                            <td>{product.company_name}</td>
+                                            <td>{product.product_price}</td>
+                                            <td>{product.product_description}</td>
+                                            <td>{product.product_quantity}</td>
+                                            <td className="DashboardAction">
+                                                <button onClick={() => handleEdit(product._id)}>
+                                                    <MdModeEditOutline />
+                                                </button>
+                                                <button onClick={() => handleDelete(product._id)}>
+                                                    <MdDelete />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
+                        </div>
+                    </>
                 </div>
-
-            </div>
-
+            )}
 
         </div>
     )
