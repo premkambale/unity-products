@@ -13,7 +13,16 @@ const productUploadFields = [
   { name: 'product_image', maxCount: 1000 },
   { name: 'product_doc', maxCount: 1000 }
 ]
+const checkReq = (req, res, next)=>{
+const body = req.body;
+const myreq = req;
 
+console.log("body:",body)
+console.log("req:",{myreq})
+
+
+  // next();
+}
 
 router.post("/create-product", verifyJwt, uploadProductImages.fields(productUploadFields), productController.create_product);
 

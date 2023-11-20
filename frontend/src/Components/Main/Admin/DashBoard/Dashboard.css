@@ -9,7 +9,6 @@
 
 .table-container Table {
     width: 75vw;
-
 }
 
 .DashboardTitle {
@@ -32,7 +31,7 @@
 
 .DashTableHead {
 
-    background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
+background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
     border-left: 1px solid black;
     color: white !important;
     font-size: 1rem;

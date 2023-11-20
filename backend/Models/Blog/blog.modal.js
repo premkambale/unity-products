@@ -5,6 +5,10 @@ const blogCollection = mongoose.Schema({
     type: String,
     require: true
   },
+  blog_Summary:{
+    type:String,
+    require:true
+  },
   blog_description: {
     type: String,
     require: true

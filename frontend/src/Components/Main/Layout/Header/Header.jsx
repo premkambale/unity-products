@@ -16,6 +16,15 @@ const Header = () => {
     navigate('/Home/WhyUnity');
   };
 
+
+  const handleLogOut = () => {
+    sessionStorage.clear();
+    localStorage.clear();
+    window.location = "/Login"
+    localStorage.setItem('logoutFlag', 'true');
+    console.log("logout successfully")
+  }
+
   const handleDropdownHover = (eventKey) => {
     setShowDropdown(eventKey);
   };
@@ -107,7 +116,7 @@ const Header = () => {
                       Admin
                     </NavDropdown.Item>
                     <NavDropdown.Divider className="nav-dropdown-divider" />
-                    <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/Login")} >
+                    <NavDropdown.Item className="nav-dropdown-item" onClick={handleLogOut} >
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>

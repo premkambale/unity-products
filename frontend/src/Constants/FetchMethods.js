@@ -17,14 +17,24 @@ export const LOGIN_POST = async (URL, body) => {
 
 //Get Wihtout token
 export const GETExcept = async (URL) => {
-    const res = await fetch(URL, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-    return JSON.stringify(res);
+    try {
+        const res = await fetch(URL, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!res.ok) {
+            throw new Error('Network response was not ok.');
+        }
+
+        return res;  
+    } catch (error) {
+        throw new Error('Error occurred while fetching data:', error);
+    }
 }
+
 
 //POST for register 
 export const REG_POST = async (URL, body,) => {

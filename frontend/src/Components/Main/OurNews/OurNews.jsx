@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './OurNews.css';
 import electric1 from "../../Main/Sources/Daily-News-Wrap-Up-Power-Ministry-Amends-License-Rules-to-Distribute-Electricity.png";
 import { BiArrowBack } from "react-icons/bi"
 import { useNavigate } from 'react-router-dom';
 import { MdModeEditOutline } from 'react-icons/md';
+import { Url } from '../../../Constants/ApiUrlConstant';
+import { GET } from '../../../Constants/FetchMethods';
+import { contextData } from '../../../Context/UnityContext';
 
 const OurNews = () => {
     const [selectedCard, setSelectedCard] = useState(-1);
+    const [projectData, setProjectData] = useState([])
+
+    const { setNewsId } = useContext(contextData)
+
+    console.log("projectData", projectData)
+
+
     const [role, setRole] = useState("")
     const navigate = useNavigate()
 
@@ -18,44 +28,35 @@ const OurNews = () => {
         setSelectedCard(-1);
     };
 
-    const handleEditNews = () => {
+    const handleEditNews = (newsId) => {
+        setNewsId(newsId)
         navigate("/Admin/EditNews")
     }
 
-    const articlesData = [
-        {
-            id: 1,
-            imageUrl: "electric1",
-            title: 'This is some title 1',
-            content:
-                'Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.',
-            animate: "fade-right"
-        },
-        {
-            id: 2,
-            imageUrl: 'https://picsum.photos/id/1005/800/450',
-            title: 'This is some title 2',
-            content:
-                'Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.',
-            animate: "fade-up"
+    const getAllNewsData = async () => {
+        try {
+            const getprojectRaw = await GET(Url.getAllNewsData)
+            const getprojectDataJson = await getprojectRaw.json()
+            console.log('getprojectDataJson', getprojectDataJson)
+            setProjectData(getprojectDataJson.data)
 
-        },
-        {
-            id: 3,
-            imageUrl: 'https://picsum.photos/id/103/800/450',
-            title: 'This is some title 3',
-            content:
-                'Curabitur convallis ac quam vitae laoreet. Nulla mauris ante, euismod sed lacus sit amet, congue bibendum eros. Etiam mattis lobortis porta. Vestibulum ultrices iaculis enim imperdiet egestas.',
-            animate: "fade-left"
+            if (getprojectDataJson.succcess == true) {
 
-        },
-    ];
+            }
+            else {
 
+            }
+        } catch (error) {
+            console.log("err", error)
+        }
 
-   React.useEffect(() => {
-  setRole(sessionStorage.getItem("Role"))
-   }, [])
-   
+    }
+
+    React.useEffect(() => {
+        setRole(sessionStorage.getItem("Role"))
+        getAllNewsData()
+    }, [])
+
 
     return (
         <>
@@ -63,18 +64,27 @@ const OurNews = () => {
             <div className="HomeOfNews">
 
                 <section className="articles">
-                    {articlesData.map((article, index) => (
-                        <article key={article.id} className={index % 2 === 0 ? 'business' : ''} data-aos={article.animate} data-aos-duration="1900">
+                    {projectData.map((article, index) => (
+                        <article key={article._id} className={index % 2 === 0 ? 'business' : ''} data-aos={article.animate} data-aos-duration="1900">
                             <div className={`article-wrapper ${selectedCard === index ? 'flipped' : ''}`}>
                                 <div className="front">
-                                    <figure className='imag-container'>
-                                        <img style={{ width: "width: 100%" }} className='News-img' src={electric1} alt="" />
+                                    <figure className='imag-container' key={index}>
+                                        <img
+                                            style={{ width: '94%' }}
+                                            className='News-img'
+                                            accept='*/'
+                                            src={Url.getImage + "product_images//1699463943860NS200.jpg"}
+                                            alt='Image'
+                                        />
                                     </figure>
+
                                     <div className="article-body">
-                                        <p>{article.title} {role == "ADMIN" && <button onClick={handleEditNews} className='NewsEditBTN'><MdModeEditOutline /></button>} </p>
-                                        <p>{article.content}</p>
+                                        <p>{article.blog_name} {role == "ADMIN" && <button onClick={() => handleEditNews(article._id)} className='NewsEditBTN'><MdModeEditOutline /></button>} </p>
+                                        <p>{article.create_date}</p>
+                                        <p>{article.blog_Summary
+                                        }</p>
                                         <a onClick={() => handleReadMore(index)} className="read-more">
-                                            Read more <span className="sr-only">about {article.title}</span>
+                                            Read more <span className="sr-only">about {article.blog_name}</span>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 className="icon"
@@ -95,7 +105,7 @@ const OurNews = () => {
                                         <button onClick={handleBackToFront} className="back-button">
                                             <BiArrowBack />
                                         </button>
-                                        <p>Back of the card - Text description goes here. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis voluptatibus quidem doloribus vel vero a nobis officia eaque dolore expedita accusamus nam in quis at ipsum quisquam ut tenetur ea modi numquam, deserunt voluptate sint totam minus. Mollitia maxime, aut exercitationem laborum beatae tempore, consectetur fugit asperiores tenetur adipisci delectus voluptas. Eligendi fugiat quae eaque delectus voluptate ad similique commodi, autem provident facilis facere! Placeat, fuga temporibus ea id impedit velit dolores maiores aut dolorum, dolorem corrupti assumenda nemo officia iste commodi, adipisci tempora obcaecati?  </p>
+                                        <p className='backDesc'> {article.blog_description} </p>
                                     </div>
                                 </div>
                             </div>

@@ -13,12 +13,32 @@ const ContactUsForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInputChange = (e) => {
+    console.log("e.target",e.target)
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+      // const newErrors = {};
+
+      //       if (!loginData?.email) {
+      //           newErrors.emailError = "Please Enter Your email";
+      //       }
+      //       if (!loginData?.password) {
+      //           newErrors.passwordError = "Please Enter Your password";
+      //       }
+
+      //       if (newErrors.emailError || newErrors.passwordError) {
+      //           setErrors(newErrors);
+      //       } else {
+      //           setErrors({
+      //               emailError: "",
+      //               passwordError: "",
+      //           });
+      //         }
+
     setIsSubmitted(true);
   };
 

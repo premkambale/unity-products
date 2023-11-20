@@ -64,43 +64,44 @@ const CreateNews = () => {
                 <Badge bg="info">Create News</Badge>
             </div>
             <div className="scrollable-form">
-                <Form className="form-container" enctype="multipart/form-data">
+                <form className="form-container"  onSubmit={handleAddNews}>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>News Title</Form.Label>
                         <Form.Control onChange={e => handleChange(e.target.name, e.target.value)}
+                            required
                             name="blog_name"
                             type="text" placeholder="Enter product name" />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label> News Summary</Form.Label>
-                        <textarea name="blog_Summary" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter price" />
+                        <textarea required name="blog_Summary" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter Summary" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>News Description</Form.Label>
-                        <textarea name="blog_description" onChange={e => handleChange(e.target.name, e.target.value)} type="textarea" placeholder="Enter description" />
+                        <textarea required name="blog_description" onChange={e => handleChange(e.target.name, e.target.value)} type="textarea" placeholder="Enter description" />
                     </Form.Group>
                     <Form.Group controlId="formFileImage" className="mb-3">
                         <Form.Label> News Image</Form.Label>
-                        <Form.Control name="blog_image" onChange={handleFileChange} type="file" placeholder="Please Upload image" />
+                        <Form.Control required name="blog_image" onChange={handleFileChange} type="file" placeholder="Please Upload image" />
 
                     </Form.Group>
 
                     <Form.Group controlId="formFileImage" className="mb-3">
                         <Form.Label>Create Date</Form.Label>
-                        <Form.Control name="create_date" onChange={e => handleChange(e.target.name, e.target.value)} type="date" placeholder="Please Upload image" />
+                        <Form.Control required name="create_date" onChange={e => handleChange(e.target.name, e.target.value)} type="date" placeholder="Please Upload image" />
 
                     </Form.Group>
 
                     <Button
-                        onClick={handleAddNews}
+                       
                         style={{ marginTop: "15px" }}
                         type="submit"
                         className='addNewsBTn'
                     >
                         Submit
                     </Button>
-                </Form>
+                </form>
             </div>
         </div>
 

@@ -53,6 +53,7 @@ const EditProduct = () => {
         product_name: product_name,
         product_description: product_description,
         company_name: company_name,
+        product_quantity:product_quantity,
         product_price: product_price,
         product_image: product_image,
         product_category: product_category,
@@ -71,27 +72,7 @@ const EditProduct = () => {
 
 
 
-
-
-  const onDrop = useCallback((acceptedFiles) => {
-    const file = acceptedFiles[0];
-    setUploadedFiles(acceptedFiles);
-    setImagePreview(URL.createObjectURL(file));
-  }, []);
-
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: 'image/*',
-  });
-
-  const renderUploadedFiles = () => {
-    return uploadedFiles.map((file, index) => (
-      <div key={index}>
-        <p>{file.name}</p>
-      </div>
-    ));
-  };
-
+ 
   const incrementQuantity = () => {
     setQuantity(quantity + 1);
   };
@@ -116,10 +97,10 @@ const EditProduct = () => {
 
   const handleEditProduct = async () => {
     const token = sessionStorage.getItem("token")
-     try {
+    try {
       const editResp = await PUT(Url.editProducts + productIdToEdit, token, productData);
       const jsonResp = await editResp.json();
-      console.log("jsonResp",jsonResp)
+      console.log("jsonResp", jsonResp)
       if (jsonResp.success == true) {
         alert('product Edited successfully')
       }
@@ -143,23 +124,23 @@ const EditProduct = () => {
           </div>
         </div>
         <div className="scrollable-form">
-          <Form className="form-container">
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Product Name</Form.Label>
-              <Form.Control name='product_name' type="text" onChange={e => handleChange(e.target.name, e.target.value)} value={productData?.product_name} placeholder="Enter product name" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Company name</Form.Label>
-              <Form.Control name='company_name' type="email" onChange={e => handleChange(e.target.name, e.target.value)} value={productData?.company_name} placeholder="Enter company name" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label> Price</Form.Label>
-              <Form.Control name='product_price' type="email" onChange={e => handleChange(e.target.name, e.target.value)} value={productData?.product_price} placeholder="Enter price" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Description</Form.Label>
-              <Form.Control name='product_description' type="email" onChange={e => handleChange(e.target.name, e.target.value)} value={productData?.product_description} placeholder="Enter description" />
-            </Form.Group>
+          <div className="form-container">
+            <div className="mb-3" controlId="exampleForm.ControlInput1">
+              <label>Product Name</label>
+              <input className='ProductInputField' name='product_name' type="text" onChange={e => handleChange(e.target.name, e.target.value)} value={productData?.product_name} placeholder="Enter product name" />
+            </div>
+            <div className="mb-3" controlId="exampleForm.ControlInput1">
+              <label>Company name</label>
+              <input name='company_name' type="email" onChange={e => handleChange(e.target.name, e.target.value)} value={productData?.company_name} placeholder="Enter company name" />
+            </div>
+            <div className="mb-3" controlId="exampleForm.ControlInput1">
+              <label> Price</label>
+              <input name='product_price' type="email" onChange={e => handleChange(e.target.name, e.target.value)} value={productData?.product_price} placeholder="Enter price" />
+            </div>
+            <div className="mb-3" controlId="exampleForm.ControlInput1">
+              <label>Description</label>
+              <input name='product_description' type="email" onChange={e => handleChange(e.target.name, e.target.value)} value={productData?.product_description} placeholder="Enter description" />
+            </div>
             {showQuantityCounter == true && (
               <Form.Group>
                 <Form.Label>Quantity</Form.Label>
@@ -182,32 +163,24 @@ const EditProduct = () => {
               </Form.Group>
             )}
 
-            <Form.Group controlId="formFileMultiple" className="mb-3">
-              <Form.Label>Image</Form.Label>
-              <div {...getRootProps()} className="dropzone">
-                <input {...getInputProps()} />
-                {imagePreview ? (
-                  <img src={imagePreview} alt="Preview" className="image-preview" />
-                ) : (
-                  <p>Drag & drop or click to upload an image</p>
-                )}
-              </div>
-              {renderUploadedFiles()}
-            </Form.Group>
-            <Form.Group style={{ marginTop: "-16px" }}>
-              <Form.Label>Category</Form.Label>
+            <div controlId="formFileMultiple" className="mb-3">
+              <label>Image</label>
+              <input type="file" name='product_image'  onChange={e => handleChange(e.target.name, e.target.value)} />
+             </div>
+            <div style={{ marginTop: "-16px" }}>
+              <label>Category</label>
               <div className="dropdown-container">
                 <select className="CategoryDropdown" name="product_category" value={productData?.product_category} onChange={(e) => handleChange(e.target.name, e.target.value)} id="">
                   <option value="productCat1">switchGear</option>
                   <option value="productCat2">Panel</option>
                 </select>
               </div>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Document</Form.Label>
-              <Form.Control name="product_description" onChange={e => handleChange(e.target.name, e.target.value)} type="file" placeholder="Enter description" />
-            </Form.Group>
-            <Button
+            </div>
+            <div className="mb-3" controlId="exampleForm.ControlInput1">
+              <label>Document</label>
+              <input name="product_image" onChange={e => handleChange(e.target.name, e.target.value)} type="file" placeholder="Enter description" />
+            </div>
+            <button
               className='submitBTNFOrm'
               type="submit"
               onClick={(e) => {
@@ -216,8 +189,8 @@ const EditProduct = () => {
               }}
             >
               Submit
-            </Button>
-          </Form>
+            </button>
+          </div>
         </div>
       </div>
     </>

@@ -15,3 +15,11 @@ export const ApiProfile = {
       }
   }
   
+
+  export const getActiveImageProfile=(profile)=>{
+    switch (profile) {
+        case 'local': return "http://localhost:5500/";
+        case 'Prod': return "http://localhost:5500/";
+        default: return (ApiProfile.Dev);
+  }
+}
