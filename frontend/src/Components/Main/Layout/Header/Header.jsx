@@ -7,8 +7,13 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useNavigate } from 'react-router-dom';
 import header from "../../Sources/header.png";
+import { useContext } from 'react';
+import { contextData } from '../../../../Context/UnityContext';
 
 const Header = () => {
+  const { role } = useContext(contextData)
+  console.log("role", role)
+
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(null);
 
@@ -102,8 +107,8 @@ const Header = () => {
               </Nav>
 
               {
-                roleOfGuest == "guest" ? <div></div>
-                  :
+                roleOfGuest == "ADMIN" || role == "ADMIN" ?
+
                   <NavDropdown
                     style={{ color: "black" }}
                     title="Profile"
@@ -120,6 +125,7 @@ const Header = () => {
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>
+                  : <div></div>
               }
             </Navbar.Collapse>
           </Container>

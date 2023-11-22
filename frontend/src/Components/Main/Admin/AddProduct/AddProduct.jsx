@@ -111,11 +111,6 @@ const AddProduct = () => {
       [inputName]: inputValue
     }))
   }
-
-
-
-
-
   return (
     <>
       <ToastContainer />
