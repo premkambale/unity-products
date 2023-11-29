@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./Main.css"
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Home from '../Home/Home';
@@ -14,13 +14,15 @@ import LandingPage from '../LandingPage/LandingPage';
 import OurCustomers from '../OurCustomers/OurCustomers';
 import Login from '../Login/Login';
 import ErrorPage from '../ErrorPage/ErrorPage';
+import { contextData } from '../../../Context/UnityContext';
 
 const Main = () => {
 
 
+const {role} = useContext(contextData);
 
 
-    const role = sessionStorage.getItem("Role")
+    const roleStroage = sessionStorage.getItem("Role")
     console.log("role", role)
 
     return (
@@ -32,7 +34,7 @@ const Main = () => {
                     <Route path='/Home' element={<Home />} />
                     {
 
-                        role == "ADMIN" ?
+                        role == "ADMIN" || roleStroage == "ADMIN" ?
                             <Route path='/Admin/*' element={<Admin />} />
                             :
                             <Route path='*' element={<ErrorPage />} />

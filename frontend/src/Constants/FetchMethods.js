@@ -30,7 +30,7 @@ export const GETExcept = async (URL) => {
         }
 
         return res;  
-    } catch (error) {
+    } catch (error) {   
         throw new Error('Error occurred while fetching data:', error);
     }
 }

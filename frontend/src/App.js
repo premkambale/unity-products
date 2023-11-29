@@ -9,11 +9,15 @@ const App = () => {
   React.useEffect(() => {
     AOS.init();
 
+    // document.title ="Unity"
+
   }, [])
 
   console.log("App")
   return (
     <div className='App'>
+
+  
       <UnityContext>
         <Main />
       </UnityContext>

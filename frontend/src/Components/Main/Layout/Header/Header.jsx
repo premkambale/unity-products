@@ -107,7 +107,7 @@ const Header = () => {
               </Nav>
 
               {
-                roleOfGuest == "ADMIN" || role == "ADMIN" ?
+                role == "ADMIN" || roleOfGuest == "ADMIN" ?
 
                   <NavDropdown
                     style={{ color: "black" }}
@@ -126,7 +126,7 @@ const Header = () => {
                     </NavDropdown.Item>
                   </NavDropdown>
                   : <div></div>
-              }
+              } 
             </Navbar.Collapse>
           </Container>
         </Navbar>
