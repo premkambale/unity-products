@@ -17,6 +17,7 @@
     left: auto;
     top: 5%;
   }
+}
 
   .anaTabs {
     height: auto;
@@ -24,13 +25,9 @@
     justify-content: space-between;
   }
 
-  .tab1 {
-    width: 45%;
-    margin-bottom: 10px;
-  }
-
   .anatable {
     height: auto;
+  }
 
 
 .analyticsTitle {
@@ -59,6 +56,7 @@
 
 .table-scroll_addAnalysis {
   overflow-y: auto;
+}
 
 
 .DashTableHead_Analytics {
@@ -67,7 +65,7 @@
   background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
   color: white !important;
   font-size: 14px;
-
+}
 
 
 tbody tr:nth-child(even) {
@@ -97,6 +95,8 @@ td {
   .table-container_Analytics {
     overflow-x: auto;
   }
+}
+
 
 .tab1 {
   width: 18%;
@@ -154,4 +154,4 @@ td {
     width: 20%;
     font-size: 15px;
   }
-
+}
