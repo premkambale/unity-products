@@ -7,7 +7,7 @@ const UnityContext = ({ children }) => {
     const [productIdToEdit, setProductIdToEdit] = useState("");
     const [activeTab, setActiveTab] = useState("tab1")
     const [newsId, setNewsId]= useState("")
-    const [role, setRole]=useState("")
+
     console.log(activeTab)
     return (
         <contextData.Provider
