@@ -31,8 +31,7 @@
 
   .anatable {
     height: auto;
-  }
-}
+
 
 .analyticsTitle {
   display: flex;
@@ -60,10 +59,7 @@
 
 .table-scroll_addAnalysis {
   overflow-y: auto;
-  max-height: 400px; /* Adjust the maximum height as needed */
-}
 
- 
 
 .DashTableHead_Analytics {
   text-align: left;
@@ -72,13 +68,7 @@
   color: white !important;
   font-size: 14px;
 
- }
 
- .tableHeadAna{
-  font-size: 14px;
-  font-weight: 700;
-  font-family: cursive;  
- }
 
 tbody tr:nth-child(even) {
   background-color: #f9f9f9;
@@ -107,9 +97,6 @@ td {
   .table-container_Analytics {
     overflow-x: auto;
   }
-}
-
-
 
 .tab1 {
   width: 18%;
@@ -168,37 +155,3 @@ td {
     font-size: 15px;
   }
 
-  .table-container_Analytics{
-    margin-top: 50vh;
-  }
-  .anaTabs {
-    display: flex;
-    flex-direction: row; 
-    align-items: center;
-  }
-
-  .tab1 {
-    width: 80%; 
-    margin-bottom: 20px;
-  }
-
-
-}
-
-@media screen and (min-width: 601px) {
-  .analyticsTitle {
-    width: 10%;
-    font-size: 18px;
-  }
-
-  .anaTabs {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-   }
-
-  .tab1 {
-    width: 45%; 
-    margin: 10px; 
-   }
-}

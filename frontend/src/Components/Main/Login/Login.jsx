@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import "./Login.css";
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
@@ -6,10 +6,14 @@ import { LOGIN_POST, POST, REG_POST } from '../../../Constants/FetchMethods';
 import { Url } from '../../../Constants/ApiUrlConstant';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { contextData } from '../../../Context/UnityContext';
 
 
 
 const Login = () => {
+     
+    const {setRole} = useContext(contextData)
+
     const navigate = useNavigate()
     const [showHide, setShowHide] = useState(false);
     const [errors, setErrors] = useState({
@@ -128,6 +132,7 @@ const Login = () => {
                     handleRememberMe()
 
                     console.log("responseData", responseData);
+                    setRole(responseData?.role)
                     sessionStorage.setItem("Role", responseData?.role);
                     sessionStorage.setItem("token", responseData?.token);
                     toast.success(responseData.message, {
