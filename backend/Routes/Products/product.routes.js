@@ -9,29 +9,46 @@ const { uploadProductImages, uploadProductPdf } = upload;
 
 
 
-const productUploadFields = [
-  { name: 'product_image', maxCount: 1000 },
-  { name: 'product_doc', maxCount: 1000 }
-]
-const checkReq = (req, res, next)=>{
-const body = req.body;
-const myreq = req;
-
-console.log("body:",body)
-console.log("req:",{myreq})
-
-
+const checkReq = (req, res, next) => {
+  const body = req.body;
+  const file = req.files;
+  console.log("body:", body)
+  console.log("file===========:", { file })
   // next();
 }
 
-router.post("/create-product", verifyJwt, uploadProductImages.fields(productUploadFields), productController.create_product);
+// -------------------------------------------------------------------------------------------------------------------------------------------------------
+
+router.post("/create-product",
+  verifyJwt,
+  uploadProductImages.fields([
+    { name: 'product_image', maxCount: 1 },
+    { name: 'product_doc', maxCount: 1 }
+  ]),
+  productController.create_product);
+// -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 router.get("/all", productController.get_all_products);
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------
+
 router.get("/product/:productId", productController.get_product_by_id);
 
+// -------------------------------------------------------------------------------------------------------------------------------------------------------
+
 router.delete("/all", productController.delete_all_products);
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------
+
 router.delete("/product/:productId", productController.delete_product_by_id);
 
-router.put("/product/:productId", verifyJwt, uploadProductImages.fields(productUploadFields), productController.update_product)
+// -------------------------------------------------------------------------------------------------------------------------------------------------------
+
+router.put("/product/:productId", verifyJwt, uploadProductImages.fields([
+  { name: 'product_image', maxCount: 1 },
+  { name: 'product_doc', maxCount: 1 }
+]), productController.update_product)
+
+// -------------------------------------------------------------------------------------------------------------------------------------------------------
 
 module.exports = router; 
