@@ -1,250 +1,144 @@
-import React, { useRef, useMemo, useState } from 'react'
+import React, { useRef, useMemo, useState, useEffect, useContext } from 'react'
 import "./Dashboard.css"
 import Table from 'react-bootstrap/Table';
 import Badge from 'react-bootstrap/Badge';
 import { MdDelete, MdModeEditOutline } from 'react-icons/md';
 import EditProduct from '../EditProduct/EditProduct';
 import { useNavigate } from 'react-router-dom';
+import { DELETE } from '../../../../Constants/FetchMethods';
+import { Url } from '../../../../Constants/ApiUrlConstant';
+import Loader from '../../Loader/Loader';
+import { ToastContainer, toast } from 'react-toastify';
+import { contextData } from '../../../../Context/UnityContext';
 
 
 
 const DashBoard = () => {
 
-  const products = [
-    {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }, {
-      "Sr_no": "1",
-      "product_name": "Prescription Glasses",
-      "category": "glassess",
-      "company_name": "Warby Parker",
-      "price": "$199.99",
-      "ratings": "4.5",
-      "description": "Customizable prescription glasses for clear vision",
-      "image": "0000111100000111",
-      "quantity": 2
-    }
-  ]
+  const [ProductData, setProductData] = useState([])
+  const [loading, setLoading] = useState(true);
+
+  const {setProductIdToEdit } = useContext(contextData);
+   
+  const token = sessionStorage.getItem("token")
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = () => {
+    fetch("http://localhost:5500/products/all", {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then((res) => res.json())
+      .then((resData) => {
+        console.log("Fetched data:", resData);
+        setProductData(resData.data)
+        console.log(resData?.data?.product_name)
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
+  }
+
 
   const navigate = useNavigate();
 
 
 
-  const handleEdit = () => {
+  const handleEdit = (productId) => {
+    console.log("productId", productId)
+    setProductIdToEdit(productId)
     navigate("Admin/EditProduct")
   }
 
-  const handleDelete = () => {
-    alert("delete")
-  }
+
+
+
+  const handleDelete = async (pId) => {
+    try {
+      const response = await DELETE(Url.deleteProductById.replace('id', pId));
+      const responseData = await response.json();
+      console.log("responseData", responseData)
+
+      if (responseData.success == true) {
+        toast.success(responseData.message, {
+          position: "bottom-right",
+          theme: "colored",
+          className: "custom-success-msg"
+        });
+        fetchData();
+      } else {
+        toast.error(responseData.message, {
+          position: "bottom-right",
+          theme: "colored",
+          className: "custom-error-msg"
+        });
+
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
+
+
+
+
 
   return (
 
     <>
-
-      <div className="table-container">
-        <div className="DashboardTitle">
-          <Badge bg="info">Dashboard</Badge>
+      <ToastContainer />
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="table-container">
+          <>
+            <div className="DashboardTitle">
+              <Badge style={{ backgroundColor: "black" }} bg="info">Dashboard</Badge>
+            </div>
+            <div className="table-scroll">
+              <Table responsive="md" scroll borderless bordered hover>
+                <thead style={{ marginTop: "2vh" }}>
+                  <tr>
+                    <th className='DashTableHead'>Sr.No</th>
+                    <th className='DashTableHead'>product_name</th>
+                    <th className='DashTableHead'>category</th>
+                    <th className='DashTableHead'>company_name</th>
+                    <th className='DashTableHead'>price</th>
+                    <th className='DashTableHead'>description</th>
+                    <th className='DashTableHead'>Action</th>
+                  </tr>
+                </thead>
+                <tbody className='tbodyDash' style={{ fontSize: "0.9rem", fontFamily: "revert", textAlign: "start" }}>
+                  {ProductData.map((product, index) => (
+                    <tr key={index} className={index % 2 === 0 ? 'even' : 'odd'}>
+                      <td>{index + 1}</td>
+                      <td>{product.product_name}</td>
+                      <td>{product.product_category}</td>
+                      <td>{product.company_name}</td>
+                      <td>{product.product_price}</td>
+                      <td>{product.product_description}</td>
+                      <td className="DashboardAction">
+                        <button onClick={() => handleEdit(product._id)}>
+                          <MdModeEditOutline />
+                        </button>
+                        <button onClick={() => handleDelete(product._id)}>
+                          <MdDelete />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+          </>
         </div>
-
-        <div className="table-scroll">
-
-          <Table responsive="md" scroll borderless bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Sr_no</th>
-                <th>product_name</th>
-                <th>category</th>
-                <th>company_name</th>
-                <th>price</th>
-                <th>description</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product, index) => (
-                <tr key={index}>
-                  <td>{index + 1}</td>
-                  <td>{product.Sr_no}</td>
-                  <td>{product.product_name}</td>
-                  <td>{product.category}</td>
-                  <td>{product.company_name}</td>
-                  <td>{product.price}</td>
-                  <td>{product.description}</td>
-                  <td className="DashboardAction">
-                    <button onClick={handleEdit}>
-                      <MdModeEditOutline />
-                    </button>
-                    <button onClick={handleDelete}>
-                      <MdDelete />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </div>
-
-      </div>
+      )}
     </>
   )
 }

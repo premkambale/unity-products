@@ -4,6 +4,7 @@ import Header from '../../Main/Layout/Header/Header';
 import Footer from '../Layout/Header/Footer';
 import { Container, Breadcrumb, Row, Col, Button, Image } from 'react-bootstrap';
 import sampleImage from "../Sources/sampleImage.jpg"
+import { BiHome } from "react-icons/bi"
 import { useNavigate } from 'react-router';
 
 const WhyUnity = () => {
@@ -13,22 +14,18 @@ const WhyUnity = () => {
   const handleContactUs = () => {
     navigate("/ContactUs")
   }
-
-  const breadcrumbItems = [
-    { label: 'Home', link: '/' },
-    { label: 'Why unity' },
-];
+ 
   return (
     <>
       <Header />
       <div className='UnityWhyTab'>
-                    <Breadcrumb>
-                        {breadcrumbItems.map((item, index) => (
-                            <Breadcrumb.Item key={index} href={item.link}>{item.label}</Breadcrumb.Item>
-                        ))}
-                    </Breadcrumb>
-                    <h1 className='headingOfHistory' style={{ textAlign: "center" }}>Why unity  </h1>
-                </div>
+        <div className="breadCrump">
+          <span onClick={ () => navigate("/Home")} className='breadItems'> <BiHome fontSize='13px' /> Home &gt;
+          </span>
+          <span  onClick={ () => navigate("/WhyUnity")}className='breadItems2'> Why Unity</span>
+        </div>
+        <h1 className='headingOfHistory' style={{ textAlign: "center" }}>Why unity  </h1>
+      </div>
       <div className="mainContentWhyUnity">
         <div className="business-page">
           <header className="page-header">

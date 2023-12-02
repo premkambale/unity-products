@@ -49,7 +49,7 @@ const OurServices = () => {
         <div className="row">
           {data.map((item, index) => (
             <div key={index} className="col-xl-3 col-sm-6 col-12">
-              <div style={{backgroundColor:"#463b4c" , color:"red"}} className="card">
+              <div style={{background: "linear-gradient(#243b55, #141e30)"  , color:"red"}} className="card">
                 <div className="card-content">
                   <div className="card-body">
                     <div className="media d-flex">

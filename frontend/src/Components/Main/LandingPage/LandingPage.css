@@ -6,9 +6,17 @@
      position: relative;
      text-transform: uppercase;
      font-family: 'Amatic SC', sans-serif;
-     letter-spacing: 17.5px;
-     transition: background-color 0.3s; 
+     letter-spacing: 15px;
+     transition: background-color 0.3s;
 
+ }
+
+ .LogAsAdmin {
+     position: absolute;
+     z-index: 999;
+     width: 10%;
+     height: 10%;
+     background-color: red;
  }
 
  .hero-one {
@@ -38,26 +46,44 @@
      background-position: center;
  }
 
+ 
+ 
+
  .header-title {
-     z-index: 2;
-     position: absolute;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
- }
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
 
- .header-primary {
-     font-size: 1em;
-     display: block;
-     font-weight: 700;
- }
+.header-primary{
 
+    font-size: 1.4rem;
+    display: block;
+    font-weight: 700;
+    filter: blur(5px);  
+    animation: blurToClear 1.4s ease forwards;  
+}
 
- .header-sub {
-     font-size: 0.5em;
-     display: block;
-     font-weight: 700;
- }
+.header-sub {
+    font-size: 0.8rem;
+    display: block;
+    font-weight: 700;
+    filter: blur(5px);  
+    animation: blurToClear 1.4s ease forwards;  
+}
+
+@keyframes blurToClear {
+    0% {
+        filter: blur(5px); 
+    }
+    100% {
+        filter: blur(0);  
+    }
+}
+
 
  .getStartedBTN {
      text-align: center;
@@ -77,17 +103,78 @@
      box-shadow: 0 5px 15px #193047;
      border-radius: 4px;
      margin-top: 5px;
-     transition: background-color 0.3s, transform 0.3s;  
-     transform: scale(1);  
+     transition: background-color 0.3s, transform 0.3s;
+     transform: scale(1);
+     animation: makeUp 1s linear;
 
  }
 
-  
-  .getStartedBTN:hover {
-    background-color: #003428;  
-    transform: scale(1.05);  
-  }
-  
+ @keyframes makeUp {
+     0% {
+         -webkit-transform: translateY(300px);
+     }
+
+     100% {
+         -webkit-transform: translateY(0px);
+     }
+ }
+
+ .getStartedBTN:hover {
+     background-color: #003428;
+     transform: scale(1.05);
+ }
+
+ .right-corner {
+     display: flex;
+     align-items: center;
+     justify-content: right;
+     position: relative;
+     z-index: 1;
+
+ }
+
+ .adminLoginButton {
+     text-align: center;
+     text-transform: uppercase;
+     cursor: pointer;
+     font-size: 8px;
+     letter-spacing: 4px;
+     position: relative;
+     background-color: #00483a;
+     border: none;
+     color: #fff;
+     padding: 8px;
+     width: 15%;
+     text-align: center;
+     transition-duration: 0.4s;
+     overflow: hidden;
+     box-shadow: 0 5px 15px #193047;
+     border-radius: 4px;
+     margin-top: 5px;
+     transition: background-color 0.3s, transform 0.3s;
+     transform: scale(1);
+ }
+
+ .adminLoginButton:hover {
+     background-color: #003428;
+     transform: scale(1.05);
+ }
+
+ @media (max-width: 768px) {
+     .LogAsAdmin {
+         top: 5px;
+         right: 5px;
+         padding: 5px;
+     }
+ }
+
+ @media (max-width: 480px) {
+     .LogAsAdmin {
+         top: 5px;
+         right: 5px;
+         padding: 5px;
+     }
+ }
 
  @media (max-width: 768px) {
      .getStartedBTN {

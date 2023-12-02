@@ -10,10 +10,10 @@ const projectCollection = mongoose.Schema({
     require: true
   },
 
-  project_image: {
-    type: Buffer,
+  project_image: [{
+    type: String,
     require: false
-  },
+  }],
   create_date: {
     type: Date,
     default: Date.now(),

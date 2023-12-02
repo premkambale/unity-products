@@ -1,4 +1,157 @@
-.minimal-statistics{
-    height: 400px;
-    overflow-y: scroll;
+.analyticsContainer {
+  display: flex;
+  align-items: flex-start;
+  height: 100vh;
+  width: 79vw;
+  padding: 4px;
+  justify-content: flex-start;
+  margin-top: 5vh;
+  flex-direction: column;
+  transition: all ease-in-out 0.6s;
+}
+
+@media screen and (max-width: 600px) {
+  .analyticsTitle {
+    width: 40%;
+    font-size: 15px;
+    left: auto;
+    top: 5%;
+  }
+}
+
+  .anaTabs {
+    height: auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .anatable {
+    height: auto;
+  }
+
+
+.analyticsTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: none;
+  font-weight: 600;
+  background-color: #0fcaf0;
+  color: white;
+  position: absolute;
+  border-radius: 10px;
+  top: 14%;
+  height: 33px;
+  left: 22%;
+  width: 10%;
+}
+
+
+.table-container_Analytics {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 9%;
+}
+
+.table-scroll_addAnalysis {
+  overflow-y: auto;
+}
+
+
+.DashTableHead_Analytics {
+  text-align: left;
+  padding: 8px;
+  background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
+  color: white !important;
+  font-size: 14px;
+}
+
+
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+td {
+  padding: 8px;
+}
+
+.DashboardAction button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.DashboardAction button:hover {
+  color: red;
+}
+
+@media screen and (max-width: 768px) {
+  .table-container_Analytics {
+    overflow-x: auto;
+  }
+}
+
+
+.tab1 {
+  width: 18%;
+  height: 60%;
+  font-weight: 600;
+  border-radius: 3px;
+  display: flex;
+  color: linear-gradient(#243b55, #141e30);
+  align-items: center;
+  justify-content: center;
+  font-family: cursive;
+  transition: all ease-in-out 0.2s;
+  border-radius: 34px;
+  background: linear-gradient(225deg, #e6e6e6, #ffffff);
+  box-shadow: -16px 16px 32px #cfcfcf,
+    16px -16px 32px #ffffff;
+}
+
+.tab1:hover {
+  transform: scale(1.01);
+
+}
+
+.tableTitleAna {
+  position: absolute;
+  top: -10%;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: cursive;
+}
+
+.anaTabs {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  align-items: start;
+  justify-content: space-around;
+  transition: all ease-in-out 0.5s;
+}
+
+.anatable {
+  width: 78%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70vh;
+
+
+}
+
+
+
+@media screen and (max-width: 600px) {
+  .analyticsTitle {
+    width: 20%;
+    font-size: 15px;
+  }
 }
