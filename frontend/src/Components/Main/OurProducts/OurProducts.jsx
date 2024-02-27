@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import "./OurProducts.css";
 import PdfModal from './PdfModal'; // Import the PdfModal component
 import electricalImg from "../Sources/electricity-generation-transmission-distribution-guides.jpg"
+import document from "../Sources/Sample Product Description.pdf"
 import { contextData } from '../../../Context/UnityContext';
 import { GET, GETExcept } from '../../../Constants/FetchMethods';
 import { Url } from '../../../Constants/ApiUrlConstant';
@@ -32,62 +33,42 @@ const OurProducts = () => {
 
 
   const articlesData = [
-    {
-      id: 1,
-      imageUrl: 'https://picsum.photos/id/1011/800/450',
-      title: 'This is some title 1',
-      content:
-        "Lorem 1"
-    },
-    {
-      id: 2,
-      imageUrl: 'https://picsum.photos/id/1005/800/450',
-      title: 'This is some title 2',
-      content:
-        "lorem 2"
-    },
-    {
-      id: 3,
-      imageUrl: 'https://picsum.photos/id/103/800/450',
-      title: 'This is some title 3',
-      content:
-        "lorem 3"
-    },
-    {
-      id: 1,
-      imageUrl: 'https://picsum.photos/id/1011/800/450',
-      title: 'This is some title 1',
-      content:
-        "lorem 4"
-    },
-    {
-      id: 2,
-      imageUrl: 'https://picsum.photos/id/1005/800/450',
-      title: 'This is some title 2',
-      content:
-        "lorem 5"
-    },
-    {
-      id: 3,
-      imageUrl: 'https://picsum.photos/id/103/800/450',
-      title: 'This is some title 3',
-      content:
-        "lorem 6"
-    },
-    {
-      id: 1,
-      imageUrl: 'https://picsum.photos/id/1011/800/450',
-      title: 'This is some title 1',
-      content:
-        "lorem 7"
-    },
-    {
-      id: 2,
-      imageUrl: 'https://picsum.photos/id/1005/800/450',
-      title: 'This is some title 2',
-      content:
-        "lorem 8"
-    },
+    {product_name:"Ns200",
+    product_description: "A living beast",
+    company_name:"Bajaj",
+    product_price: "450000",
+    product_category: "Sportz",},
+    
+    {product_name:"Ns200",
+    product_description: "A living beast",
+    company_name:"Bajaj",
+    product_price: "450000",
+    product_category: "Sportz"
+  },
+  {product_name:"Ns200",
+  product_description: "A living beast",
+  company_name:"Bajaj",
+  product_price: "450000",
+  product_category: "Sportz"
+},
+{product_name:"Ns200",
+product_description: "A living beast",
+company_name:"Bajaj",
+product_price: "450000",
+product_category: "Sportz"
+},
+{product_name:"Ns200",
+product_description: "A living beast",
+company_name:"Bajaj",
+product_price: "450000",
+product_category: "Sportz"
+},
+{product_name:"Ns200",
+product_description: "A living beast",
+company_name:"Bajaj",
+product_price: "450000",
+product_category: "Sportz"
+}
 
   ];
 
@@ -101,63 +82,50 @@ const OurProducts = () => {
   };
 
 
-  //   {
-  //     "_id": "654bc3083ac3fc8d625181df",
-  //     "product_name": "N32232",
-  //     "company_name": "dasdqwd`asdasd",
-  //     "product_price": 98239042323213220,
-  //     "product_category": "productCat2",
-  //     "product_quantity": 2,
-  //     "product_image": [
-  //         "product_images\\1699463943860NS200.jpg"
-  //     ],
-  //     "product_doc": "product_doc\\1699463943863dummy.pdf",
-  //     "__v": 0,
-  //     "product_description": "prem weds n"
-  // }
-
   return (
     <>
       <h2 className='OurProductTitle'>our Products</h2>
       <div className="HomeOfProduct">
         <section className="ProductArticles">
-          {console.log(productData)}
-          {productData?.data?.map((article, index) => (
+           {articlesData.map((article, index) => (
             <article className="productArticle" key={index}>
               {console.log("article", article)}
               <div className="article-wrapper_Products">
-                <figure style={{ width: '200px', height: '200px', overflow: 'hidden' }}>
-                  <img
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    src={Url.getImage + article.product_image}
-                    alt=""
-                  />
-                </figure>
+                <figure style={{
+                  width: '330px', height: '200px' , display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center" }}>
+                <img
+                  style={{ width: '100%', height: 'auto', }}
+                  src={electricalImg}
+                  alt=""
+                />
+              </figure>
 
-                <div className="ProductArticle-body">
-                  <p >
-                    {article.product_name}
-                  </p>
-                  <p className="productCategory">
-                    {article.product_category}
-                  </p>
-                  <p className="productDesc">
-                    {article.product_description}
+              <div className="ProductArticle-body">
+                <p >
+                  {article.product_name}
+                </p>
+                <p className="productCategory">
+                  {article.product_category}
+                </p>
+                <p className="productDesc">
+                  {article.product_description}
 
-                  </p>
-                  <p onClick={() => handleProductOverView(Url.getImage + article.product_doc)} className="viewprodDOC">
-                    view<FaEye />
+                </p>
+                <p onClick={() => handleProductOverView(Url.getImage + article.product_doc)} className="viewprodDOC">
+                  view<FaEye />
 
-                  </p>
+                </p>
 
-                </div>
               </div>
+            </div>
             </article>
           ))}
-        </section>
-        <p className='viewMoreLink'> view more</p>
-      </div>
-      <PdfModal isOpen={modalIsOpen} closeModal={closeModal} pdfUrl={Url.getImage + productData.product_doc} />
+      </section>
+      {/* <p className='viewMoreLink'> view more</p> */}
+    </div >
+      <PdfModal isOpen={modalIsOpen} closeModal={closeModal} pdfUrl={document} />
 
     </>
   );

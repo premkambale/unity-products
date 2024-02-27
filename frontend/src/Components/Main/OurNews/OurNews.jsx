@@ -33,29 +33,49 @@ const OurNews = () => {
         navigate("/Admin/EditNews")
     }
 
-    const getAllNewsData = async () => {
-        try {
-            const getprojectRaw = await GET(Url.getAllNewsData)
-            const getprojectDataJson = await getprojectRaw.json()
-            console.log('getprojectDataJson', getprojectDataJson)
-            setProjectData(getprojectDataJson.data)
+    const DataObj = [
+        {
+          id: "1",
+          blog_name: "blog 1",
+          blog_Summary: "Lorem ipsum dolor sit amet, consectetur adipisicing elit...",
+          blog_description:"Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos laudantium cumque ullam consequatur adipisci, esse quibusdam blanditiis suscipit. Cumque adipisci magni asperiores quas accusantium consequatur aut quidem, eius quibusdam assumenda aspernatur eum obcaecati velit sed! Enim perferendis pariatur ratione vel. Iure facilis eveniet consequuntur ex libero, sit nostrum voluptas vitae? Eius porro libero quos alias ipsa veritatis, accusamus corrupti qui consequatur totam dolorem! Porro consequatur nam, quisquam adipisci modi odio expedita officia sunt fugit debitis blanditiis aperiam laborum laudantium impedit. Cupiditate illum quia nemo beatae asperiores, excepturi reiciendis ipsam autem officia debitis laboriosam tempore fugiat maiores sed corrupti, fuga porro eius quod ratione, aspernatur libero nam pariatur facere. Consequatur dolorum tempora iste ea nemo. Dolore deserunt eligendi quod iure repellendus.",
+        },
+        {
+          id: "2",
+          blog_name: "blog 2",
+          blog_Summary: "Lorem ipsum dolor sit amet, consectetur adipisicing elit...",
+          blog_description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos laudantium cumque ullam consequatur adipisci, esse quibusdam blanditiis suscipit. Cumque adipisci magni asperiores quas accusantium consequatur aut quidem, eius quibusdam assumenda aspernatur eum obcaecati velit sed! Enim perferendis pariatur ratione vel. Iure facilis eveniet consequuntur ex libero, sit nostrum voluptas vitae? Eius porro libero quos alias ipsa veritatis, accusamus corrupti qui consequatur totam dolorem! Porro consequatur nam, quisquam adipisci modi odio expedita officia sunt fugit debitis blanditiis aperiam laborum laudantium impedit. Cupiditate illum quia nemo beatae asperiores, excepturi reiciendis ipsam autem officia debitis laboriosam tempore fugiat maiores sed corrupti, fuga porro eius quod ratione, aspernatur libero nam pariatur facere. Consequatur dolorum tempora iste ea nemo. Dolore deserunt eligendi quod iure repellendus.",
+        },
+        {
+          id: "3",
+          blog_name: "blog 3",
+          blog_Summary: "Lorem ipsum dolor sit amet, consectetur adipisicing elit...",
+          blog_description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos laudantium cumque ullam consequatur adipisci, esse quibusdam blanditiis suscipit. Cumque adipisci magni asperiores quas accusantium consequatur aut quidem, eius quibusdam assumenda aspernatur eum obcaecati velit sed! Enim perferendis pariatur ratione vel. Iure facilis eveniet consequuntur ex libero, sit nostrum voluptas vitae? Eius porro libero quos alias ipsa veritatis, accusamus corrupti qui consequatur totam dolorem! Porro consequatur nam, quisquam adipisci modi odio expedita officia sunt fugit debitis blanditiis aperiam laborum laudantium impedit. Cupiditate illum quia nemo beatae asperiores, excepturi reiciendis ipsam autem officia debitis laboriosam tempore fugiat maiores sed corrupti, fuga porro eius quod ratione, aspernatur libero nam pariatur facere. Consequatur dolorum tempora iste ea nemo. Dolore deserunt eligendi quod iure repellendus.",
+        },
+      ];
+    // const getAllNewsData = async () => {
+    //     try {
+    //         const getprojectRaw = await GET(Url.getAllNewsData)
+    //         const getprojectDataJson = await getprojectRaw.json()
+    //         console.log('getprojectDataJson', getprojectDataJson)
+    //         setProjectData(getprojectDataJson.data)
 
-            if (getprojectDataJson.succcess == true) {
+    //         if (getprojectDataJson.succcess == true) {
 
-            }
-            else {
+    //         }
+    //         else {
 
-            }
-        } catch (error) {
-            console.log("err", error)
-        }
+    //         }
+    //     } catch (error) {
+    //         console.log("err", error)
+    //     }
 
-    }
+    // }
 
-    React.useEffect(() => {
-        setRole(sessionStorage.getItem("Role"))
-        getAllNewsData()
-    }, [])
+    // React.useEffect(() => {
+    //     setRole(sessionStorage.getItem("Role"))
+    //     getAllNewsData()
+    // }, [])
 
 
     return (
@@ -64,16 +84,16 @@ const OurNews = () => {
             <div className="HomeOfNews">
 
                 <section className="articles">
-                    {projectData.map((article, index) => (
-                        <article key={article._id} className={index % 2 === 0 ? 'business' : ''} data-aos={article.animate} data-aos-duration="1900">
+                    {DataObj.map((article, index) => (
+                        <article key={article.id} className={index % 2 === 0 ? 'business' : ''} data-aos={article.animate} data-aos-duration="1900">
                             <div className={`article-wrapper ${selectedCard === index ? 'flipped' : ''}`}>
                                 <div className="front">
-                                    <figure className='imag-container' key={index}>
+                                     <figure className='imag-container' key={index}>
                                         <img
                                             style={{ width: '94%' }}
                                             className='News-img'
                                             accept='*/'
-                                            src={Url.getImage + "product_images//1699463943860NS200.jpg"}
+                                            src={electric1}
                                             alt='Image'
                                         />
                                     </figure>
@@ -98,6 +118,8 @@ const OurNews = () => {
                                                 />
                                             </svg>
                                         </a>
+
+                                                                               
                                     </div>
                                 </div>
                                 <div className="back">

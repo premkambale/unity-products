@@ -13,32 +13,13 @@ const ContactUsForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInputChange = (e) => {
-    console.log("e.target",e.target)
+    console.log("e.target", e.target)
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-      // const newErrors = {};
-
-      //       if (!loginData?.email) {
-      //           newErrors.emailError = "Please Enter Your email";
-      //       }
-      //       if (!loginData?.password) {
-      //           newErrors.passwordError = "Please Enter Your password";
-      //       }
-
-      //       if (newErrors.emailError || newErrors.passwordError) {
-      //           setErrors(newErrors);
-      //       } else {
-      //           setErrors({
-      //               emailError: "",
-      //               passwordError: "",
-      //           });
-      //         }
-
     setIsSubmitted(true);
   };
 
@@ -46,7 +27,7 @@ const ContactUsForm = () => {
     <>
       <Header />
       <div className="contact-container">
-        <div style={{ width: "30px", height: "70vh" }} className="contact-form">
+        <div style={{ width: "30px", height: "62vh" }} className="contact-form">
           <h2 className="contact-title">Contact Us</h2>
           <form className="form-body" onSubmit={handleSubmit}>
             <div className="form-input">
@@ -95,15 +76,27 @@ const ContactUsForm = () => {
           <span>4, Paradise Apartment, </span>
           <span>Serene meadows,</span>
           <span>Gangapur Road,</span>
-          <span>Nashik,Maharashtra India-422012</span>
+          <span>Nashik, Maharashtra India-422012</span>
           <h3>Phone</h3>
-          <p> +91 9601296115
-            +91 8459298147</p>
+          <p>
+            <a href="tel:+919601296115">+91 9601296115</a>
+            <br />
+            <a href="tel:+918459298147">+91 8459298147</a>
+          </p>
           <h3>Email</h3>
           <p>
-            unity.switchgear@gmail.com
-            jagdish.nirgude@unityswitchgear.com</p>
+            <a href="mailto:unity.switchgear@gmail.com">unity.switchgear@gmail.com</a>
+            <br />
+            <a href="mailto:jagdish.nirgude@unityswitchgear.com">jagdish.nirgude@unityswitchgear.com</a>
+          </p>
+          <h3>Links</h3>
+          <p>
+            <a target='blank' href="http://imepsolution.com/">IMEP Solution</a>
+            <br />
+            <a target='blank' href="https://www.unityswitchgear.com/index.html">Unity Switchgear</a>
+          </p>
         </div>
+
       </div>
       <Footer />
     </>

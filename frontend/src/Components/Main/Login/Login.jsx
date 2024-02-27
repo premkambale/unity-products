@@ -11,8 +11,22 @@ import { contextData } from '../../../Context/UnityContext';
 
 
 const Login = () => {
-     
-    const {setRole} = useContext(contextData)
+
+    const { setRole } = useContext(contextData)
+    const loginDetails = {
+        "email": "ashu16@gmail.com",
+        "password": "Ashu@123"
+    }
+
+
+    const loginResp = {
+
+        "success": true,
+        "message": "Logged In Sucessfully",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTQzODMxYzEzMTc3MWE2YWVhNzJjZTYiLCJhY2Nlc3NSb2xlIjoiQURNSU4iLCJpYXQiOjE3MDE4NTMxNzN9.2uuWsSbYriCAwdovaBJzjos37b3vzRk7khmxg7ntkzI",
+        "role": "ADMIN"
+
+    }
 
     const navigate = useNavigate()
     const [showHide, setShowHide] = useState(false);
@@ -61,50 +75,58 @@ const Login = () => {
     };
 
 
-    React.useEffect(() => {
-        GetLoginDetailsFromCokkie()
-    }, [])
+    // React.useEffect(() => {
+    //     GetLoginDetailsFromCokkie()
+    // }, [])
 
 
-    const GetLoginDetailsFromCokkie = () => {
-        let cokkieUser = getDataFromCokkie("UserId");
-        let cokkiePass = getDataFromCokkie("Password");
-        if (cokkieUser != "" || cokkiePass != "") {
-            setLoginData(prevState => ({
-                ...prevState,
-                email: cokkieUser,
-                password: cokkiePass
-            }));
-        }
-    }
+    // const GetLoginDetailsFromCokkie = () => {
+    //     let cokkieUser = getDataFromCokkie("UserId");
+    //     let cokkiePass = getDataFromCokkie("Password");
+    //     if (cokkieUser != "" || cokkiePass != "") {
+    //         setLoginData(prevState => ({
+    //             ...prevState,
+    //             email: cokkieUser,
+    //             password: cokkiePass
+    //         }));
+    //     }
+    // }
 
-    const getDataFromCokkie = (Name) => {
-        var CokkieName = Name + "=";
-        var CokkieData = decodeURIComponent(document.cookie);
-        var cData = CokkieData?.split(";");
-        for (var i = 0; i < cData?.length; i++) {
-            var Data = cData[i];
-            while (Data?.charAt(0) == ',') {
-                Data = Data?.substring(1)
-            }
-            if (Name == 'UserName') {
-                if (Data?.indexOf(CokkieName) == 0) {
-                    return Data?.substring(CokkieName?.length, Data?.length)
-                }
-            } else {
-                if (Data?.indexOf(CokkieName) == 1) {
+    // const getDataFromCokkie = (Name) => {
+    //     var CokkieName = Name + "=";
+    //     var CokkieData = decodeURIComponent(document.cookie);
+    //     var cData = CokkieData?.split(";");
+    //     for (var i = 0; i < cData?.length; i++) {
+    //         var Data = cData[i];
+    //         while (Data?.charAt(0) == ',') {
+    //             Data = Data?.substring(1)
+    //         }
+    //         if (Name == 'UserName') {
+    //             if (Data?.indexOf(CokkieName) == 0) {
+    //                 return Data?.substring(CokkieName?.length, Data?.length)
+    //             }
+    //         } else {
+    //             if (Data?.indexOf(CokkieName) == 1) {
 
-                    var Pasword = Data?.substring(CokkieName?.length, Data?.length);
-                    let RetunrnVar = Pasword.replaceAll('=', '');
-                    return RetunrnVar;
-                }
-            }
-        }
-        return '';
-    }
+    //                 var Pasword = Data?.substring(CokkieName?.length, Data?.length);
+    //                 let RetunrnVar = Pasword.replaceAll('=', '');
+    //                 return RetunrnVar;
+    //             }
+    //         }
+    //     }
+    //     return '';
+    // }
 
     const handleLogin = async (e) => {
+
         e.preventDefault();
+
+        // if (loginData?.email == loginDetails.email && loginData?.password == loginDetails.password) {
+        //     sessionStorage.setItem("Role", loginResp?.role);
+        //     setRole(loginResp?.role)
+        //     sessionStorage.setItem("token", loginResp?.token);
+        //     navigate("/Home")
+        // }
 
         try {
             const newErrors = {};
@@ -142,7 +164,7 @@ const Login = () => {
                     });
 
                         navigate("/Home");
-                 
+
 
                 } else {
                     toast.error(responseData.message, {

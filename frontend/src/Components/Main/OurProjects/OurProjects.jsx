@@ -4,20 +4,34 @@ import ProjectImg from "../Sources/switchgear.jpg"
 import { GETExcept } from '../../../Constants/FetchMethods';
 import { Url } from '../../../Constants/ApiUrlConstant';
 
+
+
+// IMEP												
+// Solar project 												
+// Vabanipur,Hemayetpur,Pabna.												
+// AC & DC Erection, Testing and Commission works. 												
+// Project Name: TSL 200 MW (AC) Solar Plant.												
+// Project Location: Sundarganj, Gaibandha,Rangpur.												
+// Project Name: 2.4 MW Solar (Rooftop)												
+// Akij Jute Mills Ltd,Faridpur..												
+// Huawei Training session												
+// IMEP SOLUTION engineering team received training from Huawei fusion solar digital power for Inverter Installation, Testing & Commissioning.												
+// Thanks Huawei
+
 const thumbnailData = [
   {
     id: 1,
     date: 'Feb 20, 2019',
-    title: 'Lorem lipsum dollar set for dummy text.',
+    title: 'Solar project',
     description:
-      'Lorem lipsum dollar set is the best dummy text for the web world which has the best interaction...',
+      " Vabanipur, Hemayetpur, Pabna.  AC & DC Erection, Testing and Commission works. Project Name: TSL 200 MW (AC) Solar Plant. Project Location: Sundarganj, Gaibandha,Rangpur. Project Name: 2.4 MW Solar (Rooftop) Akij Jute Mills Ltd,Faridpur.   ",
     imageSrc: 'https://picsum.photos/640/480/?random',
   },
   {
     id: 2,
     date: 'Feb 20, 2019',
-    title: 'Simply the best text for dummy world is lorem lipsum.',
-    description: 'Lorem lipsum dollar set is the best dummy...',
+    title: 'IMEP SOLUTION',
+    description: 'IMEP SOLUTION engineering team received training from Huawei fusion solar digital power for Inverter Installation, Testing & Commissioning. Thanks Huawei',
     imageSrc: 'https://picsum.photos/640/480',
   },
   {
@@ -35,8 +49,8 @@ const thumbnailData = [
 const OurProjects = () => {
 
 
-  
- 
+
+
 
   const getAllProjects = async () => {
 

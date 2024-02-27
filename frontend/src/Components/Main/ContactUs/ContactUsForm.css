@@ -82,14 +82,24 @@
 
 .contact-details {
   border-radius: 10px;
-  flex: 1 1px;
+  flex: 1 1 1px;
   padding: 20px;
   border: 1px solid black;
   font-family: Garamond, serif;
-  height: 50vh;
+  height: 62vh;
   color: white;
   background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
 }
+
+@media (max-width: 768px) {
+
+  .contact-form,
+  .contact-details {
+    flex: 1 100%;
+    margin-right: 0;
+  }
+}
+
 
 .form-body {
   display: flex;
@@ -131,13 +141,4 @@ textarea {
     margin-top: 2%;
   }
 
-}
-
-@media (max-width: 768px) {
-
-  .contact-form,
-  .contact-details {
-    flex: 1 100%;
-    margin-right: 0;
-  }
 }
