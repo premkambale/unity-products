@@ -53,9 +53,9 @@ const AddProduct = () => {
   }
 
   const handleAddProduct = async (e) => {
-     e.preventDefault();
-     debugger;
-    console.log("before response",productData)
+    e.preventDefault();
+    debugger;
+    console.log("before response", productData)
     var formdata = new FormData();
     formdata.append("product_name", productData?.product_name);
     formdata.append("product_description", productData?.product_description)
@@ -66,6 +66,7 @@ const AddProduct = () => {
     formdata.append("product_doc", productData?.product_doc);
     formdata.append("product_category", productData?.product_category);
     debugger;
+    console.log("formdata", formdata);
     const addProductData = await POSTWImage(Url.createProduct, token, formdata)
     const addproduct = await addProductData.json();
     debugger;

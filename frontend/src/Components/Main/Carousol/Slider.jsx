@@ -1,15 +1,11 @@
-import React, { useState } from 'react'
-import "./Slider.css"
+// Slider.js
 
-import Carimage from "../Sources/pexels-md-molla-923953.jpg"
+import React, { useState } from 'react';
+import './Slider.css';
+import Carimage from '../Sources/pexels-md-molla-923953.jpg';
 
 const Slider = () => {
-  const images = [
-    Carimage,
-    'image2.jpg',
-    'image3.jpg',
-    'image4.jpg',
-  ];
+  const images = [Carimage, 'image2.jpg', 'image3.jpg', 'image4.jpg'];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
@@ -21,6 +17,7 @@ const Slider = () => {
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
+
   return (
     <div className="manual-carousel">
       <div className="carousel-container">
@@ -33,6 +30,11 @@ const Slider = () => {
           {images.map((image, index) => (
             <div key={index} className="carousel-slide">
               <img src={Carimage} alt={`Image ${index}`} />
+              <div className="animated-text">
+                <p className="big-text">WELCOME TO UNITY</p>
+                <p className="big-text">& IMEP SOLUTIONS</p>
+                <p>Electrical services and Maintenance</p>
+              </div>
             </div>
           ))}
         </div>
@@ -44,7 +46,7 @@ const Slider = () => {
         &gt;
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Slider
+export default Slider;
