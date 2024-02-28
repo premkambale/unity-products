@@ -12,14 +12,21 @@ const OurProducts = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [productData, setProductData] = useState([])
   const [selectedPdfUrl, setSelectedPdfUrl] = useState('');
+  const [visibleProducts, setVisibleProducts] = useState(6);
+
+
+  const handleViewMore = () => {
+    setVisibleProducts(visibleProducts + 6);
+  };
+  const handleViewLess = () => {
+    setVisibleProducts(6);
+  };
 
 
   const getAllProducts = async () => {
     try {
       const productDataResponse = await GETExcept(Url.getAllProducts);
-
       const getAllProduct = await productDataResponse.json();
-      console.log("getAllProduct", getAllProduct)
       setProductData(getAllProduct);
     } catch (error) {
       console.error('Error occurred:', error);
@@ -29,6 +36,8 @@ const OurProducts = () => {
   React.useEffect(() => {
     getAllProducts()
   }, [])
+
+
 
 
   // const articlesData = [
@@ -117,49 +126,86 @@ const OurProducts = () => {
   // }
 
   return (
+    // <>
+    //   <h2 className='OurProductTitle'>our Products</h2>
+    //   <div className="HomeOfProduct">
+    //     <section className="ProductArticles">
+    //       {console.log(productData)}
+    //       {productData?.data?.map((article, index) => (
+    //         <article className="productArticle" key={index}>
+    //           {console.log("article", article)}
+    //           <div className="article-wrapper_Products">
+    //             {/* <figure style={{ width: '200px', height: '200px', overflow: 'hidden' }}> */}
+    //             <img
+    //               style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+    //               src={Url.getImage + article.product_image}
+    //               alt=""
+    //             />
+
+    //             {/* </figure> */}
+
+    //             <div className="ProductArticle-body">
+    //               <p >
+    //                 {article.product_name}
+    //               </p>
+    //               <p className="productCategory">
+    //                 {article.product_category}
+    //               </p>
+    //               <p className="productDesc">
+    //                 {article.product_description}
+
+    //               </p>
+    //               <p onClick={() => handleProductOverView(Url.getImage + article.product_doc)} className="viewprodDOC">
+    //                 view<FaEye />
+
+    //               </p>
+
+    //             </div>
+    //           </div>
+    //         </article>
+    //       ))}
+    //     </section>
+    //     <p className='viewMoreLink'> view more</p>
+    //   </div>
+    //   <PdfModal isOpen={modalIsOpen} closeModal={closeModal} pdfUrl={Url.getImage + productData.product_doc} />
+
+    // </>
+
     <>
-      <h2 className='OurProductTitle'>our Products</h2>
+      <h2 style={{ textAlign: "center", fontFamily: " Garamond, serif", fontSize: "2rem", fontWeight: "600", padding: "15px" }} className='OurProductTitle'>Our Products</h2>
       <div className="HomeOfProduct">
         <section className="ProductArticles">
-          {console.log(productData)}
-          {productData?.data?.map((article, index) => (
+          {productData?.data?.slice(0, visibleProducts).map((article, index) => (
             <article className="productArticle" key={index}>
-              {console.log("article", article)}
               <div className="article-wrapper_Products">
-                {/* <figure style={{ width: '200px', height: '200px', overflow: 'hidden' }}> */}
                 <img
                   style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   src={Url.getImage + article.product_image}
                   alt=""
                 />
-
-                {/* </figure> */}
-
                 <div className="ProductArticle-body">
-                  <p >
-                    {article.product_name}
-                  </p>
-                  <p className="productCategory">
-                    {article.product_category}
-                  </p>
-                  <p className="productDesc">
-                    {article.product_description}
-
-                  </p>
+                  <p>{article.product_name}</p>
+                  <p className="productCategory">{article.product_category}</p>
+                  <p className="productDesc">{article.product_description}</p>
                   <p onClick={() => handleProductOverView(Url.getImage + article.product_doc)} className="viewprodDOC">
-                    view<FaEye />
-
+                    View <FaEye />
                   </p>
-
                 </div>
               </div>
             </article>
           ))}
         </section>
-        <p className='viewMoreLink'> view more</p>
       </div>
-      <PdfModal isOpen={modalIsOpen} closeModal={closeModal} pdfUrl={Url.getImage + productData.product_doc} />
-
+      {productData?.data?.length > visibleProducts ? (
+        <p className='viewMoreLink' onClick={handleViewMore}>
+          View More
+        </p>
+      ) : (
+        <p className='viewMoreLink' onClick={handleViewLess}>
+          View Less
+        </p>
+      )}
+      <PdfModal isOpen={modalIsOpen} closeModal={closeModal} pdfUrl={productData.product_doc} />
     </>
   );
 };

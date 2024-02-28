@@ -30,6 +30,7 @@
      display: flex;
      justify-content: space-around;
      margin: 40px 0;
+     gap: 10px;
  }
 
  .business-description {
@@ -145,13 +146,14 @@
      transition: all ease-in-out 0.3s;
 
  }
- .breadItems:hover{
-    color: #03e9f4;
+
+ .breadItems:hover {
+     color: #03e9f4;
  }
 
 
  .breadItems2:hover {
-    color: #03e9f4;
+     color: #03e9f4;
 
  }
 

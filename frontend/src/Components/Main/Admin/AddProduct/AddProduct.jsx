@@ -6,15 +6,18 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useDropzone } from 'react-dropzone';
 import sampleImage from "../../Sources/sampleImage.jpg"
 import samplePdf from "../../Sources/Sample Product Description.pdf"
+import Resizer from 'react-image-file-resizer';
+
 
 import './AddProduct.css';
 import { POSTWImage } from '../../../../Constants/FetchMethods';
 import { Url } from '../../../../Constants/ApiUrlConstant';
+import Loader from '../../Loader/Loader';
 
 const AddProduct = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [showQuantityCounter, setShowQuantityCounter] = useState(true);
-  const [imagePreview, setImagePreview] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [productData, setProductData] = useState({
     product_name: "",
@@ -33,14 +36,18 @@ const AddProduct = () => {
   console.log("productData", productData)
 
 
-  const handleFileChange = (e) => {
+  const handleImageChange = (e) => {
     const files = e.target.files;
 
-    setProductData({
-      ...productData,
-      product_image: files,
-    });
-  }
+    if (files && files.length > 0) {
+      setProductData({
+        ...productData,
+        product_image: files[0],
+      });
+    }
+  };
+
+
 
 
 
@@ -51,28 +58,56 @@ const AddProduct = () => {
       product_doc: doc,
     });
   }
-
   const handleAddProduct = async (e) => {
     e.preventDefault();
-    debugger;
-    console.log("before response", productData)
+    setIsLoading(true);
+
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", token);
+
     var formdata = new FormData();
     formdata.append("product_name", productData?.product_name);
-    formdata.append("product_description", productData?.product_description)
+    formdata.append("product_description", productData?.product_description);
     formdata.append("company_name", productData?.company_name);
-    formdata.append("product_price", productData?.product_price);
-    formdata.append("product_quantity", productData?.product_quantity);
+    formdata.append("product_quantity", "3");
     formdata.append("product_image", productData?.product_image);
+    formdata.append("product_category", "user");
     formdata.append("product_doc", productData?.product_doc);
-    formdata.append("product_category", productData?.product_category);
-    debugger;
-    console.log("formdata", formdata);
-    const addProductData = await POSTWImage(Url.createProduct, token, formdata)
-    const addproduct = await addProductData.json();
-    debugger;
-    console.log("after response", addproduct)
 
-  }
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: formdata,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:5500/products/create-product", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result);
+
+        if (result.success) {
+          setIsLoading(false);
+          toast.success(result.message, {
+            position: "bottom-right",
+            theme: "colored",
+            className: "custom-success-msg"
+          });
+        } else {
+          setIsLoading(false);
+          toast.error(result.message, {
+            position: "bottom-right",
+            theme: "colored",
+            className: "custom-error-msg"
+          });
+        }
+      })
+      .catch(error => {
+        setIsLoading(false);
+        console.log('error', error);
+      });
+  };
+
 
 
   const handleDropdownChange = (e) => {
@@ -119,6 +154,7 @@ const AddProduct = () => {
     <>
       <ToastContainer />
       <div className="addProductPage">
+        {isLoading && <Loader />}
         <div className="AddproductTitle">
           <Badge bg="info">Add Product</Badge>
           <div className="dropdown-container">
@@ -173,8 +209,15 @@ const AddProduct = () => {
 
             <div controlId="formFileImage" className="mb-3">
               <label>Image</label>
-              <input required name="product_image" onChange={handleFileChange} type="file" placeholder="Please Upload image" />
-
+              <div>
+                <input
+                  required
+                  name="product_image"
+                  onChange={handleImageChange}
+                  type="file"
+                  placeholder="Please Upload image"
+                />
+              </div>
             </div>
 
             <div style={{ marginTop: "-16px" }}>
