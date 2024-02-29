@@ -171,6 +171,12 @@ productArticle img {
   white-space: nowrap;
 }
 
+.expanded {
+  white-space: normal;
+  overflow: auto;
+}
+
+
 .viewprodDOC {
   cursor: pointer;
   color: #007bff;

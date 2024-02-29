@@ -47,7 +47,7 @@ export default function SideBar() {
     <div className='SideBarContent' style={{ display: 'flex', height: '110vh', overflow: 'scroll initial', "boxShadow": "  rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px" }}>
       <CDBSidebar textColor="#000" backgroundColor="#fff">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-          <NavLink to="/" className="text-decoration-none" style={{ color: 'inherit' }}>
+          <NavLink to="/Home" className="text-decoration-none" style={{ color: 'inherit' }}>
             Admin Panel
           </NavLink>
         </CDBSidebarHeader>

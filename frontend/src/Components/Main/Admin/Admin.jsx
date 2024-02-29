@@ -23,7 +23,7 @@ export default function Admin() {
                     <SideBar />
                 </>
                 <div className='adminSections'>
-                    <Routes>    
+                    <Routes>
                         <Route exact path="/*" element={<DashBoard />} />
                         <Route exact path="/AddProduct" element={<AddProduct />} />
                         <Route exact path="/Admin/EditProduct" element={<EditProduct />} />
