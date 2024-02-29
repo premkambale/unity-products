@@ -7,7 +7,6 @@ import { Url } from '../../../../Constants/ApiUrlConstant'
 
 const EditNews = () => {
     const { newsId } = useContext(contextData)
-    console.log("newsId", newsId)
 
     const [newsData, setNewsData] = useState({
         blog_name: "",
@@ -28,7 +27,7 @@ const EditNews = () => {
 
     const getNewsDataById = async () => {
         try {
-            const getNews = await GETExcept(Url.getNewsById + newsId )
+            const getNews = await GETExcept(Url.getNewsById + newsId)
             const getNewsData = await getNews.json()
             console.log("getNewsData", getNewsData)
 

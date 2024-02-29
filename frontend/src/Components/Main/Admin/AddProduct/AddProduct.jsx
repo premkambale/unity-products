@@ -157,12 +157,12 @@ const AddProduct = () => {
         {isLoading && <Loader />}
         <div className="AddproductTitle">
           <Badge bg="info">Add Product</Badge>
-          <div className="dropdown-container">
+          {/* <div className="dropdown-container">
             <select className="ProductAddDropdown" name="productType" onChange={handleDropdownChange} id="">
               <option value="inventory">Add to inventory</option>
               <option value="showCase">Add to showcase users</option>
             </select>
-          </div>
+          </div> */}
         </div>
         <div className="scrollable-form">
           <form className="form-container" onSubmit={handleAddProduct}>
@@ -185,7 +185,7 @@ const AddProduct = () => {
               <input required name="product_description" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter description" />
             </div>
 
-            {showQuantityCounter == true && (
+            {/* {showQuantityCounter == true && (
               <div>
                 <label>Quantity</label>
                 <div className="d-flex align-items-center width-21vh">
@@ -205,7 +205,7 @@ const AddProduct = () => {
                   </Button>
                 </div>
               </div>
-            )}
+            )} */}
 
             <div controlId="formFileImage" className="mb-3">
               <label>Image</label>
@@ -220,7 +220,7 @@ const AddProduct = () => {
               </div>
             </div>
 
-            <div style={{ marginTop: "-16px" }}>
+            {/* <div style={{ marginTop: "-16px" }}>
               <label>Category</label>
               <div className="dropdown-container">
                 <select required
@@ -233,7 +233,7 @@ const AddProduct = () => {
                   <option value="productCat2">Panel</option>
                 </select>
               </div>
-            </div>
+            </div> */}
             <div className="mb-3" controlId="exampleForm.ControlInput1">
               <label>Document</label>
               <input required name="product_doc" onChange={handleDocChange} type="file" placeholder="Please Upload document" />

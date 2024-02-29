@@ -25,7 +25,7 @@ const Header = () => {
   const handleLogOut = () => {
     sessionStorage.clear();
     localStorage.clear();
-    window.location = "/Login"
+    window.location = "/LandingPage"
     localStorage.setItem('logoutFlag', 'true');
     console.log("logout successfully")
   }
