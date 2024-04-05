@@ -10,11 +10,11 @@ import { contextData } from '../../../Context/UnityContext';
 
 const OurNews = () => {
     const [selectedCard, setSelectedCard] = useState(-1);
-    const [projectData, setProjectData] = useState([])
+    // const [projectData, setProjectData] = useState([])
 
     const { setNewsId } = useContext(contextData)
 
-    console.log("projectData", projectData)
+    // console.log("projectData", projectData)
 
 
     const [role, setRole] = useState("")
@@ -33,29 +33,66 @@ const OurNews = () => {
         navigate("/Admin/EditNews")
     }
 
-    const getAllNewsData = async () => {
-        try {
-            const getprojectRaw = await GET(Url.getAllNewsData)
-            const getprojectDataJson = await getprojectRaw.json()
-            console.log('getprojectDataJson', getprojectDataJson)
-            setProjectData(getprojectDataJson.data)
-
-            if (getprojectDataJson.succcess == true) {
-
-            }
-            else {
-
-            }
-        } catch (error) {
-            console.log("err", error)
+    const projectData = [
+        {
+            "_id": "1",
+            "blog_name": "kuch bhi ho sakta hai",
+            "blog_Summary": "aoijfijwefkmcwoiesjf micwiewqjircqwjpimroqwoimr",
+            "blog_description": "wjefieojfweifjweoifjwoie",
+            "blog_image": [
+                "blog_images\\1709112069395ImportedPhoto_1707376053116.jpg"
+            ],
+            "create_date": "2024-02-27T18:30:00.000Z",
+            "__v": 0
+        },
+        {
+            "_id": "1",
+            "blog_name": "kuch bhi ho sakta hai",
+            "blog_Summary": "aoijfijwefkmcwoiesjf micwiewqjircqwjpimroqwoimr",
+            "blog_description": "wjefieojfweifjweoifjwoie",
+            "blog_image": [
+                "blog_images\\1709112069395ImportedPhoto_1707376053116.jpg"
+            ],
+            "create_date": "2024-02-27T18:30:00.000Z",
+            "__v": 0
+        },
+        {
+            "_id": "1",
+            "blog_name": "kuch bhi ho sakta hai",
+            "blog_Summary": "aoijfijwefkmcwoiesjf micwiewqjircqwjpimroqwoimr",
+            "blog_description": "wjefieojfweifjweoifjwoie",
+            "blog_image": [
+                "blog_images\\1709112069395ImportedPhoto_1707376053116.jpg"
+            ],
+            "create_date": "2024-02-27T18:30:00.000Z",
+            "__v": 0
         }
+    ];
 
-    }
 
-    React.useEffect(() => {
-        setRole(sessionStorage.getItem("Role"))
-        getAllNewsData()
-    }, [])
+    // const getAllNewsData = async () => {
+    //     try {
+    //         const getprojectRaw = await GET(Url.getAllNewsData)
+    //         const getprojectDataJson = await getprojectRaw.json()
+    //         console.log('getprojectDataJson', getprojectDataJson)
+    //         setProjectData(getprojectDataJson.data)
+
+    //         if (getprojectDataJson.succcess == true) {
+
+    //         }
+    //         else {
+
+    //         }
+    //     } catch (error) {
+    //         console.log("err", error)
+    //     }
+
+    // }
+
+    // React.useEffect(() => {
+    //     setRole(sessionStorage.getItem("Role"))
+    //     getAllNewsData()
+    // }, [])
 
 
     return (
@@ -73,7 +110,7 @@ const OurNews = () => {
                                             style={{ width: '94%' }}
                                             className='News-img'
                                             accept='*/'
-                                            src={Url.getImage + "product_images//1699463943860NS200.jpg"}
+                                            src={electric1}
                                             alt='Image'
                                         />
                                     </figure>

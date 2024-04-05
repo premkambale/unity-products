@@ -74,6 +74,12 @@
     margin: 20px 0;
 }
 
+.media-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #minimal-statistics p,
 #stats-subtitle p {
     font-size: 14px;

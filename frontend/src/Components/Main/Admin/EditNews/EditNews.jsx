@@ -7,6 +7,9 @@ import { Url } from '../../../../Constants/ApiUrlConstant'
 
 const EditNews = () => {
     const { newsId } = useContext(contextData)
+    console.log('newsId', newsId)
+
+    const token = sessionStorage.getItem("token")
 
     const [newsData, setNewsData] = useState({
         blog_name: "",
@@ -16,6 +19,11 @@ const EditNews = () => {
         create_date: ""
     })
 
+
+    const formatDateString = (dateString) => {
+        const date = new Date(dateString);
+        return date.toISOString().split('T')[0]; // Format to "yyyy-MM-dd"
+    };
 
     const handleChange = (inputName, inputValue) => {
         console.log("inputName", inputName, "inputValue", inputValue)
@@ -27,9 +35,23 @@ const EditNews = () => {
 
     const getNewsDataById = async () => {
         try {
-            const getNews = await GETExcept(Url.getNewsById + newsId)
+            const getNews = await GETExcept(Url.getNewsById.replace(':blogId', newsId))
             const getNewsData = await getNews.json()
-            console.log("getNewsData", getNewsData)
+            const {
+                blog_name,
+                blog_Summary,
+                blog_description,
+                blog_image,
+                create_date,
+            } = getNewsData.data[0]
+            setNewsData({
+                blog_name: blog_name,
+                blog_Summary: blog_Summary,
+                blog_description: blog_description,
+                blog_image: blog_image,
+                create_date: formatDateString(create_date)
+            })
+
 
         } catch (error) {
             console.log("err", error)
@@ -72,10 +94,14 @@ const EditNews = () => {
                 <Form className="form-container">
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>News Title</Form.Label>
-                        <Form.Control onChange={e => handleChange(e.target.name, e.target.value)}
+                        <Form.Control
+                            onChange={(e) => handleChange(e.target.name, e.target.value)}
                             name="blog_name"
-                            type="text" />
+                            type="text"
+                            value={newsData?.blog_name}
+                        />
                     </Form.Group>
+
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label> News Summary</Form.Label>
@@ -83,21 +109,29 @@ const EditNews = () => {
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>News Description</Form.Label>
-                        <Form.Control name="blog_description" onChange={e => handleChange(e.target.name, e.target.value)} type="textarea" />
+                        <Form.Control name="blog_description" onChange={e => handleChange(e.target.name, e.target.value)} type="textarea"
+                            value={newsData?.blog_description}
+                        />
                     </Form.Group>
 
 
                     <Form.Group controlId="formFileImage" className="mb-3">
                         <Form.Label> News Image</Form.Label>
-                        <Form.Control name="blog_image" onChange={handleFileChange} type="file" />
+                        <Form.Control name="blog_image" onChange={handleFileChange} type="file"
 
+                        />
+                        <img src={newsData?.blog_image} alt="" />
                     </Form.Group>
-
+{/* 
                     <Form.Group controlId="formFileImage" className="mb-3">
                         <Form.Label>Create Date</Form.Label>
-                        <Form.Control name="create_date" onChange={e => handleChange(e.target.name, e.target.value)} type="date" />
-
-                    </Form.Group>
+                        <Form.Control
+                            name="create_date"
+                            onChange={(e) => handleChange(e.target.name, e.target.value)}
+                            type="date"
+                            value={formatDateString(newsData.create_date)}
+                        />
+                    </Form.Group> */}
 
                     <Button
                         onClick={handleEditNews}

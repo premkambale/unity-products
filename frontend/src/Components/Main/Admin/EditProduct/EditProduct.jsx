@@ -17,6 +17,7 @@ const EditProduct = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [showQuantityCounter, setShowQuantityCounter] = useState(true);
   const { productIdToEdit } = useContext(contextData);
+  console.log('productIdToEdit', productIdToEdit)
 
 
 
