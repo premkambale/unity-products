@@ -51,7 +51,7 @@ const Analytics = () => {
 
     return (
         <div className="analyticsContainer">
-            <div className="anaTabs">
+            {/* <div className="anaTabs">
                 <div className="tab1">
                     Online products (22)
                 </div>
@@ -65,7 +65,7 @@ const Analytics = () => {
                     tab1
                 </div>
 
-            </div>
+            </div> */}
 
             {loading ? (
                 <Loader />

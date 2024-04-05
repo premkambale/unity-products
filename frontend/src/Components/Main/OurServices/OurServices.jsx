@@ -58,7 +58,7 @@ const OurServices = () => {
                       </div>
                       <div className="media-body text-right">
                         <h3>{item.value}</h3>
-                        <span style={{color:"white"}}>{item.title}</span>
+                        {/* <span style={{color:"white"}}>{item.title}</span> */}
                       </div>
                     </div>
                   </div>

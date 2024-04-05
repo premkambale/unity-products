@@ -1,65 +1,9 @@
-.manual-carousel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-}
-
-.carousel-container {
-  display: flex;
-  overflow: hidden;
-}
-
-.carousel-slider {
-  display: flex;
-  transition: transform 0.3s;
-}
-
-.carousel-slide {
-  flex: 0 0 100%;
-  min-width: 100%;
-  height: 100vh;
-}
-
-.carousel-slide img {
-  max-width: 100%;
-  height: 100vh;
-  display: block;
-}
-
-.prev-button,
-.next-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #333;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.prev-button {
-  left: 0;
-}
-
-.next-button {
-  right: 0;
-}
-
-.prev-button:hover,
-.next-button:hover {
-  background-color: #555;
-}
+/* Slider.css */
 
 .manual-carousel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
   position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 .carousel-container {
@@ -73,16 +17,32 @@
 }
 
 .carousel-slide {
+  position: relative;
   flex: 0 0 100%;
-  min-width: 100%;
-  transition: transform 0.3s ease-in-out;
 }
 
 .carousel-slide img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   display: block;
-  width: 100%;
+}
+
+.animated-text {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  text-align: left;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 60px 0px 0px 20px;
+
+}
+
+.big-text {
+  font-size: 2.3rem;
+  font-weight: 1000;
+  margin-bottom: 8px;
 }
 
 .prev-button,
@@ -90,26 +50,37 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: #333;
-  color: white;
+  background-color: white;
+  color: black;
   border: none;
-  border-radius: 20px;
-  padding: 8px 16px;
+  border-radius: 10%;
+  padding: 3px;
   cursor: pointer;
   transition: background-color 0.3s;
-  z-index: 2;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 .prev-button {
-  left: 0;
+  left: 10px;
 }
 
 .next-button {
-  right: 0;
+  right: 10px;
 }
 
 .prev-button:hover,
 .next-button:hover {
-  background-color: #555;
+  background-color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .big-text {
+    font-size: 18px;
+  }
+
+  .prev-button,
+  .next-button {
+    padding: 2px;
+    font-size: 10px;
+  }
 }

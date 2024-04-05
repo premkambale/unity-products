@@ -17,6 +17,7 @@ const EditProduct = () => {
   const [imagePreview, setImagePreview] = useState(null);
   const [showQuantityCounter, setShowQuantityCounter] = useState(true);
   const { productIdToEdit } = useContext(contextData);
+  console.log('productIdToEdit', productIdToEdit)
 
 
 
@@ -53,7 +54,7 @@ const EditProduct = () => {
         product_name: product_name,
         product_description: product_description,
         company_name: company_name,
-        product_quantity:product_quantity,
+        product_quantity: product_quantity,
         product_price: product_price,
         product_image: product_image,
         product_category: product_category,
@@ -72,7 +73,7 @@ const EditProduct = () => {
 
 
 
- 
+
   const incrementQuantity = () => {
     setQuantity(quantity + 1);
   };
@@ -165,8 +166,8 @@ const EditProduct = () => {
 
             <div controlId="formFileMultiple" className="mb-3">
               <label>Image</label>
-              <input type="file" name='product_image'  onChange={e => handleChange(e.target.name, e.target.value)} />
-             </div>
+              <input type="file" name='product_image' onChange={e => handleChange(e.target.name, e.target.value)} />
+            </div>
             <div style={{ marginTop: "-16px" }}>
               <label>Category</label>
               <div className="dropdown-container">

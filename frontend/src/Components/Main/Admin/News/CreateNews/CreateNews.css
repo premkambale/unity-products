@@ -28,9 +28,7 @@
 
 
 
-@media (max-width: 768px) {
-  
-}
+@media (max-width: 768px) {}
 
 .scrollable-form {
     max-height: 200vh;
@@ -40,6 +38,38 @@
 ::-webkit-scrollbar {
     display: none;
 }
+
+
+/* .NewsPopUpBTN {
+    padding: 0;
+} */
+
+
+.NewsPopUpBTN {
+    background-color: #ff5e14;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: all ease-in-out 0.2s;
+}
+
+.NewsPopUpBTN:hover {
+    background-color: white;
+    color: #ff5e14;
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+    .NewsPopUpBTN {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
 
 .form-container {
     margin-top: 5%;

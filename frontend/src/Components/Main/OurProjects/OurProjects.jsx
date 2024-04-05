@@ -4,6 +4,9 @@ import ProjectImg from "../Sources/switchgear.jpg"
 import { GETExcept } from '../../../Constants/FetchMethods';
 import { Url } from '../../../Constants/ApiUrlConstant';
 
+
+
+
 const thumbnailData = [
   {
     id: 1,
@@ -34,15 +37,17 @@ const thumbnailData = [
 
 const OurProjects = () => {
 
+  const [projectData, setProjectData] = React.useState([])
 
-  
- 
+
+
 
   const getAllProjects = async () => {
 
     try {
       const getProjectData = await GETExcept(Url.getAllProjects)
       const getAllProjects = await getProjectData.json();
+      setProjectData(getAllProjects.data)
       console.log("========================aksjdajsopdajoajsdoi================", getAllProjects)
     } catch (error) {
       console.log("err", error)
@@ -56,28 +61,36 @@ const OurProjects = () => {
   }, [])
 
   const handleLinkClick = (e) => {
-    e.preventDefault(); // Prevent the default behavior of the anchor tag
+    e.preventDefault();
   };
 
   return (
     <div className="main-container">
-      <h2 style={{ textAlign: "center", fontFamily: " Garamond, serif" }}>Our Projects</h2>
+      <h2 style={{ textAlign: "center", fontFamily: " Garamond, serif", fontSize: "2rem", fontWeight: "600", padding: "10px" }}>Our Projects</h2>
 
       <div className="main-row">
-        {thumbnailData.map((item) => (
-          <div className="thumb-box" key={item.id}>
+        {console.log("projectData", projectData)}
+        {projectData?.map((item) => (
+          <div className="thumb-box" key={item?._id}>
             <a className="thumb-link" onClick={handleLinkClick}>
-              <img src={ProjectImg} alt={`Image ${item.id}`} />
+              {item?.project_image && item.project_image.length > 0 ? (
+                <img src={ProjectImg} alt={`Image ${item._id}`} />
+              ) : (
+                <p>No Image</p>
+              )}
               <div className="overlay-box">
-                <span className="meta">{item.date}</span>
-                <span className="main-title">{item.title}</span>
-                <span className="description">{item.description}</span>
+                <span className="meta">{item?.create_date}</span>
+                <span className="main-title">{item?.project_name}</span>
+                <span className="description">{item?.project_description}</span>
               </div>
             </a>
           </div>
         ))}
       </div>
-    </div>
+
+
+
+    </div >
   );
 };
 

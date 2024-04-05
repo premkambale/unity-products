@@ -1,51 +1,54 @@
-@keyframes pound {
-    to {
-      transform: scale(1.2);
-      box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.65), 2px 6px 12px 0 rgba(0, 0, 0, 0.5), 3px 8px 15px 0 rgba(0, 0, 0, 0.45)
-    }
-  }
-  
-  ul.loader {
-    display: block;
-    position: relative;
-    width: 10em;
+.loadOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    top: 40%;
+.loadBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  border: 4.5px solid #0000;
+  border-radius: 50%;
+  border-color: #dbdcef #0000;
+  animation: spinner-e04l1k 1s infinite linear;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  grid-area: 1/1;
+  margin: 2.2px;
+  border: inherit;
+  border-radius: 50%;
+}
+
+.spinner::before {
+  border-color: #474bff #0000;
+  animation: inherit;
+  animation-duration: 0.5s;
+  animation-direction: reverse;
+}
+
+.spinner::after {
+  margin: 8.9px;
+}
+
+@keyframes spinner-e04l1k {
+  100% {
+    transform: rotate(1turn);
   }
-  
-  .loader li {
-    list-style: none;
-    display: block;
-    float: left;
-    width: 0.5em;
-    height: 1em;
-    margin: 0 0.5em 0 0;
-    background: #635863;
-    background: -moz-linear-gradient(top, #635863 0%, #3d353b 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#635863),  color-stop(100%,#3d353b));
-    background: -webkit-linear-gradient(top, #635863 0%,#3d353b 100%);
-    background: -o-linear-gradient(top, #635863 0%,#3d353b 100%);
-    background: -ms-linear-gradient(top, #635863 0%,#3d353b 100%);
-    background: linear-gradient(to right, #003300 18%, #000099 100%);
-    box-shadow: 1px 1px 5px black;
-    animation: pound .7s ease-in-out infinite alternate;
-    animation-delay: 0.05s;
-    transform-origin: center;
-  }
-  
-  .loader li:nth-child(2) {
-    animation-delay: 0.20s;
-  }
-  
-  .loader li:nth-child(3) {
-    animation-delay: 0.35s;
-  }
-  
-  .loader li:nth-child(4) {
-    animation-delay: 0.50s;
-  }
-  
-  .loader li:nth-child(5) {
-    animation-delay: 0.65s;
-  }
-  
+}

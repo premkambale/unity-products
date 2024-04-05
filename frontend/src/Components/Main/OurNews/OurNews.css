@@ -4,15 +4,15 @@
   align-items: center;
   min-height: 100vh;
   font-family: Georgia, 'Times New Roman', Times, serif;
-
+  padding: 10px;
 }
 
 .OurNewsTitle {
   text-align: center;
   margin: 10px;
-  font-family: Garamond, serif;
-  font-weight: 500;
-  font-size: 3rem;
+  font-family: emoji;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .articles {
@@ -98,15 +98,16 @@ a.read-more {
     width: 100%;
   }
 }
+
 .imag-container {
   overflow: hidden;
 }
 
 .imag-container img {
   transition: transform 0.3s;
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 

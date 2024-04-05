@@ -69,9 +69,15 @@
 
 #minimal-statistics h4,
 #stats-subtitle h4 {
-    font-size: 20px;
+    font-size: 1.6rem;
     font-weight: bold;
     margin: 20px 0;
+}
+
+.media-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #minimal-statistics p,
@@ -81,7 +87,7 @@
     margin: 0;
 }
 
- .primary {
+.primary {
     background-color: #007bff;
     color: #fff;
 }

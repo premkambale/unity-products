@@ -1,15 +1,15 @@
 import React from 'react';
-import "./Loader.css"
+import "./Loader.css";
 
 const Loader = () => {
-    return (
-        <ul class="loader">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>);
-};
+  return (
+    <div className="loadOverlay">
+      <div className="loadBody">
+        <div className="spinner"></div>
+      </div>
+    </div>
+  );
+}
 
 export default Loader;
+

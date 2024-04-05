@@ -19,7 +19,7 @@ import { contextData } from '../../../Context/UnityContext';
 const Main = () => {
 
 
-const {role} = useContext(contextData);
+    const { role } = useContext(contextData);
 
 
     const roleStroage = sessionStorage.getItem("Role")

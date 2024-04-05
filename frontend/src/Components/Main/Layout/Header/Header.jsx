@@ -25,7 +25,7 @@ const Header = () => {
   const handleLogOut = () => {
     sessionStorage.clear();
     localStorage.clear();
-    window.location = "/Login"
+    window.location = "/LandingPage"
     localStorage.setItem('logoutFlag', 'true');
     console.log("logout successfully")
   }
@@ -39,7 +39,6 @@ const Header = () => {
   };
 
   var roleOfGuest = sessionStorage.getItem("Role");
-  console.log("roleOfGuest", roleOfGuest)
 
   return (
     <div className="header-main-container">
@@ -47,12 +46,13 @@ const Header = () => {
         <Navbar
           expand="lg"
           style={{
-            background: "linear-gradient(to right, #003300 18%, #000099 100%)",
-            color: "white !important",
-            fontFamily: "Garamond sans-serif",
-            fontSize: "15px",
+            background: "#25D366",
+            color: "white",
+            fontFamily: "Montserrat, sans-serif",
+            fontSize: "14px",
             boxShadow: "rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px"
           }}
+
           className="fixed-top"
         >
           <Container>
@@ -126,12 +126,12 @@ const Header = () => {
                     </NavDropdown.Item>
                   </NavDropdown>
                   : <div></div>
-              } 
+              }
             </Navbar.Collapse>
           </Container>
         </Navbar>
       </div>
-    </div>
+    </div >
   );
 };
 

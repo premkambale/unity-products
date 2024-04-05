@@ -7,68 +7,76 @@
 
  .page-header {
      text-align: center;
-     background-color: #3071b5;
+     background-color: rgba(37, 211, 102, 0.8);
      color: #fff;
      padding: 40px 0;
-
+     backdrop-filter: blur(10px);
+     border-radius: 10px;
+     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
  }
 
  .page-header h1 {
      font-size: 28px;
      margin: 10px 0;
      font-family: "Times New Roman", Times, serif;
-
  }
 
  .page-header p {
      font-size: 16px;
-
      margin: 0;
  }
 
- .business-info {
-     display: flex;
-     justify-content: space-around;
-     margin: 40px 0;
- }
-
  .business-description {
-     flex: 1;
-     padding: 20px;
-     background-color: #fff;
-     border-radius: 8px;
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
- }
-
- .business-description h2 {
-     font-size: 20px;
-     margin: 10px 0;
- }
-
- .business-description p {
-     font-size: 16px;
-     color: #333;
-     margin: 10px 0;
- }
-
- .business-excellence {
-     flex: 1;
-     padding: 20px;
-     background-color: #fff;
-     border-radius: 8px;
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
- }
-
- .business-excellence h2 {
-     font-size: 20px;
-     margin: 10px 0;
- }
-
- .business-excellence ul {
-     list-style-type: disc;
-     padding-left: 20px;
- }
-
+    flex: 1;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Adjusted background color with transparency */
+    border-radius: 10px; /* Rounded corners for glass effect */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Add box shadow for depth */
+    backdrop-filter: blur(10px); /* Apply backdrop-filter for frosted glass effect */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .business-description:hover {
+    transform: translateY(-2px); /* Add hover effect for elevation */
+  }
+  
+  .business-description h2 {
+    font-size: 24px; /* Increased font size for heading */
+    margin: 10px 0;
+    color: #333; /* Adjusted heading color */
+  }
+  
+  .business-description p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #555; /* Adjusted paragraph text color */
+  }
+  .business-excellence {
+    flex: 1;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Adjusted background color with transparency */
+    border-radius: 10px; /* Rounded corners for glass effect */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Add box shadow for depth */
+    backdrop-filter: blur(10px); /* Apply backdrop-filter for frosted glass effect */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+  }
+  
+  .business-excellence:hover {
+    transform: translateY(-2px); /* Add hover effect for elevation */
+  }
+  
+  .business-excellence h2 {
+    font-size: 24px; /* Increased font size for heading */
+    margin: 10px 0;
+    color: #333; /* Adjusted heading color */
+  }
+  
+  .business-excellence ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    color: #555; /* Adjusted list item color */
+  }
+  
  .testimonial {
      text-align: center;
      margin: 40px 0;
@@ -145,13 +153,14 @@
      transition: all ease-in-out 0.3s;
 
  }
- .breadItems:hover{
-    color: #03e9f4;
+
+ .breadItems:hover {
+     color: #03e9f4;
  }
 
 
  .breadItems2:hover {
-    color: #03e9f4;
+     color: #03e9f4;
 
  }
 
@@ -160,4 +169,18 @@
  .contact-button:hover {
      background-color: white;
      color: #ff5e14;
+ }
+
+ .business-info {
+     display: flex;
+     flex-direction: column;
+     margin: 40px 0;
+     gap: 10px;
+ }
+
+ @media only screen and (min-width: 768px) {
+     .business-info {
+         flex-direction: row;
+         justify-content: space-around;
+     }
  }
