@@ -3,6 +3,7 @@ import Main from './Components/Main/Route/Main'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import UnityContext from './Context/UnityContext';
+import WhatsappIcon from './Components/Main/Whatsapp/WhatsappIcon';
 
 const App = () => {
 
@@ -20,6 +21,7 @@ const App = () => {
   
       <UnityContext>
         <Main />
+        <WhatsappIcon />
       </UnityContext>
     </div>
   )

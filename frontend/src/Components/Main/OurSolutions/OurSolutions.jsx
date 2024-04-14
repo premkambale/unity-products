@@ -28,14 +28,14 @@ const OurSolutions = () => {
 
   return (
     <div className="ourSolutionsContainer">
-      <div className="headerOfSolutions">
+      {/* <div className="headerOfSolutions">
         <h1>Our Solutions</h1>
         <h2>Reliable, efficient delivery</h2>
         <h2>Powered by Technology</h2>
         <p className="solutionDescription">
           Our Artificial Intelligence powered tools use millions of project data points to ensure that your project is successful
         </p>
-      </div>
+      </div> */}
 
       {/* IMEP Services Section */}
       <div className="containerOfSOLN row1-container">

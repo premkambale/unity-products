@@ -29,8 +29,8 @@ const Main = () => {
         <div>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<Navigate to={'/LandingPage'} />} />
-                    <Route path='/LandingPage' element={<LandingPage />} />
+                    <Route path='/' element={<Navigate to={'/Home'} />} />
+                    {/* <Route path='/LandingPage' element={<LandingPage />} />/ */}
                     <Route path='/Home' element={<Home />} />
                     {
 

@@ -5,35 +5,35 @@ import "./OurServices.css"
 const OurServices = () => {
   const data = [
     {
-      value: '278',
+      value: 'SWITCHGEAR PROJECT',
       title: 'New Posts',
     },
     {
-      value: '156',
+      value: 'EPC CONTRACTOR FOR SOLAR PROJECT',
       title: 'New Comments',
     },
     {
-      value: '64.89 %',
+      value: 'SOLAR ERECTION TESTING AND COMMISSIONING ',
       title: 'Bounce Rate',
     },
     {
-      value: '423',
+      value: 'PROCUREMENT AND TRADING',
       title: 'Total Visits',
     },
     {
-      value: '278',
+      value: 'ELECTRICAL SERVICES FOR LOW AND MEDIUM LEVEL SWITCHGEAR',
       title: 'New Posts',
     },
     {
-      value: '156',
+      value: 'EPC CONTRACTOR FOR COMMERCIAL PROJECTS',
       title: 'New Comments',
     },
     {
-      value: '64.89 %',
+      value: 'EARTHING MATERIAL',
       title: 'Bounce Rate',
     },
     {
-      value: '423',
+      value: 'GENERATORS',
       title: 'Total Visits',
     },
   ];
