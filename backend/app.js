@@ -14,12 +14,6 @@ app.use(bodyParser.json());
 
 // cors() allows Cross-Origin-Resourse-Sharing so that the resourse from this server can be shared or gain from another domain.
 app.use(cors());
-app.use(cors({
-  origin: "*", // or specify your frontend's origin
-  methods: ["GET", "POST"],
-  credentials: true
-}));
-// let your calient access the static utils
 
 app.use('/product_images', express.static('product_images'));
 app.use("/product_documents", express.static("product_documents"));
