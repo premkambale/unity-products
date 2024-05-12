@@ -1,8 +1,8 @@
 import { getActivProfile,getActiveImageProfile } from "./Profile";
 import { ProfileConstant } from "./ProfileConstants";
 
-const baseURL = getActivProfile(ProfileConstant.Test);
-const imageBaseUrl = getActiveImageProfile("local")
+const baseURL = getActivProfile(ProfileConstant.Prod);
+const imageBaseUrl = getActiveImageProfile("Prod")
 
 export const Url = {
   
@@ -33,9 +33,5 @@ export const Url = {
 
     //image baseUrl
     getImage: imageBaseUrl
-
-
-
-
 
 };
