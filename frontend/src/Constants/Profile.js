@@ -2,7 +2,7 @@ export const ApiProfile = {
     Dev: "",
     Test: 'http://localhost:5500/',
     UAT: '',
-    Prod: ''
+    Prod: 'https://unity-products.onrender.com/'
   }
   
   export const getActivProfile = (profile) => {
@@ -19,7 +19,7 @@ export const ApiProfile = {
   export const getActiveImageProfile=(profile)=>{
     switch (profile) {
         case 'local': return "http://localhost:5500/";
-        case 'Prod': return "http://localhost:5500/";
+        case 'Prod': return "https://unity-products.onrender.com/";
         default: return (ApiProfile.Dev);
   }
 }
