@@ -5,7 +5,7 @@ const baseURL = getActivProfile(ProfileConstant.Prod);
 const imageBaseUrl = getActiveImageProfile("Prod")
 
 export const Url = {
-  
+    
     // open api
 
     // tokenParse : baseURL + "tokenParse/",
