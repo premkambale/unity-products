@@ -3,62 +3,36 @@ import './OurProjects.css';
 import ProjectImg from "../Sources/switchgear.jpg"
 import { GETExcept } from '../../../Constants/FetchMethods';
 import { Url } from '../../../Constants/ApiUrlConstant';
+import ourproject4 from "../Sources/ourproject4.jpg";
+import solar from "../Sources/solar.jpg"
 
 
 
-
-const thumbnailData = [
+const projectData = [
   {
-    id: 1,
-    date: 'Feb 20, 2019',
-    title: 'Lorem lipsum dollar set for dummy text.',
-    description:
-      'Lorem lipsum dollar set is the best dummy text for the web world which has the best interaction...',
-    imageSrc: 'https://picsum.photos/640/480/?random',
+    "_id": "1",
+    "project_image": solar,
+    "project_name": "Dynamic Sun Energy",
+    "project_description": "Dynamic Sun Energy Pabna Solar PV Park, a 100MW project in Rajshahi, Bangladesh, is developed in partnership with Unity Switchgear and IMEP Solution. Slated for construction in 2025 and commercial operation in 2026, this project exemplifies our commitment to renewable energy and sustainable development. Additionally, both companies collaborated on the operational 30MW solar power project in Pabna, showcasing our capability to deliver large-scale solar solutions efficiently and effectively."
   },
   {
-    id: 2,
-    date: 'Feb 20, 2019',
-    title: 'Simply the best text for dummy world is lorem lipsum.',
-    description: 'Lorem lipsum dollar set is the best dummy...',
-    imageSrc: 'https://picsum.photos/640/480',
+    "_id": "1",
+    "project_image": solar,
+    "project_name": "Dynamic Sun Energy",
+    "project_description": "Dynamic Sun Energy Pabna Solar PV Park, a 100MW project in Rajshahi, Bangladesh, is developed by Dynamic Sun Energy in collaboration with Unity Switchgear and IMEP Solution. Expected to commence in 2025 and operational by 2026, this project underscores our commitment to sustainable energy solutions."
   },
   {
-    id: 3,
-    date: 'Feb 20, 2019',
-    title: 'How can we edit lorem lipsum text for dummy data.',
-    description:
-      'Lorem lipsum dollar set is the best dummy text for the web world which has the best interaction...',
-    imageSrc: 'https://picsum.photos/640/480/?random',
-  },
+    "_id": "1",
+    "project_image": ourproject4,
+    "project_name": "AC & DC Erection",
+    "project_description": "AC & DC Erection, Testing and Commission works. Project Name: TSL 200 MW(AC) Solar Plant. Project Location: Sundarganj, Gaibandha, Rangpur."
+  }
+
 ];
 
 
 
 const OurProjects = () => {
-
-  const [projectData, setProjectData] = React.useState([])
-
-
-
-
-  const getAllProjects = async () => {
-
-    try {
-      const getProjectData = await GETExcept(Url.getAllProjects)
-      const getAllProjects = await getProjectData.json();
-      setProjectData(getAllProjects.data)
-      console.log("========================aksjdajsopdajoajsdoi================", getAllProjects)
-    } catch (error) {
-      console.log("err", error)
-    }
-
-
-  }
-
-  React.useEffect(() => {
-    getAllProjects()
-  }, [])
 
   const handleLinkClick = (e) => {
     e.preventDefault();
@@ -66,15 +40,14 @@ const OurProjects = () => {
 
   return (
     <div className="main-container">
-      <h2 style={{ textAlign: "center", fontFamily: " Garamond, serif", fontSize: "2rem", fontWeight: "600", padding: "10px" }}>Our Projects</h2>
+      <h2 style={{ textAlign: "center", fontFamily: "Garamond, serif", fontSize: "2rem", fontWeight: "600", padding: "10px" }}>Our Projects</h2>
 
       <div className="main-row">
-        {console.log("projectData", projectData)}
         {projectData?.map((item) => (
           <div className="thumb-box" key={item?._id}>
             <a className="thumb-link" onClick={handleLinkClick}>
-              {item?.project_image && item.project_image.length > 0 ? (
-                <img src={ProjectImg} alt={`Image ${item._id}`} />
+              {item?.project_image ? (
+                <img src={typeof item.project_image === 'string' ? item.project_image : ProjectImg} alt={`Image ${item._id}`} />
               ) : (
                 <p>No Image</p>
               )}
@@ -87,10 +60,7 @@ const OurProjects = () => {
           </div>
         ))}
       </div>
-
-
-
-    </div >
+    </div>
   );
 };
 

@@ -122,6 +122,14 @@ productArticle img {
 } */
 
 
+.OurProductTitle {
+  text-align: center;
+  margin: 10px;
+  font-family: Garamond, serif;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 .ProductArticles {
   display: flex;
   flex-wrap: wrap;

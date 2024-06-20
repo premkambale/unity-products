@@ -15,6 +15,7 @@
     width: min(60rem, 90%);
     margin-inline: auto;
 }
+
 .UnityWhyTab {
     margin-top: 6%;
     background: rgba(36, 59, 85, 0.9);
@@ -24,9 +25,9 @@
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-radius: 5px;
-  }
-  
-  .UnityWhyTab h1 {
+}
+
+.UnityWhyTab h1 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,26 +41,28 @@
     white-space: nowrap;
     padding-bottom: 13px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-  }
-  
-  .UnityWhyTab h1:before,
-  .UnityWhyTab h1:after {
-    background-color: rgba(197, 0, 0, 0.9); /* Adjusted color with transparency */
+}
+
+.UnityWhyTab h1:before,
+.UnityWhyTab h1:after {
+    background-color: rgba(197, 0, 0, 0.9);
+    /* Adjusted color with transparency */
     content: '';
     display: block;
     height: 3px;
     width: 75px;
     margin-bottom: 5px;
-  }
-  
-  .UnityWhyTab h1:after {
-    background-color: rgba(98, 190, 30, 0.9); /* Adjusted color with transparency */
+}
+
+.UnityWhyTab h1:after {
+    background-color: rgba(98, 190, 30, 0.9);
+    /* Adjusted color with transparency */
     position: absolute;
     right: 0;
     bottom: 0;
     margin-bottom: 0.25em;
-  }
-  
+}
+
 
 .headingOfHistory {
     position: relative;
@@ -244,4 +247,9 @@
 
 .credits-link {
     color: var(--color);
+}
+
+.historyPara {
+    font-size: 12px;
+
 }

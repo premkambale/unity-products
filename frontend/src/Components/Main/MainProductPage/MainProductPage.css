@@ -1,17 +1,17 @@
+/* Styles for mainProductContainer */
 .mainProductContainer {
   height: 100%;
   width: 100%;
-
 }
 
-
-
+/* Styles for mobile-carousel-container */
 .mobile-carousel-container {
   width: 100%;
   padding: 0;
   margin-top: 5vh;
 }
 
+/* Styles for HomepageWhoWeAre section */
 .HomepageWhoWeAre {
   display: flex;
   align-items: center;
@@ -20,17 +20,19 @@
   margin-top: 5%;
 }
 
+/* General button styles */
 .AllBTN {
   color: black;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.AllBTN:hover{
+.AllBTN:hover {
   background-color: white;
-  color:#ff5e14;
+  color: #ff5e14;
 }
 
+/* Carousel fade effect styles */
 .carousel-fade .carousel-item {
   opacity: 0;
   transition-duration: 1s;
@@ -51,7 +53,7 @@
   transform: translateX(0);
 }
 
-
+/* HeadingStyles section */
 .HeadingStyles h1 {
   font-size: 26px;
   font-weight: 700;
@@ -64,7 +66,8 @@
   padding-bottom: 13px;
 }
 
-.HeadingStyles h1:before {
+.HeadingStyles h1:before,
+.HeadingStyles h1:after {
   background-color: #c50000;
   content: '';
   display: block;
@@ -74,13 +77,35 @@
 }
 
 .HeadingStyles h1:after {
-  background-color: #c50000;
-  content: '';
-  display: block;
   position: absolute;
   right: 0;
   bottom: 0;
-  height: 3px;
-  width: 75px;
   margin-bottom: 0.25em;
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+  .HeadingStyles h1 {
+    font-size: 22px;
+    width: 120px;
+    padding-bottom: 10px;
+  }
+
+  .HeadingStyles h1:before,
+  .HeadingStyles h1:after {
+    width: 60px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .HeadingStyles h1 {
+    font-size: 18px;
+    width: 100px;
+    padding-bottom: 8px;
+  }
+
+  .HeadingStyles h1:before,
+  .HeadingStyles h1:after {
+    width: 40px;
+  }
 }

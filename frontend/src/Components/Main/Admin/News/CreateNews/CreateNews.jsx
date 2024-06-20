@@ -17,6 +17,13 @@ const CreateNews = () => {
         create_date: ""
     })
 
+
+    // Set initial state for loading and success
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+
+
     console.log("newsData", newsData)
 
     const handleFileChange = (e) => {
@@ -45,29 +52,39 @@ const CreateNews = () => {
 
     const handleAddNews = async (e) => {
         e.preventDefault();
-        var myHeaders = new Headers();
-        myHeaders.append("Authorization", token);
 
-        var formdata = new FormData();
-        formdata.append("blog_name", newsData?.blog_name);
-        formdata.append("blog_Summary", newsData?.blog_Summary);
-        formdata.append("blog_description", newsData?.blog_description);
-        formdata.append("blog_image", newsData?.blog_image);
-        formdata.append("create_date", newsData?.create_date);
+        try {
+            setLoading(true);
+            const myHeaders = new Headers();
+            myHeaders.append("Authorization", token);
+            const formdata = new FormData();
+            formdata.append("blog_name", newsData?.blog_name);
+            formdata.append("blog_Summary", newsData?.blog_Summary);
+            formdata.append("blog_description", newsData?.blog_description);
+            formdata.append("blog_image", newsData?.blog_image);
+            formdata.append("create_date", newsData?.create_date);
+            const requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: formdata,
+                redirect: 'follow'
+            };
+            const response = await fetch("http://localhost:5500/blogs/create-blog", requestOptions);
+            const data = await response.json(); // Assuming response is JSON
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: formdata,
-            redirect: 'follow'
-        };
-
-        fetch("http://localhost:5500/blogs/create-blog", requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-
-    }
+            if (response.ok) {
+                setSuccess(true);
+                setLoading(false);
+            } else {
+                throw new Error(data.message || "Failed to create blog");
+            }
+        } catch (error) {
+            setErrorMessage(error.message || "Something went wrong");
+            console.error('Error:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
 
     return (
@@ -75,7 +92,6 @@ const CreateNews = () => {
             <div className="addNewsPage">
                 <div className="AddproductTitle">
                     <Badge bg="info">Create News</Badge>
-                    <button className='NewsPopUpBTN' onClick={handleNewsEdit}>Active news</button>
                 </div>
                 <div className="scrollable-form">
                     <form className="form-container" onSubmit={handleAddNews}>

@@ -39,7 +39,6 @@ const OurServices = () => {
   ];
   return (
     <div className="grey-bg container-fluid">
-
       <section id="minimal-statistics">
         <div className="row">
           <div className="col-12 mt-3 mb-1">
@@ -48,21 +47,9 @@ const OurServices = () => {
         </div>
         <div className="row">
           {data.map((item, index) => (
-            <div key={index} className="col-xl-3 col-sm-6 col-12">
-              <div style={{background: "linear-gradient(#243b55, #141e30)"  , color:"red"}} className="card">
-                <div className="card-content">
-                  <div className="card-body">
-                    <div className="media d-flex">
-                      <div className="align-self-center">
-                        <i className={`icon-${item.icon} ${item.color} font-large-2 float-left`}></i>
-                      </div>
-                      <div className="media-body text-right">
-                        <h3>{item.value}</h3>
-                        {/* <span style={{color:"white"}}>{item.title}</span> */}
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            <div key={index} className="col-md-3 col-sm-6 mb-4">
+              <div className="ServiceCards">
+                <p style={{marginTop:"1rem"}}>{item.value}</p>
               </div>
             </div>
           ))}
@@ -74,8 +61,6 @@ const OurServices = () => {
           <div className="col-12 mt-3 mb-1">
             <h4 className="text-down">To Serve with our world Class services...</h4>
           </div>
-        </div>
-        <div className="row">
         </div>
       </section>
     </div>

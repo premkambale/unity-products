@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import "./MainProductPage.css";
 import Carousel from 'react-bootstrap/Carousel';
-import sampleImage from "../Sources/Daily-News-Wrap-Up-Power-Ministry-Amends-License-Rules-to-Distribute-Electricity.png"
+import sampleImage from "../Sources/man-electrical-technician-working-switchboard-with-fuses.jpg"
 import Container from 'react-bootstrap/Container';
 import { Image, Row, Col, Button } from 'react-bootstrap';
 import OurServices from '../../Main/OurServices/OurServices';
@@ -36,7 +36,7 @@ const MainProductPage = () => {
               xs={12} md={6}>
               <h2 style={{ fontFamily: "Garamond, serif", fontWeight: "600" }}>Who we are</h2>
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sunt illo in delectus exercitationem dignissimos dolorum debitis numquam vero ut consequatur. Modi impedit error sint pariatur voluptatem enim laudantium nesciunt maiores deleniti fuga mollitia commodi officiis consequatur aliquid repudiandae harum, unde illum aut. Explicabo tempore fugiat corrupti ex eligendi maxime obcaecati!
+                Uniting Unity Switchgear and IMEP Solution, together we offer unparalleled expertise in electrical and electromechanical engineering. Unity Switchgear excels in manufacturing and servicing advanced switchgear components and systems, ensuring safety and efficiency. IMEP Solution specializes in comprehensive MEP services, including architectural, electrical, mechanical, plumbing, fire, and HVAC solutions. Our combined strengths enable us to deliver innovative, reliable, and tailored solutions for diverse client needs.
               </p>
               <Button onClick={handleReadMore} style={{ background: "#ff5e14", color: "white" }} className='AllBTN'>Read More</Button>
             </Col>
@@ -50,7 +50,7 @@ const MainProductPage = () => {
 
       <Container className="component-container">
         <OurServices />
-        <OurSolutions />
+        {/* <OurSolutions /> */}
         <OurProjects />
         <OurProducts />
         <OurNews />
@@ -58,6 +58,5 @@ const MainProductPage = () => {
     </div>
   );
 }
- 
+
 export default MainProductPage;
- 

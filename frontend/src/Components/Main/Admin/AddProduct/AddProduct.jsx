@@ -13,11 +13,13 @@ import './AddProduct.css';
 import { POSTWImage } from '../../../../Constants/FetchMethods';
 import { Url } from '../../../../Constants/ApiUrlConstant';
 import Loader from '../../Loader/Loader';
+import { useNavigate } from 'react-router-dom';
 
 const AddProduct = () => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [showQuantityCounter, setShowQuantityCounter] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate()
 
   const [productData, setProductData] = useState({
     product_name: "",
@@ -93,6 +95,7 @@ const AddProduct = () => {
             theme: "colored",
             className: "custom-success-msg"
           });
+          navigate("/Admin")
         } else {
           setIsLoading(false);
           toast.error(result.message, {

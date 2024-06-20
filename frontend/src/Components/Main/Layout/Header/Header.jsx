@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import header from "../../Sources/header.png";
 import { useContext } from 'react';
 import { contextData } from '../../../../Context/UnityContext';
+import unityLogo from "../../Sources/UnityLogo.jpg"
 
 const Header = () => {
   const { role } = useContext(contextData);
@@ -18,7 +19,7 @@ const Header = () => {
   const handleLogOut = () => {
     sessionStorage.clear();
     localStorage.clear();
-    window.location = "/LandingPage";
+    window.location = "/Home";
     localStorage.setItem('logoutFlag', 'true');
     console.log("logout successfully");
   };
@@ -39,7 +40,7 @@ const Header = () => {
         <Navbar
           expand="lg"
           style={{
-            background: "#25D366",
+            background: "#3dcd58",
             color: "white",
             fontFamily: "Montserrat, sans-serif",
             fontSize: "14px",
@@ -53,7 +54,7 @@ const Header = () => {
               className="hover-glittery-effect"
               onClick={() => navigate("/Home")}
             >
-              Logo
+              <img className='unityLogo' src={unityLogo} alt="Logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -69,9 +70,9 @@ const Header = () => {
                   onMouseLeave={handleDropdownLeave}
                   show={showDropdown === 'about'}
                 >
-                  <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/WhyUnity")}>
+                  {/* <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/WhyUnity")}>
                     Why Unity
-                  </NavDropdown.Item>
+                  </NavDropdown.Item> */}
                   <NavDropdown.Divider className="nav-dropdown-divider" />
                   <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/OurHistory")}>
                     Our History
@@ -131,7 +132,9 @@ const Header = () => {
                   Contact Us
                 </Nav.Link>
               </Nav>
-              <button className='LoginAdminButton' onClick={() => navigate("/Login")}>Login</button>
+              {role !== "ADMIN" || roleOfGuest !== "ADMIN" ?
+                <button className='LoginAdminButton' onClick={() => navigate("/Login")}>Login</button> : ""
+              }
               {
                 role === "ADMIN" || roleOfGuest === "ADMIN" ?
                   <NavDropdown

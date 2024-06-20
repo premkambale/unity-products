@@ -117,12 +117,6 @@ const EditProduct = () => {
       <div className="addProductPage">
         <div className="AddproductTitle">
           <Badge bg="info">Edit Product</Badge>
-          <div className="dropdown-container">
-            <select className="ProductAddDropdown" name="productType" onChange={handleDropdownChange} id="">
-              <option value="inventory">Edit to inventory</option>
-              <option value="showCase">Edit to showcase users</option>
-            </select>
-          </div>
         </div>
         <div className="scrollable-form">
           <div className="form-container">

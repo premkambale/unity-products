@@ -10,7 +10,7 @@ import { contextData } from '../../../Context/UnityContext';
 
 const OurNews = () => {
     const [selectedCard, setSelectedCard] = useState(-1);
-    // const [projectData, setProjectData] = useState([])
+    const [projectData, setProjectData] = useState([])
 
     const { setNewsId } = useContext(contextData)
 
@@ -33,66 +33,66 @@ const OurNews = () => {
         navigate("/Admin/EditNews")
     }
 
-    const projectData = [
-        {
-            "_id": "1",
-            "blog_name": "kuch bhi ho sakta hai",
-            "blog_Summary": "aoijfijwefkmcwoiesjf micwiewqjircqwjpimroqwoimr",
-            "blog_description": "wjefieojfweifjweoifjwoie",
-            "blog_image": [
-                "blog_images\\1709112069395ImportedPhoto_1707376053116.jpg"
-            ],
-            "create_date": "2024-02-27T18:30:00.000Z",
-            "__v": 0
-        },
-        {
-            "_id": "1",
-            "blog_name": "kuch bhi ho sakta hai",
-            "blog_Summary": "aoijfijwefkmcwoiesjf micwiewqjircqwjpimroqwoimr",
-            "blog_description": "wjefieojfweifjweoifjwoie",
-            "blog_image": [
-                "blog_images\\1709112069395ImportedPhoto_1707376053116.jpg"
-            ],
-            "create_date": "2024-02-27T18:30:00.000Z",
-            "__v": 0
-        },
-        {
-            "_id": "1",
-            "blog_name": "kuch bhi ho sakta hai",
-            "blog_Summary": "aoijfijwefkmcwoiesjf micwiewqjircqwjpimroqwoimr",
-            "blog_description": "wjefieojfweifjweoifjwoie",
-            "blog_image": [
-                "blog_images\\1709112069395ImportedPhoto_1707376053116.jpg"
-            ],
-            "create_date": "2024-02-27T18:30:00.000Z",
-            "__v": 0
-        }
-    ];
-
-
-    // const getAllNewsData = async () => {
-    //     try {
-    //         const getprojectRaw = await GET(Url.getAllNewsData)
-    //         const getprojectDataJson = await getprojectRaw.json()
-    //         console.log('getprojectDataJson', getprojectDataJson)
-    //         setProjectData(getprojectDataJson.data)
-
-    //         if (getprojectDataJson.succcess == true) {
-
-    //         }
-    //         else {
-
-    //         }
-    //     } catch (error) {
-    //         console.log("err", error)
+    // const projectData = [
+    //     {
+    //         "_id": "1",
+    //         "blog_name": "kuch bhi ho sakta hai",
+    //         "blog_Summary": "aoijfijwefkmcwoiesjf micwiewqjircqwjpimroqwoimr",
+    //         "blog_description": "wjefieojfweifjweoifjwoie",
+    //         "blog_image": [
+    //             "blog_images\\1709112069395ImportedPhoto_1707376053116.jpg"
+    //         ],
+    //         "create_date": "2024-02-27T18:30:00.000Z",
+    //         "__v": 0
+    //     },
+    //     {
+    //         "_id": "1",
+    //         "blog_name": "kuch bhi ho sakta hai",
+    //         "blog_Summary": "aoijfijwefkmcwoiesjf micwiewqjircqwjpimroqwoimr",
+    //         "blog_description": "wjefieojfweifjweoifjwoie",
+    //         "blog_image": [
+    //             "blog_images\\1709112069395ImportedPhoto_1707376053116.jpg"
+    //         ],
+    //         "create_date": "2024-02-27T18:30:00.000Z",
+    //         "__v": 0
+    //     },
+    //     {
+    //         "_id": "1",
+    //         "blog_name": "kuch bhi ho sakta hai",
+    //         "blog_Summary": "aoijfijwefkmcwoiesjf micwiewqjircqwjpimroqwoimr",
+    //         "blog_description": "wjefieojfweifjweoifjwoie",
+    //         "blog_image": [
+    //             "blog_images\\1709112069395ImportedPhoto_1707376053116.jpg"
+    //         ],
+    //         "create_date": "2024-02-27T18:30:00.000Z",
+    //         "__v": 0
     //     }
+    // ];
 
-    // }
 
-    // React.useEffect(() => {
-    //     setRole(sessionStorage.getItem("Role"))
-    //     getAllNewsData()
-    // }, [])
+    const getAllNewsData = async () => {
+        try {
+            const getprojectRaw = await GET(Url.getAllNewsData)
+            const getprojectDataJson = await getprojectRaw.json()
+            console.log('getprojectDataJson', getprojectDataJson)
+            setProjectData(getprojectDataJson.data)
+
+            if (getprojectDataJson.succcess == true) {
+
+            }
+            else {
+
+            }
+        } catch (error) {
+            console.log("err", error)
+        }
+
+    }
+
+    React.useEffect(() => {
+        setRole(sessionStorage.getItem("Role"))
+        getAllNewsData()
+    }, [])
 
 
     return (
@@ -105,21 +105,20 @@ const OurNews = () => {
                         <article key={article._id} className={index % 2 === 0 ? 'business' : ''} data-aos={article.animate} data-aos-duration="1900">
                             <div className={`article-wrapper ${selectedCard === index ? 'flipped' : ''}`}>
                                 <div className="front">
-                                    <figure className='imag-container' key={index}>
+                                    <figure className='imag-container' key={article._id}>
                                         <img
-                                            style={{ width: '94%' }}
+                                            style={{ width: '100%', height: 'auto' }}  
                                             className='News-img'
-                                            accept='*/'
-                                            src={electric1}
+                                            src={`${Url.getImage}${article.blog_image[0].replace(/\\/g, '/')}`}
                                             alt='Image'
                                         />
                                     </figure>
 
+
                                     <div className="article-body">
-                                        <p>{article.blog_name} {role == "ADMIN" && <button onClick={() => handleEditNews(article._id)} className='NewsEditBTN'><MdModeEditOutline /></button>} </p>
-                                        <p>{article.create_date}</p>
-                                        <p>{article.blog_Summary
-                                        }</p>
+                                        <p>{article.blog_name} {role === "ADMIN" && <button onClick={() => handleEditNews(article._id)} className='NewsEditBTN'><MdModeEditOutline /></button>} </p>
+                                        <p>{new Date(article.create_date).toLocaleDateString()}</p>
+                                        <p>{article.blog_Summary}</p>
                                         <a onClick={() => handleReadMore(index)} className="read-more">
                                             Read more <span className="sr-only">about {article.blog_name}</span>
                                             <svg
@@ -142,7 +141,7 @@ const OurNews = () => {
                                         <button onClick={handleBackToFront} className="back-button">
                                             <BiArrowBack />
                                         </button>
-                                        <p className='backDesc'> {article.blog_description} </p>
+                                        <p className='backDesc'>{article.blog_description}</p>
                                     </div>
                                 </div>
                             </div>
