@@ -40,7 +40,11 @@ const OurProjects = () => {
 
   return (
     <div className="main-container">
-      <h2 style={{ textAlign: "center", fontFamily: "Garamond, serif", fontSize: "2rem", fontWeight: "600", padding: "10px" }}>Our Projects</h2>
+        <div className="trending-header">
+          <div className="line"></div>
+          <h2 className='trendingH2'>Our Projects</h2>
+          <div className="line"></div>
+         </div>
 
       <div className="main-row">
         {projectData?.map((item) => (

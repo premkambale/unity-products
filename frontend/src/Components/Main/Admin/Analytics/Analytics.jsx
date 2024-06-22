@@ -5,6 +5,7 @@ import { Badge } from 'react-bootstrap';
 import { MdDelete, MdModeEditOutline } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../../Loader/Loader';
+import { Url } from '../../../../Constants/ApiUrlConstant';
 
 const Analytics = () => {
     const [activeTab, setActiveTab] = useState('table');
@@ -16,7 +17,7 @@ const Analytics = () => {
     }, []);
 
     const fetchData = () => {
-        fetch("http://localhost:5500/products/all", {
+        fetch(Url.getAllProducts, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'

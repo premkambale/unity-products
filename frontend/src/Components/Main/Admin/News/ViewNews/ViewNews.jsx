@@ -26,7 +26,7 @@ const DashBoard = () => {
         }, []);
 
         const fetchData = () => {
-            fetch("http://localhost:5500/products/all", {
+            fetch(Url.getAllProducts, {
                 method: "GET",
                 headers: {
                     'Content-Type': 'application/json'

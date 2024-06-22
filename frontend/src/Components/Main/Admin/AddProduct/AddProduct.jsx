@@ -83,7 +83,7 @@ const AddProduct = () => {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:5500/products/create-product", requestOptions)
+    fetch(Url.createProduct, requestOptions)
       .then(response => response.json())
       .then(result => {
         console.log(result);
@@ -160,12 +160,6 @@ const AddProduct = () => {
         {isLoading && <Loader />}
         <div className="AddproductTitle">
           <Badge bg="info">Add Product</Badge>
-          {/* <div className="dropdown-container">
-            <select className="ProductAddDropdown" name="productType" onChange={handleDropdownChange} id="">
-              <option value="inventory">Add to inventory</option>
-              <option value="showCase">Add to showcase users</option>
-            </select>
-          </div> */}
         </div>
         <div className="scrollable-form">
           <form className="form-container" onSubmit={handleAddProduct}>
@@ -187,29 +181,6 @@ const AddProduct = () => {
               <label>Description</label>
               <input required name="product_description" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter description" />
             </div>
-
-            {/* {showQuantityCounter == true && (
-              <div>
-                <label>Quantity</label>
-                <div className="d-flex align-items-center width-21vh">
-                  <Button type='button' variant="outline-secondary" onClick={decrementQuantity}>
-                    -
-                  </Button>
-                  <input
-                    type="number"
-                    name='product_quantity'
-                    value={productData?.product_quantity}
-                    readOnly
-                    className="text-center"
-                    onChange={(e) => handleChange(e.target.name, e.target.value)}
-                  />
-                  <Button variant="outline-secondary" type='button' onClick={incrementQuantity}>
-                    +
-                  </Button>
-                </div>
-              </div>
-            )} */}
-
             <div controlId="formFileImage" className="mb-3">
               <label>Image</label>
               <div>
@@ -222,21 +193,6 @@ const AddProduct = () => {
                 />
               </div>
             </div>
-
-            {/* <div style={{ marginTop: "-16px" }}>
-              <label>Category</label>
-              <div className="dropdown-container">
-                <select required
-                  className="CategoryDropdown"
-                  name="product_category"
-                  onChange={(e) => handleChange("product_category", e.target.value)}
-                  id=""
-                >
-                  <option value="productCat1">SwitchGear</option>
-                  <option value="productCat2">Panel</option>
-                </select>
-              </div>
-            </div> */}
             <div className="mb-3" controlId="exampleForm.ControlInput1">
               <label>Document</label>
               <input required name="product_doc" onChange={handleDocChange} type="file" placeholder="Please Upload document" />

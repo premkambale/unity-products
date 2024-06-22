@@ -19,6 +19,81 @@ const OurProducts = () => {
   };
 
 
+  const products = [
+    {
+      id: 1,
+      image: "https://via.placeholder.com/300",
+      discount: 68,
+      title: "Multi color Sequence Thread work Desi...",
+      originalPrice: "10,999.00",
+      discountedPrice: "3,499.00",
+      reviews: 3,
+    },
+    {
+      id: 2,
+      image: "https://via.placeholder.com/300",
+      discount: 50,
+      title: "Elegant Floral Print Anarkali...",
+      originalPrice: "8,999.00",
+      discountedPrice: "4,499.00",
+      reviews: 5,
+    },
+    {
+      id: 3,
+      image: "https://via.placeholder.com/300",
+      discount: 40,
+      title: "Designer Lehenga Choli...",
+      originalPrice: "12,999.00",
+      discountedPrice: "7,799.00",
+      reviews: 8,
+    },
+    {
+      id: 4,
+      image: "https://via.placeholder.com/300",
+      discount: 30,
+      title: "Stylish Party Wear Gown...",
+      originalPrice: "6,999.00",
+      discountedPrice: "4,899.00",
+      reviews: 10,
+    },
+    {
+      id: 5,
+      image: "https://via.placeholder.com/300",
+      discount: 25,
+      title: "Traditional Silk Saree...",
+      originalPrice: "5,499.00",
+      discountedPrice: "4,199.00",
+      reviews: 12,
+    },
+    {
+      id: 3,
+      image: "https://via.placeholder.com/300",
+      discount: 40,
+      title: "Designer Lehenga Choli...",
+      originalPrice: "12,999.00",
+      discountedPrice: "7,799.00",
+      reviews: 8,
+    },
+    {
+      id: 4,
+      image: "https://via.placeholder.com/300",
+      discount: 30,
+      title: "Stylish Party Wear Gown...",
+      originalPrice: "6,999.00",
+      discountedPrice: "4,899.00",
+      reviews: 10,
+    },
+    {
+      id: 5,
+      image: "https://via.placeholder.com/300",
+      discount: 25,
+      title: "Traditional Silk Saree...",
+      originalPrice: "5,499.00",
+      discountedPrice: "4,199.00",
+      reviews: 12,
+    },
+  ];
+
   const handleViewMore = () => {
     setVisibleProducts(visibleProducts + 6);
   };
@@ -58,48 +133,53 @@ const OurProducts = () => {
 
   return (
     <>
-      <h2 className='OurProductTitle'>Our Products</h2>
-      <div className="HomeOfProduct">
-        <section className="ProductArticles">
-          {productData?.data?.slice(0, visibleProducts).map((article, index) => (
-            <article className="productArticle" key={index}>
-              <div className="article-wrapper_Products">
-                <img
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  src={Url.getImage + article.product_image}
-                  alt=""
-                />
-                <div className="ProductArticle-body">
-                  <p>{article.product_name}</p>
-                  <p className="productCategory">{article.product_category}</p>
-                  <p
-                    title={article.product_description}
-                    className={`productDesc ${expandedStates[index] ? 'expanded' : ''}`}
-                    onClick={() => handleToggle(index)}
-                  >
-                    {article.product_description}
+      <div className="trending_MainDiv">
+        <div className="trending-header">
+          <div className="line"></div>
+          <h2 className='trendingH2'>Our Products</h2>
+          <div className="line"></div>
+         </div>
+        <div className="trendingGrid">
+          {productData?.data?.length > 0 ? (
+            productData.data.slice(0, visibleProducts).map((article, index) => (
+              <div className="product-card" key={index}>
+                <div className="product-image-container">
+                  <img src={Url.getImage + article.product_image[0]} alt={article.product_name} className="product-image" />
+                  <div className="overlay">
+                    <button onClick={() => handleProductOverView(Url.getImage + article.product_doc)} data-aos="fade-down" className="overlay-button">
+                      Quick view
+                    </button>
+                  </div>
+                </div>
+                <div className="product-details">
+                  <p className="product-title">{article.product_name}</p>
+                  <p className="productCompany">
+                    {article.company_name}
                   </p>
-
-                  <p onClick={() => handleProductOverView(Url.getImage + article.product_doc)} className="viewprodDOC">
-                    View <FaEye />
+                  <p className="product-Description" title={article.product_description}>
+                    <span className="discription">{article.product_description}</span>
                   </p>
                 </div>
               </div>
-            </article>
-          ))}
-        </section>
+            ))
+          ) : (
+            Array.from({ length: 4 }).map((_, index) => (
+              <div className="product-card empty" key={index}>
+                <div className="product-image-container">
+                  <div className="empty-image"></div>
+                </div>
+                <div className="product-details">
+                  <p className="product-title">No product available</p>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
-      {productData?.data?.length > visibleProducts ? (
-        <p className='viewMoreLink' onClick={handleViewMore}>
-          View More
-        </p>
-      ) : (
-        <p className='viewMoreLink' onClick={handleViewLess}>
-          View Less
-        </p>
-      )}
       <PdfModal isOpen={modalIsOpen} closeModal={closeModal} pdfUrl={selectedPdfUrl} />
+
     </>
+
   );
 };
 

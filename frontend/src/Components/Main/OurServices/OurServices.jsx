@@ -41,15 +41,17 @@ const OurServices = () => {
     <div className="grey-bg container-fluid">
       <section id="minimal-statistics">
         <div className="row">
-          <div className="col-12 mt-3 mb-1">
-            <h4 className="text-uppercase">Our Services</h4>
+          <div className="trending-header">
+            <div className="line"></div>
+            <h2 className='trendingH2'>Our Services</h2>
+            <div className="line"></div>
           </div>
         </div>
         <div className="row">
           {data.map((item, index) => (
             <div key={index} className="col-md-3 col-sm-6 mb-4">
               <div className="ServiceCards">
-                <p style={{marginTop:"1rem"}}>{item.value}</p>
+                <p style={{ marginTop: "1rem" }}>{item.value}</p>
               </div>
             </div>
           ))}

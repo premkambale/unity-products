@@ -24,14 +24,6 @@
   gap: 20px;
 }
 
-.backDesc {
-  text-align: start;
-  font-size: 16px;
-  font-family: Garamond, serif;
-  line-height: 1.5;
-  font-weight: 500;
-}
-
 article {
   width: 100%;
   max-width: 350px;
@@ -48,7 +40,7 @@ article:hover {
   background-color: #eaeaea;
 }
 
-figure.imag-container {
+.figure.imag-container {
   overflow: hidden;
   margin: 0;
 }
@@ -64,11 +56,11 @@ figure.imag-container {
   padding: 20px;
 }
 
-.article-body > p {
+.article-body>p {
   text-align: start;
   font-size: 16px;
   line-height: 1.5;
-  color: #666;
+  color: black;
   font-family: Garamond, serif;
 }
 
@@ -135,10 +127,6 @@ a.read-more {
   background: none;
 }
 
-.back-content {
-  overflow: hidden;
-}
-
 .front,
 .back {
   width: 100%;
@@ -155,8 +143,8 @@ a.read-more {
 }
 
 .back {
-  width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  /* Added for scrollable content */
   transform: rotateY(180deg);
 }
 
@@ -168,6 +156,42 @@ a.read-more {
   transform: rotateY(0deg);
 }
 
+.back-content {
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.backDesc {
+  text-align: start;
+  font-size: 16px;
+  font-family: Garamond, serif;
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 20px;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.back::-webkit-scrollbar {
+  width: 12px;
+}
+
+.back::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.back::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.back::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 .back-button {
   border: none;
   background: transparent;
@@ -175,4 +199,5 @@ a.read-more {
   font-size: 1.4rem;
   position: relative;
   margin: -13px 0px 0px -8px;
+  cursor: pointer;
 }

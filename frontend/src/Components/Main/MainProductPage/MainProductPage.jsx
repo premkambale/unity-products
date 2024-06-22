@@ -35,7 +35,7 @@ const MainProductPage = () => {
             <Col data-aos="fade-right" data-aos-duration="1900"
               xs={12} md={6}>
               <h2 style={{ fontFamily: "Garamond, serif", fontWeight: "600" }}>Who we are</h2>
-              <p>
+              <p className='whoDesc'>
                 Uniting Unity Switchgear and IMEP Solution, together we offer unparalleled expertise in electrical and electromechanical engineering. Unity Switchgear excels in manufacturing and servicing advanced switchgear components and systems, ensuring safety and efficiency. IMEP Solution specializes in comprehensive MEP services, including architectural, electrical, mechanical, plumbing, fire, and HVAC solutions. Our combined strengths enable us to deliver innovative, reliable, and tailored solutions for diverse client needs.
               </p>
               <Button onClick={handleReadMore} style={{ background: "#ff5e14", color: "white" }} className='AllBTN'>Read More</Button>

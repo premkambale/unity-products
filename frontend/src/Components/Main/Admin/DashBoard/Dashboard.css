@@ -6,9 +6,31 @@
     overflow: scroll;
 }
 
-
 .table-container Table {
     width: 75vw;
+}
+
+.custom-table-container {
+    overflow-y: auto;
+    max-height: 73vh;
+}
+
+.custom-table-container ::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-table-container ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #D3FFC6;
+    border-radius: 10px;
+}
+
+.custom-table-container ::-webkit-scrollbar-thumb {
+    background: #9FD340;
+    border-radius: 10px;
+}
+
+.custom-table-container ::-webkit-scrollbar-thumb:hover {
+    background: #A7D63F;
 }
 
 .DashboardTitle {
@@ -29,34 +51,48 @@
     background-color: transparent;
 }
 
-.DashTableHead {
+.ellipsis {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    border-right: 1px solid #CCC;
+}
 
-background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
+.ellipsis:hover::after {
+    content: attr(title);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 0;
+    padding: 5px;
+    white-space: normal;
+    max-width: 300px;
+    word-wrap: break-word;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+
+.DashTableHead {
+    background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
     border-left: 1px solid black;
     color: white !important;
     font-size: 1rem;
     font-family: monospace;
-}
-
-.EditProductDash>Modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.table-scroll {
-    height: 70vh;
-    overflow-y: scroll !important;
-    /* border: 1px solid black; */
-
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    padding: 10px;
 }
 
 .DashboardAction {
     display: flex;
     align-items: center;
     justify-content: space-around;
-
 }
 
 .DashboardAction>button {
@@ -64,14 +100,9 @@ background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
     background: none;
 }
 
-
-
-
 @media (max-width: 600px) {
     .DashboardTitle {
-
         font-size: small;
-
     }
 
     .table-container {
@@ -79,4 +110,44 @@ background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
         overflow-x: scroll !important;
         width: 80vw;
     }
+}
+
+.view-switch {
+    border: 1px solid #00ADEE;
+    background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
+    width: 180px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+
+.User-switch {
+    width: 100px;
+    height: 22px;
+    border-radius: 3px;
+    margin-left: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.org-switch {
+    width: 100px;
+    height: 22px;
+    color: #fff;
+    background: linear-gradient(rgb(36, 59, 85), rgb(20, 30, 48));
+    border-radius: 3px;
+    margin-right: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
 }

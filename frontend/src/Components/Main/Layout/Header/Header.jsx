@@ -50,11 +50,15 @@ const Header = () => {
         >
           <Container>
             <Navbar.Brand
-              style={{ color: "white" }}
+              style={{ color: "white", display: "flex", alignItems: "center" }}
               className="hover-glittery-effect"
               onClick={() => navigate("/Home")}
             >
-              <img className='unityLogo' src={unityLogo} alt="Logo" />
+              <img
+                className='unityLogo'
+                src={unityLogo}
+                alt="Logo"
+              />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">

@@ -4,6 +4,7 @@ import { Badge, Button, Form } from 'react-bootstrap'
 import { POST } from '../../../../../Constants/FetchMethods'
 import { Url } from '../../../../../Constants/ApiUrlConstant'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
 const CreateNews = () => {
     const token = sessionStorage.getItem("token")
@@ -69,13 +70,24 @@ const CreateNews = () => {
                 body: formdata,
                 redirect: 'follow'
             };
-            const response = await fetch("http://localhost:5500/blogs/create-blog", requestOptions);
+            const response = await fetch(Url.createNews, requestOptions);
             const data = await response.json(); // Assuming response is JSON
 
-            if (response.ok) {
+            if (response.success) {
                 setSuccess(true);
+                toast.success(response.message, {
+                    position: "bottom-right",
+                    theme: "colored",
+                    className: "custom-success-msg"
+                });
+                navigate("/Admin")
                 setLoading(false);
             } else {
+                toast.error(response.message, {
+                    position: "bottom-right",
+                    theme: "colored",
+                    className: "custom-error-msg"
+                });
                 throw new Error(data.message || "Failed to create blog");
             }
         } catch (error) {
@@ -89,6 +101,8 @@ const CreateNews = () => {
 
     return (
         <>
+              <ToastContainer />
+
             <div className="addNewsPage">
                 <div className="AddproductTitle">
                     <Badge bg="info">Create News</Badge>
