@@ -11,11 +11,23 @@ import mercantile from "../Sources/Mercantile_Bank_Limited_logo.jpg"
 import npcil from "../Sources/NPCIL_Logo.svg.png"
 import scr from "../Sources/Screenshot 2024-02-28 114527.png"
 import scr2 from "../Sources/Screenshot 2024-02-28 114656.png"
+import alc from "../Sources/client images/AIC.png"
+import bio from "../Sources/client images/bioaspire.png"
+import crompton from "../Sources/client images/crompton.png"
+import keolis from "../Sources/client images/keolis.png"
+import int from "../Sources/client images/l&Thyderabadmetro.png"
+import msedl from "../Sources/client images/MSEDCL.png"
+import popular from "../Sources/client images/POPULAR SWITCHGEAR.png"
+import prismlogo from "../Sources/client images/prismlogo.png"
+import tata from '../Sources/client images/Tata_logo.svg.png'
+import technocraft from "../Sources/client images/technocraft.png"
+import ucil from "../Sources/client images/ucil.png"
 import "./OurCustomers.css"
 
 
+
 const OurCustomers = () => {
-  const imageArray = [advent, arinuma, bangla, ifad, mercantile, npcil, scr, scr2];
+  const imageArray = [advent, arinuma, bangla, ifad, mercantile, npcil, scr, scr2, alc, bio, crompton, keolis, int, msedl, popular, prismlogo, tata, technocraft, ucil];
 
 
   const navigate = useNavigate()

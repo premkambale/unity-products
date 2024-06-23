@@ -86,9 +86,9 @@ const Header = () => {
                     Our Customers
                   </NavDropdown.Item>
                 </NavDropdown>
-                <Nav.Link style={{ color: "white" }} onClick={() => navigate("/Solutions")}>
+                {/* <Nav.Link style={{ color: "white" }} onClick={() => navigate("/Solutions")}>
                   Solutions
-                </Nav.Link>
+                </Nav.Link> */}
                 <NavDropdown
                   style={{ color: "black" }}
                   title="Categories" // Changed from "Products" to "Categories"

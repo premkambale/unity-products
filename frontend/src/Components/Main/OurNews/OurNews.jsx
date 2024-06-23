@@ -41,8 +41,7 @@ const OurNews = () => {
             const getprojectDataJson = await getprojectRaw.json();
 
             if (getprojectDataJson.success) {
-                const filteredData = getprojectDataJson.data.slice(0, 3);
-                setProjectData(filteredData);
+                setProjectData(getprojectDataJson.data);
             } else {
                 console.log("API request successful but response indicates failure.");
             }

@@ -2,10 +2,13 @@
 
 import React, { useState } from 'react';
 import './Slider.css';
-import Carimage from '../Sources/pexels-md-molla-923953.jpg';
+import slider1 from '../Sources/slider images/Slider1.jpg'
+import slider2 from '../Sources/slider images/Slider2.jpg'
+import slider3 from '../Sources/slider images/slider3.jpg'
+
 
 const Slider = () => {
-  const images = [Carimage, 'image2.jpg', 'image3.jpg', 'image4.jpg'];
+  const images = [slider1, slider2, slider3];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
@@ -29,7 +32,7 @@ const Slider = () => {
         >
           {images.map((image, index) => (
             <div key={index} className="carousel-slide">
-              <img src={Carimage} alt={`Image ${index}`} />
+              <img src={image} alt="" />
               <div className="animated-text">
                 <p data-aos="fade-right" data-aos-duration="1900" className="big-text">WELCOME TO UNITY</p>
                 <p data-aos="fade-left" data-aos-duration="1900" className="big-text">& IMEP SOLUTIONS</p>

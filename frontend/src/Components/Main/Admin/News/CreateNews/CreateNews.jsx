@@ -101,7 +101,7 @@ const CreateNews = () => {
 
     return (
         <>
-              <ToastContainer />
+            <ToastContainer />
 
             <div className="addNewsPage">
                 <div className="AddproductTitle">

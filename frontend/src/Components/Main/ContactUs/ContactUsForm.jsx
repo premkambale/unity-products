@@ -87,7 +87,6 @@ const ContactUsForm = () => {
           <p>
             <a href="mailto:unity.switchgear@gmail.com">unity.switchgear@gmail.com</a>
             <br />
-            <a href="mailto:jagdish.nirgude@unityswitchgear.com">jagdish.nirgude@unityswitchgear.com</a>
           </p>
           <h3>Links</h3>
           <p>
