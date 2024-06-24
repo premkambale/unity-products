@@ -15,6 +15,7 @@ import OurCustomers from '../OurCustomers/OurCustomers';
 import Login from '../Login/Login';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import { contextData } from '../../../Context/UnityContext';
+import CategoryProducts from '../Layout/Header/CategoryProducts';
 
 const Main = () => {
 
@@ -50,6 +51,7 @@ const Main = () => {
                     <Route path='/OurCustomers' element={<OurCustomers />} />
                     <Route path='/Login' element={<Login />} />
                     <Route path='*' element={<ErrorPage />} />
+                    <Route path="/Categories" element={<CategoryProducts />} />
                 </Routes>
             </BrowserRouter>
         </div>

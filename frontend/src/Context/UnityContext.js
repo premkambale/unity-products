@@ -6,8 +6,10 @@ export const contextData = createContext();
 const UnityContext = ({ children }) => {
     const [productIdToEdit, setProductIdToEdit] = useState("");
     const [activeTab, setActiveTab] = useState("tab1")
-    const [newsId, setNewsId]= useState("")
+    const [newsId, setNewsId] = useState("")
     const [role, setRole] = useState("")
+    const [catProducts, setCatProducts] = useState([])
+    const [isLoading, setIsLoding] = useState(false)
     console.log(role)
 
     console.log(activeTab)
@@ -21,7 +23,11 @@ const UnityContext = ({ children }) => {
                 setNewsId,
                 newsId,
                 setActiveTab,
-                activeTab
+                activeTab,
+                setCatProducts,
+                catProducts,
+                setIsLoding,
+                isLoading
             }}>
             {children}
         </contextData.Provider>
