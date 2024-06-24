@@ -51,4 +51,6 @@ router.put("/product/:productId", verifyJwt, uploadProductImages.fields([
 
 // -------------------------------------------------------------------------------------------------------------------------------------------------------
 
+router.get("/productCat/:product_category",productController.get_product_by_category )
+
 module.exports = router; 

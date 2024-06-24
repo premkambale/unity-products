@@ -73,7 +73,7 @@ const AddProduct = () => {
     formdata.append("company_name", productData?.company_name);
     formdata.append("product_quantity", "3");
     formdata.append("product_image", productData?.product_image);
-    formdata.append("product_category", "user");
+    formdata.append("product_category", productData?.product_category);
     formdata.append("product_doc", productData?.product_doc);
 
     var requestOptions = {
@@ -174,8 +174,8 @@ const AddProduct = () => {
               <input required name="company_name" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter company name" />
             </div>
             <div className="mb-3" controlId="exampleForm.ControlInput1">
-              <label> Price</label>
-              <input required name="product_price" onChange={e => handleChange(e.target.name, e.target.value)} type="number" placeholder="Enter price" />
+              <label>Category</label>
+              <input required name="product_category" onChange={e => handleChange(e.target.name, e.target.value)} type="text" placeholder="Enter Category" />
             </div>
             <div className="mb-3" controlId="exampleForm.ControlInput1">
               <label>Description</label>

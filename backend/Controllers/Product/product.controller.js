@@ -112,11 +112,32 @@ const update_product = async (req, res) => {
   }
 }
 
+
+// ==========================================================================To get Product by category====================================================================
+const get_product_by_category = async (req, res) => {
+  try {
+    const product = await productService.fetch_product_by_category(req);
+    console.log('product', product)
+    if (product) {
+      res.send({ success: true, data: product });
+    }
+    else {
+      res.send({ success: false, message: "failed to fetch product category" })
+    }
+  }
+  catch (error) {
+    res.send({ success: false, message: "failed to fetch product category" })
+  }
+}
+
+
+
 module.exports = {
   create_product,
   get_all_products,
   get_product_by_id,
   delete_all_products,
   delete_product_by_id,
-  update_product
+  update_product,
+  get_product_by_category
 }

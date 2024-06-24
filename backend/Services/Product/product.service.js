@@ -21,11 +21,16 @@ const delete_product_by_productID = async (req) => {
 const update_product_by_id = async (req) => {
   return await productCollection.findByIdAndUpdate(req.params.productId, req.body, { new: true })
 }
+//------------------------------------------------------------------------------------To Get product by Category_______------------------------------------------
+const fetch_product_by_category = async (req) => {
+  return await productCollection.find({ product_category: `${req.params?.product_category}`})
+}
 
 module.exports = {
   fetch_all_products,
   fetch_product_by_productID,
   delete_all_products,
   delete_product_by_productID,
-  update_product_by_id
+  update_product_by_id,
+  fetch_product_by_category
 }

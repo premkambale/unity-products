@@ -42,6 +42,7 @@ export const Url = {
   getAllProducts: baseURL + "products/all", //===========get all products
   editProducts: baseURL + "products/product/",  //+===========edit products
   getProductById: baseURL + "products/product/id", //==============get product By ID
+  getProductByCategory: baseURL + "/productCat/:product_category",
 
 
   //All News APi's
@@ -49,7 +50,7 @@ export const Url = {
   getAllNewsData: baseURL + "blogs/all", //===============get all news && same for delete all
   getNewsById: baseURL + "blogs/blog/:blogId",//========get news by Id && same for delete and edit
   deleteNewsById: baseURL + "blogs/blog/:blogId",
-  editNews : baseURL + "blogs/blog/:blogId",
+  editNews: baseURL + "blogs/blog/:blogId",
 
   //all project API's
   getAllProjects: baseURL + "projects/all", // ===============get all projects both for get and delete

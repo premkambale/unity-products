@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Header.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -10,11 +10,14 @@ import header from "../../Sources/header.png";
 import { useContext } from 'react';
 import { contextData } from '../../../../Context/UnityContext';
 import unityLogo from "../../Sources/UnityLogo.jpg"
+import { GET, GETExcept } from '../../../../Constants/FetchMethods';
+import { Url } from '../../../../Constants/ApiUrlConstant';
 
 const Header = () => {
   const { role } = useContext(contextData);
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(null);
+  const [categories, setCategories] = useState([])
 
   const handleLogOut = () => {
     sessionStorage.clear();
@@ -33,6 +36,36 @@ const Header = () => {
   };
 
   var roleOfGuest = sessionStorage.getItem("Role");
+
+  useEffect(() => {
+    getAllProducts()
+  }, [])
+
+
+  const navigateToCategory = async (category) => {
+    try {
+      const getProductByCategory = await GET(Url.getProductByCategory.replace(":product_category", category))
+
+    } catch (error) {
+      console.log('error', error)
+    }
+
+  };
+
+
+  const getAllProducts = async () => {
+    try {
+      const productDataResponse = await GETExcept(Url.getAllProducts);
+      const getAllProduct = await productDataResponse.json();
+      const categories = getAllProduct?.data?.map(product => product.product_category);
+      const uniqueCategories = [...new Set(categories)];
+      setCategories(uniqueCategories)
+      console.log('Unique categories:', uniqueCategories);
+    } catch (error) {
+      console.error('Error occurred:', error);
+    }
+  };
+
 
   return (
     <div className="header-main-container">
@@ -91,40 +124,23 @@ const Header = () => {
                 </Nav.Link> */}
                 <NavDropdown
                   style={{ color: "black" }}
-                  title="Categories" // Changed from "Products" to "Categories"
+                  title="Categories"
                   id="basic-nav-dropdown"
+                  show={showDropdown === 'categories'}
                   onMouseEnter={() => handleDropdownHover('categories')}
                   onMouseLeave={handleDropdownLeave}
-                  show={showDropdown === 'categories'}
                 >
-                  <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/Category1")}>
-                    Wires
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider className="nav-dropdown-divider" />
-                  <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/Category2")}>
-                    Cables
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider className="nav-dropdown-divider" />
-                  <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/Category2")}>
-                    SwitchGear
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider className="nav-dropdown-divider" />
-                  <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/Category2")}>
-                    Gis switchgear
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider className="nav-dropdown-divider" />
-                  <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/Category2")}>
-                    Cable Rack
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider className="nav-dropdown-divider" />
-                  <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/Category2")}>
-                    Motor Starter
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider className="nav-dropdown-divider" />
-                  <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/Category2")}>
-                    Breaker
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider className="nav-dropdown-divider" />
+                  {categories.map((category, index) => (
+                    <React.Fragment key={index}>
+                      <NavDropdown.Item
+                        className="nav-dropdown-item"
+                        onClick={() => navigateToCategory(category)}
+                      >
+                        {category}
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider className="nav-dropdown-divider" />
+                    </React.Fragment>
+                  ))}
                 </NavDropdown>
                 <Nav.Link style={{ color: "white" }} onClick={() => navigate("/Projects")}>
                   Projects
@@ -136,7 +152,7 @@ const Header = () => {
                   Contact Us
                 </Nav.Link>
               </Nav>
-              {role !== "ADMIN" || roleOfGuest !== "ADMIN" ?
+              {roleOfGuest !== "ADMIN" ?
                 <button className='LoginAdminButton' onClick={() => navigate("/Login")}>Login</button> : ""
               }
               {

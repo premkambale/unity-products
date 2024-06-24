@@ -197,13 +197,13 @@ const EditProduct = () => {
               />
             </div>
             <div className="mb-3" controlId="exampleForm.ControlInput1">
-              <label>Price</label>
+              <label>Category</label>
               <input
-                name='product_price'
-                type="number"
+                name='product_category'
+                type="text"
                 onChange={handleInputChange}
-                value={productData?.product_price || ''}
-                placeholder="Enter price"
+                value={productData?.product_category || ''}
+                placeholder="Enter category"
               />
             </div>
             <div className="mb-3" controlId="exampleForm.ControlInput1">
