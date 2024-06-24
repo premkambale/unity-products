@@ -42,7 +42,7 @@ export const Url = {
   getAllProducts: baseURL + "products/all", //===========get all products
   editProducts: baseURL + "products/product/",  //+===========edit products
   getProductById: baseURL + "products/product/id", //==============get product By ID
-  getProductByCategory: baseURL + "productCat/:product_category",
+  getProductByCategory: baseURL + "products/productCat/:product_category",
 
 
   //All News APi's

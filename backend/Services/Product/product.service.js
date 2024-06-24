@@ -23,7 +23,7 @@ const update_product_by_id = async (req) => {
 }
 //------------------------------------------------------------------------------------To Get product by Category_______------------------------------------------
 const fetch_product_by_category = async (req) => {
-  return await productCollection.find({ product_category: `${req.params?.product_category}`})
+  return await productCollection.find({ product_category:`${req.params?.product_category}`})
 }
 
 module.exports = {
