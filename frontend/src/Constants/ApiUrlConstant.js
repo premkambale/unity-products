@@ -57,6 +57,5 @@ export const Url = {
   getProjectById: baseURL + "projects/project/:projectId", //=========get , edit and delete project by ID\\
 
   //image baseUrl
-  getImage: imageBaseUrl
-
+  getImage: 'https://unity-products.onrender.com/'
 };

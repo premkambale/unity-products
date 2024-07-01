@@ -13,6 +13,9 @@ const OurProducts = () => {
   const [selectedPdfUrl, setSelectedPdfUrl] = useState('');
   const [visibleProducts, setVisibleProducts] = useState(6);
 
+    console.log({
+      productData
+    })
 
   const closeModal = () => {
     setModalIsOpen(false);
@@ -136,7 +139,7 @@ const OurProducts = () => {
       <div className="trending_MainDiv">
         <div className="trending-header">
           <div className="line"></div>
-          <h2 className='trendingH2'>Our Products</h2>
+          <h2 className='trendingH2'> </h2>
           <div className="line"></div>
          </div>
         <div className="trendingGrid">
@@ -144,7 +147,7 @@ const OurProducts = () => {
             productData.data.slice(0, visibleProducts).map((article, index) => (
               <div className="product-card" key={index}>
                 <div className="product-image-container">
-                  <img src={Url.getImage + article.product_image[0]} alt={article.product_name} className="product-image" />
+                  <img src={`${Url.getImage + article.product_image[0]}`} alt={article.product_name} className="product-image" />
                   <div className="overlay">
                     <button onClick={() => handleProductOverView(Url.getImage + article.product_doc)} data-aos="fade-down" className="overlay-button">
                       Quick view
@@ -177,7 +180,6 @@ const OurProducts = () => {
         </div>
       </div>
       <PdfModal isOpen={modalIsOpen} closeModal={closeModal} pdfUrl={selectedPdfUrl} />
-
     </>
 
   );
