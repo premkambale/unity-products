@@ -84,6 +84,33 @@ const Dashboard = () => {
     navigate("Admin/EditProduct");
   };
 
+
+  const handleDeleteNews = async (id) => {
+    try {
+      const response = await DELETE(Url.deleteNewsById.replace(':blogId', id));
+      const responseData = await response.json();
+      console.log("responseData", responseData);
+
+      if (responseData.success === true) {
+        toast.success(responseData.message, {
+          position: "bottom-right",
+          theme: "colored",
+          className: "custom-success-msg"
+        });
+        getAllNews(); // Refresh data after successful delete
+      } else {
+        toast.error(responseData.message, {
+          position: "bottom-right",
+          theme: "colored",
+          className: "custom-error-msg"
+        });
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  }
+
+
   const handleDelete = async (pId) => {
     try {
       const response = await DELETE(Url.deleteProductById.replace('id', pId));
@@ -200,7 +227,7 @@ const Dashboard = () => {
                           <button >
                             <MdModeEditOutline />
                           </button>
-                          <button>
+                          <button onClick={() => handleDeleteNews(news._id)}>
                             <MdDelete />
                           </button>
                         </td>

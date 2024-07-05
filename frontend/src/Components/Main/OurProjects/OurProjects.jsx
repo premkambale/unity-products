@@ -5,15 +5,17 @@ import { GETExcept } from '../../../Constants/FetchMethods';
 import { Url } from '../../../Constants/ApiUrlConstant';
 import ourproject4 from "../Sources/ourproject4.jpg";
 import solar from "../Sources/solar.jpg"
+import OurProject from "../Sources/OurprojectImage.png"
 
 
 
 const projectData = [
   {
     "_id": "1",
-    "project_image": solar,
-    "project_name": "Dynamic Sun Energy",
-    "project_description": "Dynamic Sun Energy Pabna Solar PV Park, a 100MW project in Rajshahi, Bangladesh, is developed in partnership with Unity Switchgear and IMEP Solution. Slated for construction in 2025 and commercial operation in 2026, this project exemplifies our commitment to renewable energy and sustainable development. Additionally, both companies collaborated on the operational 30MW solar power project in Pabna, showcasing our capability to deliver large-scale solar solutions efficiently and effectively."
+    "project_image": OurProject,
+    "project_name": "JNPT Highway Connectivity, Navi Mumbai Project",
+    "project_description": "National Highways Authority of India (NHAI) - Central Govt Authority : Four Laning Of Km 5/00 to 26/987 and Km 0/000 To 4/440 Of NH-4b and Km 106/000 to 109/500 Of NH-4 in Maharastra."
+
   },
   {
     "_id": "1",
@@ -40,11 +42,11 @@ const OurProjects = () => {
 
   return (
     <div className="main-container">
-        <div className="trending-header">
-          <div className="line"></div>
-          <h2 className='trendingH2'>Our Projects</h2>
-          <div className="line"></div>
-         </div>
+      <div className="trending-header">
+        <div className="line"></div>
+        <h2 className='trendingH2'>Our Projects</h2>
+        <div className="line"></div>
+      </div>
 
       <div className="main-row">
         {projectData?.map((item) => (

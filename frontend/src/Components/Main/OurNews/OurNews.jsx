@@ -34,16 +34,25 @@ const OurNews = () => {
     }
 
 
+    const location = window.location.pathname;
 
     const getAllNewsData = async () => {
         try {
             const getprojectRaw = await fetch(Url.getAllNewsData);
             const getprojectDataJson = await getprojectRaw.json();
 
-            if (getprojectDataJson.success) {
-                setProjectData(getprojectDataJson.data);
+            if (location === '/Home') {
+                if (getprojectDataJson.success) {
+                    setProjectData(getprojectDataJson.data.slice(0, 3));
+                } else {
+                    console.log("API request successful but response indicates failure.");
+                }
             } else {
-                console.log("API request successful but response indicates failure.");
+                if (getprojectDataJson.success) {
+                    setProjectData(getprojectDataJson.data);
+                } else {
+                    console.log("API request successful but response indicates failure.");
+                }
             }
         } catch (error) {
             console.log("Error fetching or parsing data:", error);
@@ -75,7 +84,8 @@ const OurNews = () => {
                                             <img
                                                 style={{ width: '100%', height: 'auto' }}
                                                 className='News-img'
-                                                src={`${Url.getImage}${article.blog_image[0].replace(/\\/g, '/')}`}
+                                                // src={`${Url.getImage}${article.blog_image[0].replace(/\\/g, '/')}`}
+                                                src={`${Url.getImage + article.blog_image[0]}`}
                                                 alt='Image'
                                             />
                                         </figure>

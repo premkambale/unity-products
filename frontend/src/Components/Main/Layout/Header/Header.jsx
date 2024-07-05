@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import header from "../../Sources/header.png";
 import { useContext } from 'react';
 import { contextData } from '../../../../Context/UnityContext';
-import unityLogo from "../../Sources/UnityLogo.jpg"
+import unityLogo from "../../Sources/UnityKaLogo.jpg"
 import { GET, GETExcept } from '../../../../Constants/FetchMethods';
 import { Url } from '../../../../Constants/ApiUrlConstant';
 import CategoryProducts from './CategoryProducts';
@@ -46,7 +46,7 @@ const Header = () => {
   const navigateToCategory = async (category) => {
     setIsLoding(true)
     try {
-      const getProductByCategory = await GET(`http://localhost:5500/products/productCat/${category}`)
+      const getProductByCategory = await GET(Url?.getProductByCategory.replace(":product_category", category))
       navigate("/Categories")
       setCatProducts(getProductByCategory)
       setIsLoding(false)
@@ -115,11 +115,11 @@ const Header = () => {
                     {/* <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/WhyUnity")}>
                     Why Unity
                   </NavDropdown.Item> */}
-                    <NavDropdown.Divider className="nav-dropdown-divider" />
-                    <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/OurHistory")}>
+                    {/* <NavDropdown.Divider className="nav-dropdown-divider" /> */}
+                    {/* <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/OurHistory")}>
                       Our History
-                    </NavDropdown.Item>
-                    <NavDropdown.Divider className="nav-dropdown-divider" />
+                    </NavDropdown.Item> */}
+                    {/* <NavDropdown.Divider className="nav-dropdown-divider" /> */}
                     <NavDropdown.Item className="nav-dropdown-item" onClick={() => navigate("/OurCustomers")}>
                       Our Customers
                     </NavDropdown.Item>

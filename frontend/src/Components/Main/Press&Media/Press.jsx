@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Press = () => {
-  const navigate = useNavigate()
+    const navigate = useNavigate()
     return (
         <>
             <Header />

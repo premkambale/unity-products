@@ -82,11 +82,16 @@ const ContactUsForm = () => {
             <a href="tel:+919601296115">+91 9601296115</a>
             <br />
             <a href="tel:+918459298147">+91 8459298147</a>
+            <br />
+            <a href="tel:01717226834">01717226834 </a>
+
           </p>
           <h3>Email</h3>
           <p>
-            <a href="mailto:unity.switchgear@gmail.com">unity.switchgear@gmail.com</a>
+            <a href="mailto:imepsolution@gmail.com ">imepsolution@gmail.com</a>
             <br />
+            <a href="mailto:unity.switchgear@gmail.com">unity.switchgear@gmail.com</a>
+
           </p>
           <h3>Links</h3>
           <p>
