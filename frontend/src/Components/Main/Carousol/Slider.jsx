@@ -8,7 +8,7 @@ import slider3 from '../Sources/slider images/slider3.jpg'
 
 
 const Slider = () => {
-  const images = [slider1, slider2, slider3];
+  const images = [slider2, slider1, slider3];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
@@ -35,7 +35,7 @@ const Slider = () => {
               <img src={image} alt="" />
               <div className="animated-text">
                 <p data-aos="fade-right" data-aos-duration="1900" className="big-text">WELCOME TO IMEP</p>
-                <p data-aos="fade-left" data-aos-duration="1900" className="big-text">& UNITY SOLUTIONS</p>
+                <p data-aos="fade-left" data-aos-duration="1900" className="big-text">UNITY SOLUTIONS</p>
                 <p data-aos="fade-up" data-aos-duration="1900" >Electrical services and Maintenance</p>
               </div>
             </div>

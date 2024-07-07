@@ -79,12 +79,9 @@ const ContactUsForm = () => {
           <span>Nashik, Maharashtra India-422012</span>
           <h3>Phone</h3>
           <p>
+          <a href="tel:01717226834">01717226834 </a>
+            <br />
             <a href="tel:+919601296115">+91 9601296115</a>
-            <br />
-            <a href="tel:+918459298147">+91 8459298147</a>
-            <br />
-            <a href="tel:01717226834">01717226834 </a>
-
           </p>
           <h3>Email</h3>
           <p>

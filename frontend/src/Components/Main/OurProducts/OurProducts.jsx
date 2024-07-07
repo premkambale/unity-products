@@ -23,10 +23,10 @@ const OurProducts = () => {
   const productData = [
     {
       "_id": "668301da97e136aed23c440f",
-      "product_name": "motor-protection-circuit-breaker",
-      "product_description": "Our motor protection circuit breakers provide motor disconnect, branch circuit protecƟon, motor control, and overload protecƟon.Available in 8 relay ranges from 11 to 63 amps and in two frame sizes(32 and 63 amps), they conform to UL508 Type E & F combinaƟon motor controller and manual motor controller standards, making them ideal for group motor applicaƟons and tap conductor protecƟon.",
+      "product_name": "GIS Panel",
+      "product_description": "GIS Panel Solutions",
       // "company_name": "EnlightenTech Solutions",
-      "product_category": "Motor Control Products",
+      "product_category": "Panels",
       // "product_quantity": 3,
       "product_image": product1,
       "product_doc": "product_doc/1719861722717Resume-HRISHIKESH Dadaji Sonawane (5).pdf",
