@@ -18,7 +18,7 @@ const Header = () => {
   const { role, setCatProducts, setIsLoding } = useContext(contextData);
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = useState(null);
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState(["Wire", "Solar", "MV Switchgear", "Earthing Material", "LV Panel"])
 
   const handleLogOut = () => {
     sessionStorage.clear();
@@ -38,37 +38,41 @@ const Header = () => {
 
   var roleOfGuest = sessionStorage.getItem("Role");
 
-  useEffect(() => {
-    getAllProducts()
-  }, [])
+  // useEffect(() => {
+  //   getAllProducts()
+  // }, [])
 
 
   const navigateToCategory = async (category) => {
     setIsLoding(true)
-    try {
-      const getProductByCategory = await GET(Url?.getProductByCategory.replace(":product_category", category))
-      navigate("/Categories")
-      setCatProducts(getProductByCategory)
-      setIsLoding(false)
-    } catch (error) {
-      setIsLoding(false)
-      console.log('error', error)
-    }
+    console.log('category', category)
+    navigate("/Categories")
+    sessionStorage.setItem("Category", category)
+    // setCatProducts(category)
+    // try {
+    //   const getProductByCategory = await GET(Url?.getProductByCategory.replace(":product_category", category))
+    //   navigate("/Categories")
+    //   setCatProducts(getProductByCategory)
+    //   setIsLoding(false)
+    // } catch (error) {
+    //   setIsLoding(false)
+    //   console.log('error', error)
+    // }
   };
 
 
-  const getAllProducts = async () => {
-    try {
-      const productDataResponse = await GETExcept(Url.getAllProducts);
-      const getAllProduct = await productDataResponse.json();
-      const categories = getAllProduct?.data?.map(product => product.product_category);
-      const uniqueCategories = [...new Set(categories)];
-      setCategories(uniqueCategories)
-      console.log('Unique categories:', uniqueCategories);
-    } catch (error) {
-      console.error('Error occurred:', error);
-    }
-  };
+  // const getAllProducts = async () => {
+  //   try {
+  //     const productDataResponse = await GETExcept(Url.getAllProducts);
+  //     const getAllProduct = await productDataResponse.json();
+  //     const categories = getAllProduct?.data?.map(product => product.product_category);
+  //     const uniqueCategories = [...new Set(categories)];
+  //     setCategories(uniqueCategories)
+  //     console.log('Unique categories:', uniqueCategories);
+  //   } catch (error) {
+  //     console.error('Error occurred:', error);
+  //   }
+  // };
 
 
   return (

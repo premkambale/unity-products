@@ -29,7 +29,7 @@ const OurProducts = () => {
       "product_category": "Panels",
       // "product_quantity": 3,
       "product_image": product1,
-      "product_doc": "product_doc/1719861722717Resume-HRISHIKESH Dadaji Sonawane (5).pdf",
+      "product_doc": "",
       "__v": 0
     },
     {
@@ -40,7 +40,7 @@ const OurProducts = () => {
       "product_category": "Industrial Components",
       "product_quantity": 3,
       "product_image": product2,
-      "product_doc": "product_doc/1719861722717Resume-HRISHIKESH Dadaji Sonawane (5).pdf",
+      "product_doc": "",
       "__v": 0
     },
     {
@@ -51,7 +51,7 @@ const OurProducts = () => {
       "product_category": "Earthing",
       "product_quantity": 3,
       "product_image": product3,
-      "product_doc": "product_doc/1719861722717Resume-HRISHIKESH Dadaji Sonawane (5).pdf",
+      "product_doc": "",
       "__v": 0
     },
     {
@@ -62,7 +62,7 @@ const OurProducts = () => {
       "product_category": "Lighting",
       "product_quantity": 3,
       "product_image": product4,
-      "product_doc": "product_doc/1719861722717Resume-HRISHIKESH Dadaji Sonawane (5).pdf",
+      "product_doc": "",
       "__v": 0
     }
   ]

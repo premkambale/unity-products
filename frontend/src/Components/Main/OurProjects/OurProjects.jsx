@@ -6,16 +6,15 @@ import { Url } from '../../../Constants/ApiUrlConstant';
 import ourproject4 from "../Sources/ourproject4.jpg";
 import solar from "../Sources/solar.jpg"
 import OurProject from "../Sources/OurprojectImage.png"
-
+import projectNew from "../Sources/projectNew.JPEG"
 
 
 const projectData = [
   {
     "_id": "1",
-    "project_image": OurProject,
-    "project_name": "JNPT Highway Connectivity, Navi Mumbai Project",
-    "project_description": "National Highways Authority of India (NHAI) - Central Govt Authority : Four Laning Of Km 5/00 to 26/987 and Km 0/000 To 4/440 Of NH-4b and Km 106/000 to 109/500 Of NH-4 in Maharastra."
-
+    "project_image": projectNew,
+    "project_name": "JNPT switchgear project",
+    "project_description": "JNPT switchgear project: Designed, installed, and commissioned high-efficiency electrical systems for improved port operations."
   },
   {
     "_id": "1",
