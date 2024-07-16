@@ -16,6 +16,7 @@ import Login from '../Login/Login';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import { contextData } from '../../../Context/UnityContext';
 import CategoryProducts from '../Layout/Header/CategoryProducts';
+import TestimonialSlider from '../../testimonial/testimonial';
 
 const Main = () => {
 
@@ -52,6 +53,8 @@ const Main = () => {
                     <Route path='/Login' element={<Login />} />
                     <Route path='*' element={<ErrorPage />} />
                     <Route path="/Categories" element={<CategoryProducts />} />
+                    <Route path="/testimonial" element={<TestimonialSlider/>} />
+
                 </Routes>
             </BrowserRouter>
         </div>

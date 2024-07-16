@@ -1,0 +1,13 @@
+.testimonial-slider {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .testimonial-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+  }
+  /* ... add more styles for other elements */
