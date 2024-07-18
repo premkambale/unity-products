@@ -8,7 +8,7 @@ import slider3 from '../Sources/slider images/slider3.jpg'
 
 
 const Slider = () => {
-  const images = [slider2, slider1, slider3];
+  const images = [ slider1,slider2,slider3];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {

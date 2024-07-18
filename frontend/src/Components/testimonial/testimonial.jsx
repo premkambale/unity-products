@@ -6,8 +6,15 @@ const TestimonialSlider = () => {
 
   const testimonials = [
     {
-      name: 'Marnie Rotter',
-      title: 'Web Developer',
+      name: 'Zahangir Alam Ripon',
+      title: 'Managing Director (IMEP Solution)',
+      quote: 'Your coffee hits the spot every time. Thank you for the experience of pure, delicious coffee masterfully roasted! I will never purchase any other and I will spread the word. I would like to highly recommend it.',
+      image: 'https://via.placeholder.com/150', // Replace with your image URL
+    },
+
+    {
+      name: 'Jagdish Nirgude',
+      title: 'Managing Director (UNITY Switchgear)',
       quote: 'Your coffee hits the spot every time. Thank you for the experience of pure, delicious coffee masterfully roasted! I will never purchase any other and I will spread the word. I would like to highly recommend it.',
       image: 'https://via.placeholder.com/150', // Replace with your image URL
     },
