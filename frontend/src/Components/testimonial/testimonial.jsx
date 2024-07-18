@@ -1,79 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import TestimonialCard from './TestimonialCard';
 import './TestimonialSlider.css';
 
-const TestimonialSlider = () => {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+const testimonials = [
+  {
+    name: 'Zahangir Alam Ripon',
+    title: 'Managing Director (IMEP Solution)',
+    quote: 'Your coffee hits the spot every time. Thank you for the experience of pure, delicious coffee masterfully roasted! I will never purchase any other and I will spread the word. I would like to highly recommend it.',
+    image: 'https://via.placeholder.com/150',
+  },
+  {
+    name: 'Jagdish Nirgude',
+    title: 'Managing Director (UNITY Switchgear)',
+    quote: 'Your coffee hits the spot every time. Thank you for the experience of pure, delicious coffee masterfully roasted! I will never purchase any other and I will spread the word. I would like to highly recommend it.',
+    image: 'https://via.placeholder.com/150',
+  },
+];
 
-  const testimonials = [
-    {
-      name: 'Zahangir Alam Ripon',
-      title: 'Managing Director (IMEP Solution)',
-      quote: 'Your coffee hits the spot every time. Thank you for the experience of pure, delicious coffee masterfully roasted! I will never purchase any other and I will spread the word. I would like to highly recommend it.',
-      image: 'https://via.placeholder.com/150', // Replace with your image URL
-    },
+const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-    {
-      name: 'Jagdish Nirgude',
-      title: 'Managing Director (UNITY Switchgear)',
-      quote: 'Your coffee hits the spot every time. Thank you for the experience of pure, delicious coffee masterfully roasted! I will never purchase any other and I will spread the word. I would like to highly recommend it.',
-      image: 'https://via.placeholder.com/150', // Replace with your image URL
-    },
-    // Add more testimonials here
-  ];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const nextTestimonial = () => {
-    setCurrentTestimonial((prevIndex) => (prevIndex + 1) % testimonials.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
   };
 
-  const previousTestimonial = () => {
-    setCurrentTestimonial((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
+  const prevTestimonial = () => {
+    setCurrentIndex((prevIndex) =>
+      (prevIndex - 1 + testimonials.length) % testimonials.length
     );
   };
 
   return (
-    <div className="testimonial-slider">
-      <h2 className="testimonial-title">Testimonial Slider</h2>
-      <div className="testimonial-container">
-        <div className="testimonial-content">
-          <img
-            src={testimonials[currentTestimonial].image}
-            alt={testimonials[currentTestimonial].name}
-            className="testimonial-image"
-          />
-          <p className="testimonial-quote">
-            {testimonials[currentTestimonial].quote}
-          </p>
-          <div className="testimonial-author">
-            <span className="testimonial-name">
-              {testimonials[currentTestimonial].name}
-            </span>
-            <span className="testimonial-title">
-              {testimonials[currentTestimonial].title}
-            </span>
-          </div>
-        </div>
-        <div className="testimonial-navigation">
-          <button onClick={previousTestimonial} className="testimonial-prev">
-            <span>{'<'}</span>
-          </button>
-          <button onClick={nextTestimonial} className="testimonial-next">
-            <span>{'>'}</span>
-          </button>
-        </div>
-      </div>
-      <div className="testimonial-pagination">
-        {testimonials.map((_, index) => (
-          <span
-            key={index}
-            className={`testimonial-pagination-dot ${
-              currentTestimonial === index ? 'active' : ''
-            }`}
-          ></span>
-        ))}
-      </div>
+    <div className="testimonials-container">
+      <button className="arrow left" onClick={prevTestimonial}>&lt;</button>
+      <TestimonialCard
+        name={testimonials[currentIndex].name}
+        title={testimonials[currentIndex].title}
+        quote={testimonials[currentIndex].quote}
+        image={testimonials[currentIndex].image}
+      />
+      <button className="arrow right" onClick={nextTestimonial}>&gt;</button>
     </div>
   );
 };
 
-export default TestimonialSlider;
+export default Testimonials;

@@ -12,6 +12,7 @@ import OurNews from '../../Main/OurNews/OurNews';
 import OurProjects from '../../Main/OurProjects/OurProjects';
 import Slider from '../Carousol/Slider';
 import { useNavigate } from 'react-router';
+import TestimonialSlider from '../../testimonial/testimonial';
 
 const MainProductPage = () => {
   const navigate = useNavigate()
@@ -53,7 +54,8 @@ const MainProductPage = () => {
         {/* <OurSolutions /> */}
         <OurProjects />
         <OurProducts />
-        <OurNews />
+        {/* <OurNews /> */}
+        <TestimonialSlider />
       </Container>
     </div>
   );

@@ -1,14 +1,11 @@
-// Slider.js
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Slider.css';
-import slider1 from '../Sources/slider images/Slider1.jpg'
-import slider2 from '../Sources/slider images/Slider2.jpg'
-import slider3 from '../Sources/slider images/slider3.jpg'
-
+import slider1 from '../Sources/slider images/Slider1.jpg';
+import slider2 from '../Sources/slider images/Slider2.jpg';
+import slider3 from '../Sources/slider images/slider3.jpg';
 
 const Slider = () => {
-  const images = [ slider1,slider2,slider3];
+  const images = [slider1, slider2, slider3];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
@@ -20,6 +17,14 @@ const Slider = () => {
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="manual-carousel">
@@ -34,9 +39,23 @@ const Slider = () => {
             <div key={index} className="carousel-slide">
               <img src={image} alt="" />
               <div className="animated-text">
-                <p data-aos="fade-right" data-aos-duration="1900" className="big-text">WELCOME TO IMEP</p>
-                <p data-aos="fade-left" data-aos-duration="1900" className="big-text">UNITY SOLUTIONS</p>
-                <p data-aos="fade-up" data-aos-duration="1900" >Electrical services and Maintenance</p>
+                <p
+                  data-aos="fade-right"
+                  data-aos-duration="1900"
+                  className="big-text"
+                >
+                  WELCOME TO IMEP
+                </p>
+                <p
+                  data-aos="fade-left"
+                  data-aos-duration="1900"
+                  className="big-text"
+                >
+                  UNITY SOLUTIONS
+                </p>
+                <p data-aos="fade-up" data-aos-duration="1900">
+                  Electrical services and Maintenance
+                </p>
               </div>
             </div>
           ))}
